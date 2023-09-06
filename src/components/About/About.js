@@ -1,11 +1,17 @@
-import GitHubIcon from '@material-ui/icons/GitHub'
-import LinkedInIcon from '@material-ui/icons/LinkedIn'
+import { Grid } from '@mui/material'
 import { about } from '../../portfolio'
 import './About.css'
 
-const About = () => {
-  const { name, role, description, resume, social } = about
 
+const About = () => {
+  const { name, role, description, resume} = about
+  const downloadResume = () => { 
+    const link = document.createElement('a');
+    link.href = resume;
+    link.download = 'resume.pdf';
+    link.dispatchEvent(new MouseEvent('click'));
+
+  }
   return (
     <div className='about center'>
       {name && (
@@ -15,18 +21,36 @@ const About = () => {
       )}
 
       {role && <h2 className='about__role'>A {role}.</h2>}
-      <p className='about__desc'>{description && description}</p>
-
+      <Grid container columnSpacing={4}
+        justifyContent="center"
+        alignItems="center"
+        sx={{
+        m: "40px 0",
+      }}>
+        <Grid item xs={12} md={12}>
+          {description.split('\n').map((item) => (
+            <p style={{
+              marginBottom: "20px",
+            }}>
+              {item}
+            </p>
+          ))}
+        </Grid>
+      
+     
+      </Grid>
+      
+     
       <div className='about__contact center'>
         {resume && (
-          <a href={resume}>
+          <button href={resume} type="button" onClick={downloadResume}>
             <span type='button' className='btn btn--outline'>
-              Resume
+              Download Resume
             </span>
-          </a>
+          </button>
         )}
 
-        {social && (
+        {/* {social && (
           <>
             {social.github && (
               <a
@@ -48,7 +72,7 @@ const About = () => {
               </a>
             )}
           </>
-        )}
+        )} */}
       </div>
     </div>
   )

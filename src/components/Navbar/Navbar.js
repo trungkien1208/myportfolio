@@ -1,10 +1,8 @@
+import CloseIcon from '@mui/icons-material/Close'
+import MenuIcon from '@mui/icons-material/Menu'
 import { useContext, useState } from 'react'
-import Brightness2Icon from '@material-ui/icons/Brightness2'
-import WbSunnyRoundedIcon from '@material-ui/icons/WbSunnyRounded'
-import MenuIcon from '@material-ui/icons/Menu'
-import CloseIcon from '@material-ui/icons/Close'
 import { ThemeContext } from '../../contexts/theme'
-import { projects, skills, contact } from '../../portfolio'
+import { contact, projects, skills, experiences } from '../../portfolio'
 import './Navbar.css'
 
 const Navbar = () => {
@@ -19,6 +17,19 @@ const Navbar = () => {
         style={{ display: showNavList ? 'flex' : null }}
         className='nav__list'
       >
+        {experiences.length ? (
+          <li className='nav__list-item'>
+            <a
+              href='#experiences'
+              onClick={toggleNavList}
+              className='link link--nav'
+            >
+              Experience
+            </a>
+          </li>
+        ) : null}
+
+
         {projects.length ? (
           <li className='nav__list-item'>
             <a
@@ -59,10 +70,32 @@ const Navbar = () => {
       <button
         type='button'
         onClick={toggleTheme}
-        className='btn btn--icon nav__theme'
+        className='btn'
         aria-label='toggle theme'
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 1,
+          border: "1px solid",
+          borderColor: themeName === 'light' ? '#000' : '#fff',
+          padding: "5px 5px",
+          transition: "all 0.5s ease",
+        
+        }}
       >
-        {themeName === 'dark' ? <WbSunnyRoundedIcon /> : <Brightness2Icon />}
+        <div className="first__name" style={{
+          padding: "0 8px",
+          backgroundColor: themeName === 'light' ? '#000' : 'transparent',
+          color: themeName === 'light' ? '#fff' : 'inherit',
+        }}>
+          Trung
+        </div>
+        <div className="last__name" style={{
+          padding: "0 8px",
+          backgroundColor: themeName === 'dark' ? '#fff' : 'transparent',
+          color: themeName === 'dark' ? '#000' : 'inherit',
+        }}>Kiên</div>
       </button>
 
       <button

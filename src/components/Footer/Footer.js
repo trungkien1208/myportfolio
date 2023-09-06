@@ -3,11 +3,11 @@ import './Footer.css'
 const Footer = () => (
   <footer className='footer'>
     <a
-      href='https://github.com/rajshekhar26/cleanfolio'
+      href="/"
       className='link footer__link'
     >
-      Created By Raj Shekhar
-    </a>
+      👨‍💻 Software Engineer | 🌐 Web Developer | 🚀 Problem Solver
+      </a>
   </footer>
 )
 
