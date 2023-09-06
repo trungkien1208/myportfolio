@@ -42,7 +42,15 @@ const ExperienceContainer = ({ experience }) => (
       <span >Role: </span>
       {experience.role}
     </p>
-    <p className='experience__description'>{experience.description}</p>
+    <ul style={{
+      listStyle: "disc",
+    }}>
+      {experience.description.split('\n').filter((item) => item).map((item) => (
+      <li key={item} >
+          <p className='experience__description'>{item}</p>
+      </li>
+    ))}
+      </ul>
   </div>
 )
 

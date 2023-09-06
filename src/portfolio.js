@@ -111,10 +111,7 @@ const experiences = [
     current: true,
     role: 'Front End Engineer',
     description:
-      `* Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam
-      \n
-      * Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam
-      `,
+      `Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam \n Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam`,
     
   },
   {

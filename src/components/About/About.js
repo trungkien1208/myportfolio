@@ -28,7 +28,7 @@ const About = () => {
         m: "40px 0",
       }}>
         <Grid item xs={12} md={12}>
-          {description.split('\n').map((item) => (
+          {description.split('\n').filter(item => item).map((item) => (
             <p style={{
               marginBottom: "20px",
             }}>
