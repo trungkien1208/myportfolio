@@ -24,8 +24,6 @@ const Contact = () => {
           lg={8}
           container
           rowSpacing={2}
-          justifyContent='center'
-          alignItems='center'
           textAlign={{ xs: 'center', md: 'left' }}
           sx={{
             maxWidth: '700px',

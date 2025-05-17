@@ -1,8 +1,11 @@
 import CloseIcon from '@mui/icons-material/Close'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
+import LightModeIcon from '@mui/icons-material/LightMode'
 import MenuIcon from '@mui/icons-material/Menu'
+import { yellow } from '@mui/material/colors'
 import { useContext, useState } from 'react'
 import { ThemeContext } from '../../contexts/theme'
-import { contact, projects, skills, experiences } from '../../portfolio'
+import { contact, experiences, projects, skills } from '../../portfolio'
 import './Navbar.css'
 
 const Navbar = () => {
@@ -28,7 +31,6 @@ const Navbar = () => {
             </a>
           </li>
         ) : null}
-
 
         {projects.length ? (
           <li className='nav__list-item'>
@@ -70,32 +72,30 @@ const Navbar = () => {
       <button
         type='button'
         onClick={toggleTheme}
-        className='btn'
-        aria-label='toggle theme'
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 1,
-          border: "1px solid",
-          borderColor: themeName === 'light' ? '#000' : '#fff',
-          padding: "5px 5px",
-          transition: "all 0.5s ease",
-        
-        }}
+        className={`theme-toggle ${themeName}`}
+        aria-label='Toggle theme'
       >
-        <div className="first__name" style={{
-          padding: "0 8px",
-          backgroundColor: themeName === 'light' ? '#000' : 'transparent',
-          color: themeName === 'light' ? '#fff' : 'inherit',
-        }}>
-          Trung
+        <div
+          className={`toggle-icon light ${
+            themeName === 'light' ? 'active' : ''
+          }`}
+        >
+          <LightModeIcon
+            sx={{
+              color: themeName === 'light' ? '#fff' : '#fff',
+            }}
+          />
         </div>
-        <div className="last__name" style={{
-          padding: "0 8px",
-          backgroundColor: themeName === 'dark' ? '#fff' : 'transparent',
-          color: themeName === 'dark' ? '#000' : 'inherit',
-        }}>Kiên</div>
+        <div
+          className={`toggle-icon dark ${themeName === 'dark' ? 'active' : ''}`}
+        >
+          <DarkModeIcon
+            sx={{
+              color: themeName === 'dark' ? '#fff' : '#000',
+            }}
+          />
+        </div>
+        <div className={`toggle-slider ${themeName}`} />
       </button>
 
       <button

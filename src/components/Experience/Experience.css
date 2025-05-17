@@ -1,4 +1,4 @@
-.experiences_list{
+.experiences_list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -6,19 +6,23 @@
   padding: 0;
   list-style: none;
   gap: 2rem;
+
+  padding: 2rem;
+  transition: transform 0.2s ease-in-out;
 }
 
 .experience {
   padding: 3em;
   width: 100%;
   margin: 0 auto;
-
+  border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   transition: transform 0.2s linear;
 }
 
 .experience:hover {
   transform: translateY(-7px);
+  border: 1px solid var(--clr-primary);
 }
 
 .experience__description {

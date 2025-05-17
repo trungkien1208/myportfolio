@@ -1,25 +1,32 @@
-import { Box, Grid, Button } from '@mui/material'
-import PropTypes from 'prop-types'
+import { Box, Grid } from '@mui/material'
 import { about } from '../../portfolio'
 import './About.css'
 
-const downloadResume = (resume) => {
-  const link = document.createElement('a')
-  link.href = resume
-  link.download = 'Luutrungkien_Resume.pdf'
-  link.dispatchEvent(new MouseEvent('click'))
-}
-
 const About = () => {
   const { name, role, description, resume } = about
-
+  const downloadResume = () => {
+    const link = document.createElement('a')
+    link.href = resume
+    link.download = 'Luutrungkien_Resume.pdf'
+    link.dispatchEvent(new MouseEvent('click'))
+  }
   return (
     <div className='about center'>
-      {name && (
-        <h1>
-          Hi, I am <span className='about__name'>{name}.</span>
-        </h1>
-      )}
+      <Box
+        className='about__intro'
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: '20px',
+        }}
+      >
+        {name && (
+          <h1>
+            Hi, I am <span className='about__name'>{name}.</span>
+          </h1>
+        )}
+      </Box>
 
       <Box
         sx={{
@@ -31,7 +38,6 @@ const About = () => {
       >
         {role && <h2 className='about__role'>A {role}.</h2>}
       </Box>
-
       <Grid
         container
         columnSpacing={4}
@@ -41,24 +47,34 @@ const About = () => {
         <Grid item xs={12} md={12}>
           {description
             .split('\n')
-            .filter(Boolean)
-            .map((paragraph, index) => (
-              <p key={index} className='about__paragraph'>
-                {paragraph}
+            .filter((item) => item)
+            .map((item) => (
+              <p
+                style={{
+                  marginBottom: '20px',
+                }}
+              >
+                {item}
               </p>
             ))}
         </Grid>
       </Grid>
 
-      <div className='about__contact center'>
+      <Box
+        className='about__contact center'
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+        }}
+      >
         {resume && (
-          <Button
-            variant='outlined'
-            onClick={() => downloadResume(resume)}
-            className='about__resume-button'
-          >
-            Download Resume
-          </Button>
+          <button href={resume} type='button' onClick={downloadResume}>
+            <span type='button' className='btn btn--outline'>
+              Download Resume
+            </span>
+          </button>
         )}
 
         {/* {social && (
@@ -84,16 +100,9 @@ const About = () => {
             )}
           </>
         )} */}
-      </div>
+      </Box>
     </div>
   )
-}
-
-About.propTypes = {
-  name: PropTypes.string,
-  role: PropTypes.string,
-  description: PropTypes.string,
-  resume: PropTypes.string,
 }
 
 export default About

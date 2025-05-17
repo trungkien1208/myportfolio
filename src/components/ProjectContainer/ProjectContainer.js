@@ -1,5 +1,5 @@
 import uniqid from 'uniqid'
-import GitHubIcon from '@mui/icons-material/GitHub';
+import GitHubIcon from '@mui/icons-material/GitHub'
 import LaunchIcon from '@mui/icons-material/Launch'
 import './ProjectContainer.css'
 
@@ -8,6 +8,20 @@ const ProjectContainer = ({ project }) => (
     <h3>{project.name}</h3>
 
     <p className='project__description'>{project.description}</p>
+
+    {project.achievements && (
+      <div className='project__achievements'>
+        <h4>Key Achievements:</h4>
+        <ul className='project__achievements-list'>
+          {project.achievements.map((achievement) => (
+            <li key={uniqid()} className='project__achievements-item'>
+              {achievement}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
     {project.stack && (
       <ul className='project__stack'>
         {project.stack.map((item) => (

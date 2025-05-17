@@ -35,3 +35,51 @@
     margin-top: 2em;
   }
 }
+
+.about__intro {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  opacity: 0;
+  animation: introEnter 1.2s ease-out forwards;
+  animation-delay: 0.3s;
+  transform: translateY(40px) scale(0.95);
+  letter-spacing: 1px;
+}
+
+.about__name {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    var(--clr-primary-light),
+    var(--clr-primary)
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: nameReveal 2.2s ease forwards;
+  animation-delay: 1s, 2.2s;
+  opacity: 0;
+}
+
+@keyframes introEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes nameReveal {
+  to {
+    opacity: 1;
+  }
+}
