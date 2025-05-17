@@ -17,7 +17,12 @@
 .project__description {
   margin: 1rem 0;
   line-height: 1.6;
-  min-height: 250px;
+}
+
+@media screen and (min-width: 768px) {
+  .project__description {
+    min-height: 250px;
+  }
 }
 
 .project__achievements {

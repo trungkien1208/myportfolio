@@ -5,10 +5,10 @@ const header = {
 const about = {
   name: 'Lưu Trung Kiên',
   role: 'Senior Software Engineer',
-  description: `I'm a Senior Software Engineer with over 8 years of experience building scalable web and mobile applications using JavaScript, TypeScript, ReactJS, and React Native. I specialize in crafting clean, maintainable code and intuitive user interfaces for enterprise and healthcare platforms.\n
+  description: `I'm a **Senior Software Engineer** with over 8 years of experience building scalable web and mobile applications using **JavaScript**, **TypeScript**, **ReactJS**, **React Native**, **HTML5**, and **CSS3**. I specialize in crafting clean, maintainable code and intuitive user interfaces for enterprise and healthcare platforms.\n
 I've independently built core systems such as an iPad-based healthcare kiosk app and designed the architecture for multiple admin portals, enabling smooth onboarding for team members. I take pride in setting up frontend structures that are easy to maintain and scale.\n
-In my current role, I lead front-end teams across web and mobile projects, mentor junior developers, and collaborate with cross-functional teams to deliver high-quality, user-focused software. I'm passionate about performance optimization, responsive design, and improving development workflows.\n
-My goal is to grow into a Principal Software Engineer, driving technical direction and building impactful digital experiences through thoughtful UI/UX and modern technologies.`,
+In my current role, I lead front-end teams across web and mobile projects, mentor junior developers, and collaborate with cross-functional teams to deliver high-quality, user-focused software. I'm passionate about **performance optimization**, **responsive design**, **CSS animations**, and improving development workflows.\n
+My goal is to grow into a **Principal Software Engineer**, driving technical direction and building impactful digital experiences through thoughtful UI/UX and modern technologies.`,
   resume: './resume.pdf',
   social: {
     linkedin: 'https://linkedin.com/in/luutrungkien',

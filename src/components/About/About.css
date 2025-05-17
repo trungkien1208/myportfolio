@@ -9,11 +9,25 @@
 
 .about__role {
   margin-top: 1.2em;
+  text-align: center;
 }
 
 .about__desc {
   font-size: 1rem;
-  max-width: 800px;
+}
+
+@media (max-width: 600px) {
+  .about__desc {
+    text-align: justify;
+    max-width: 100%;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0 0.5rem;
+  }
+
+  .about__desc p {
+    margin-bottom: 1rem;
+  }
 }
 
 .about__desc,

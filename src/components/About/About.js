@@ -45,18 +45,38 @@ const About = () => {
         alignItems='center'
       >
         <Grid item xs={12} md={12}>
-          {description
-            .split('\n')
-            .filter((item) => item)
-            .map((item) => (
-              <p
-                style={{
-                  marginBottom: '20px',
-                }}
-              >
-                {item}
-              </p>
-            ))}
+          <Box className='about__desc'>
+            {description
+              .split('\n')
+              .filter((item) => item)
+              .map((item) => (
+                <p
+                  style={{
+                    marginBottom: '1.5rem',
+                    textAlign: 'justify',
+                  }}
+                >
+                  {item.split('**').map((part, index) =>
+                    index % 2 === 0 ? (
+                      part
+                    ) : (
+                      <strong
+                        key={part}
+                        style={{
+                          background:
+                            'linear-gradient(90deg, var(--clr-primary-light), var(--clr-primary))',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        {part}
+                      </strong>
+                    )
+                  )}
+                </p>
+              ))}
+          </Box>
         </Grid>
       </Grid>
 
