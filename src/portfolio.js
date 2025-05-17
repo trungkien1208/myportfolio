@@ -1,146 +1,102 @@
 const header = {
-  // all the properties are optional - can be left empty or deleted
-  
-  
   logo: "./logo.png",
 }
 
 const about = {
-  // all the properties are optional - can be left empty or deleted
-  name: 'Trung Kiên',
-  role: 'Front End Engineer',
-  description:
-    `I'm a software engineer with six years of experience, specializing in React.js and the Material-UI (MUI) library for building user interfaces. My work encompasses various platforms, including web-based applications, desktop software, and web services. \n
-    In the past, I've also worked with JavaScript frameworks like Sencha ExtJS and AngularJS. However, my current mainstay is React.js, and I have a deep understanding of creating stunning and responsive user interfaces using the Material-UI (MUI) library. \n
-    
-    One of my notable achievements is independently building a product portal from the ground up using React.js and MUI, which has enriched my skills and experience. \n
-    
-    Currently, I lead a front-end team with one junior member, focusing on improving my leadership skills. I've successfully navigated various software development methodologies, including Waterfall, Agile, and Scrum. Feel free to connect or reach out if you'd like to discuss anything further!`,
+  name: 'Lưu Trung Kiên',
+  role: 'Senior Front-End Engineer',
+  description: `I’m a senior software engineer with 8+ years of experience in web and mobile development, specializing in JavaScript, TypeScript, and ReactJS. I build scalable, high-performance applications with clean architecture and a strong focus on UI/UX.\n
+I’m passionate about crafting user-friendly interfaces using HTML and SCSS, and continuously explore ways to enhance user experience. I also have hands-on experience developing mobile apps with React Native.\n
+Currently, I lead front-end teams across web and mobile projects—resolving technical challenges, mentoring team members, and ensuring smooth sprint delivery and collaboration.\n
+My goal is to grow into a Principal Front-End Engineer, continuously sharpening my skills and exploring modern technologies to improve performance and user satisfaction.`,
   resume: './resume.pdf',
   social: {
-    linkedin: 'https://linkedin.com',
-    github: 'https://github.com',
+    linkedin: 'https://linkedin.com/in/luutrungkien', // Replace with your actual profile
+    github: 'https://github.com/yourusername', // Replace with your actual profile
   },
 }
 
 const projects = [
-  // projects can be added an removed
-  // if there are no projects, Projects section won't show up
   {
-    name: 'Project 1',
-    description:
-      'Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam',
-    stack: ['SASS', 'TypeScript', 'React'],
-    sourceCode: 'https://github.com',
-    livePreview: 'https://github.com',
+    name: 'PSSB Kiosk App',
+    description: 'iPadOS-based kiosk application enabling patients to queue, book appointments, make payments, and print tickets.',
+    stack: ['React Native', 'Expo', 'Zustand', 'Redux Toolkit'],
+    sourceCode: '',
+    livePreview: '',
   },
   {
-    name: 'Project 2',
-    description:
-      'Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam',
-    stack: ['SASS', 'TypeScript', 'React'],
-    sourceCode: 'https://github.com',
-    livePreview: 'https://github.com',
+    name: 'NCA Admin Portal',
+    description: 'Web portal for managing patients, doctors, and rehab programs with admin configuration tools.',
+    stack: ['ReactJS', 'MUI', 'ChartJS', 'Redux Toolkit'],
+    sourceCode: '',
+    livePreview: '',
   },
   {
-    name: 'Project 3',
-    description:
-      'Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam',
-    stack: ['SASS', 'TypeScript', 'React'],
-    sourceCode: 'https://github.com',
-    livePreview: 'https://github.com',
+    name: 'Taggle Platform',
+    description: 'Multi-tenant platform for clinics and public health to manage patient data and sync with mobile app.',
+    stack: ['ReactJS', 'MUI', 'Axios', 'Redux Toolkit'],
+    sourceCode: '',
+    livePreview: '',
   },
 ]
 
 const skills = [
-  {
-    name: 'HTML',
-    level: 5,
-  },
-  {
-    name: 'CSS',
-    level: 5,
-  },
-  {
-    name: 'JavaScript',
-    level: 5,
-  },
-  {
-    name: 'TypeScript',
-    level: 2,
-  },
-  {
-    name: 'ReactJS',
-    level: 4,
-  },
-  {
-    name: 'Redux',
-    level: 4,
-  },
-  {
-    name: 'SASS',
-    level: 4,
-  },
-  {
-    name: 'MUI',
-    level: 5,
-  },
-  {
-    name: 'Git',
-    level: 4,
-  },
-  {
-    name: 'CI/CD',
-    level: 2,
-  },
-  {
-    name: 'Jest',
-    level: 3,
-  },
-  {
-    name: 'AngularJS',
-    level: 3,
-  }
+  { name: 'HTML', level: 5 },
+  { name: 'CSS/SCSS', level: 5 },
+  { name: 'JavaScript', level: 5 },
+  { name: 'TypeScript', level: 5 },
+  { name: 'ReactJS', level: 5 },
+  { name: 'React Native', level: 4 },
+  { name: 'Redux Toolkit', level: 4 },
+  { name: 'MUI', level: 5 },
+  { name: 'Zustand', level: 3 },
+  { name: 'Git', level: 4 },
+  { name: 'CI/CD', level: 3 },
+  { name: 'i18next', level: 4 },
+  { name: 'Jest', level: 3 },
+  { name: 'AngularJS', level: 3 },
+  { name: 'Kendo UI', level: 3 },
+  { name: 'Sencha ExtJS', level: 3 }
 ]
-
 
 const experiences = [
   {
-    name: 'Company A',
-    time: 'Jan 2020 - Present',
+    name: 'Taggle',
+    time: 'Dec 2020 – Present',
     current: true,
-    role: 'Front End Engineer',
-    description:
-      `Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam \n Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam`,
-    
+    role: 'Senior Front-End Engineer',
+    description: `Led both Web and Mobile front-end teams.\n
+Developed admin portal and kiosk iPad apps.\n
+Collaborated with BAs and BE teams, managed sprints, code reviews, and deployments.`,
   },
   {
-    name: 'Company B',
-    time: 'Jan 2019 - Dec 2019',
-    description:
-
-      'Amet asperiores et impedit aliquam consectetur? Voluptates sed a nulla ipsa officia et esse aliquam',
-
-
+    name: 'Xspera Vietnam',
+    time: 'Dec 2019 – Oct 2020',
+    role: 'Front-End Developer',
+    description: `Worked on AngularJS, ReactJS, and SharePoint.\n
+Developed Microsoft Teams Apps and Power Apps components.\n
+Led junior members and contributed to UI component design.`,
+  },
+  {
+    name: 'Global Cybersoft',
+    time: 'Mar 2018 – Dec 2019',
+    role: 'Front-End Consultant',
+    description: `Focused on Sencha ExtJS, Kendo UI, and custom healthcare solutions for Canada and France clients.\n
+Worked on radiology web apps and supported scalable UI patterns using MVVM.`,
   },
 ]
 
 const contact = {
-  // email is optional - if left empty Contact section won't show up
-  email: 'luutrungkien120894@mail.com',
-  github: 'https://github.com',
-  linkedin: 'https://linkedin.com',
-  facebook: 'https://facebook.com',
-  instagram: 'https://instagram.com',
+  email: 'luutrungkien120894@gmail.com',
+  github: 'https://github.com/trungkien1208e', // Replace
+  linkedin: "https://www.linkedin.com/in/kiên-lưu-5293771a1", // Replace
   contact: {
     Name: 'Lưu Trung Kiên',
-    Birthday: '12 August 1994',
+    Birthday: '12 August',
     Phone: '(+84) 919 62 55 66',
-    Address: 'Hồ Chí Minh, Việt Nam',
-    Age: '29',
+    Address: 'Ho Chi Minh City, Vietnam',
     Email: 'luutrungkien120894@gmail.com',
   }
-
 }
 
 export { header, about, projects, skills, contact, experiences }
