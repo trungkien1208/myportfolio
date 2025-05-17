@@ -4,11 +4,11 @@ const header = {
 
 const about = {
   name: 'Lưu Trung Kiên',
-  role: 'Senior Front-End Engineer',
-  description: `I'm a Senior Front-End Engineer with 8+ years of experience crafting high-performance web and mobile applications. My expertise in JavaScript, TypeScript, and ReactJS has helped deliver scalable solutions that serve millions of users across healthcare and enterprise platforms.\n
-I specialize in building intuitive user interfaces and architecting robust front-end systems. My recent work includes developing a healthcare kiosk system that improved patient wait times by 40% and a multi-tenant platform serving 50+ clinics.\n
-As a technical lead, I've successfully mentored 10+ developers and implemented best practices that reduced bug rates by 30%. I'm passionate about creating maintainable codebases and optimizing user experiences through performance tuning and responsive design.\n
-My goal is to continue growing as a Principal Front-End Engineer, focusing on emerging technologies like WebAssembly and Edge Computing to push the boundaries of web application performance.`,
+  role: 'Senior Software Engineer',
+  description: `I'm a Senior Software Engineer with over 8 years of experience building scalable web and mobile applications using JavaScript, TypeScript, ReactJS, and React Native. I specialize in crafting clean, maintainable code and intuitive user interfaces for enterprise and healthcare platforms.\n
+I've independently built core systems such as an iPad-based healthcare kiosk app and designed the architecture for multiple admin portals, enabling smooth onboarding for team members. I take pride in setting up frontend structures that are easy to maintain and scale.\n
+In my current role, I lead front-end teams across web and mobile projects, mentor junior developers, and collaborate with cross-functional teams to deliver high-quality, user-focused software. I'm passionate about performance optimization, responsive design, and improving development workflows.\n
+My goal is to grow into a Principal Software Engineer, driving technical direction and building impactful digital experiences through thoughtful UI/UX and modern technologies.`,
   resume: './resume.pdf',
   social: {
     linkedin: 'https://linkedin.com/in/luutrungkien',
