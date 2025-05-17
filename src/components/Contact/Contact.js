@@ -62,6 +62,7 @@ const Contact = () => {
               href={`mailto:${contact.email}`}
               target='_blank'
               rel='noopener noreferrer'
+              className='link link--icon'
             >
               <Mail color='primary' fontSize='large' />
             </a>

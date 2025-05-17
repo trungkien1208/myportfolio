@@ -5,10 +5,10 @@ const header = {
 const about = {
   name: 'Lưu Trung Kiên',
   role: 'Senior Software Engineer',
-  description: `I'm a **Senior Software Engineer** with over 8 years of experience building scalable web and mobile applications using **JavaScript**, **TypeScript**, **ReactJS**, **React Native**, **HTML5**, and **CSS3**. I specialize in crafting clean, maintainable code and intuitive user interfaces for enterprise and healthcare platforms.\n
-I've independently built core systems such as an iPad-based healthcare kiosk app and designed the architecture for multiple admin portals, enabling smooth onboarding for team members. I take pride in setting up frontend structures that are easy to maintain and scale.\n
-In my current role, I lead front-end teams across web and mobile projects, mentor junior developers, and collaborate with cross-functional teams to deliver high-quality, user-focused software. I'm passionate about **performance optimization**, **responsive design**, **CSS animations**, and improving development workflows.\n
-My goal is to grow into a **Principal Software Engineer**, driving technical direction and building impactful digital experiences through thoughtful UI/UX and modern technologies.`,
+  description: `I'm a **Senior Software Engineer** with over 8 years of experience developing scalable web and mobile applications using **JavaScript**, **TypeScript**, **ReactJS**, **React Native**, **HTML5**, and **CSS3**. I specialize in writing clean, maintainable code and building intuitive user interfaces for enterprise and healthcare platforms.\n
+I've independently built key systems such as an iPad-based healthcare kiosk app and architected multiple admin portals that streamline team onboarding and long-term maintainability.\n
+In my current role, I lead front-end teams across web and mobile projects, mentor junior developers, and collaborate closely with cross-functional teams to ensure high-quality, user-centric delivery. I'm passionate about **performance optimization**, **responsive design**, **CSS animations**, and enhancing development workflows.\n
+My career goal is to become a **Principal Software Engineer**, shaping technical direction and creating impactful digital experiences through thoughtful UI/UX design and modern technologies.`,
   resume: './resume.pdf',
   social: {
     linkedin: 'https://linkedin.com/in/luutrungkien',
@@ -57,6 +57,46 @@ const projects = [
       'Built core features and component patterns used by all later contributors',
       'Continuously improved UX based on real user and client feedback',
       'Contributed to CI/CD and versioning processes across multiple releases',
+    ],
+  },
+  {
+    name: 'XSPERA Web Portal',
+    description:
+      'Developed internal web products for Saigon Commercial Bank and enterprise clients, delivering business tools integrated with Microsoft platforms.',
+    stack: ['ReactJS', 'AngularJS', 'Kendo UI', 'SharePoint'],
+    sourceCode: '',
+    livePreview: '',
+    achievements: [
+      'Created custom Microsoft Teams and Power Apps components for enterprise clients',
+      'Mentored junior developer and intern as Front-End Team Lead',
+      'Built UI components and workflows for SharePoint-based applications',
+      'Collaborated with cross-functional teams to deliver scalable solutions',
+    ],
+  },
+  {
+    name: 'Ramsoft',
+    description:
+      'Built web-based radiology viewing software as part of a healthcare imaging solution for a Canadian company, ensuring compliance with strict performance requirements.',
+    stack: ['JavaScript', 'SCSS', 'HTML5', 'Sencha ExtJS'],
+    sourceCode: '',
+    livePreview: '',
+    achievements: [
+      'Delivered pixel-perfect radiology UI with MVVM pattern using Sencha ExtJS',
+      'Worked closely with backend team to support real-time data loading and updates',
+      'Ensured compatibility across major browsers and legacy systems',
+    ],
+  },
+  {
+    name: 'France Project',
+    description:
+      'Contributed to front-end development for a radiology software product targeting the French healthcare market, focused on client-side logic and responsive UI.',
+    stack: ['JavaScript', 'HTML5', 'SCSS', 'Sencha ExtJS'],
+    sourceCode: '',
+    livePreview: '',
+    achievements: [
+      'Implemented dynamic UI components tailored for radiology workflows',
+      'Optimized rendering performance and ensured cross-browser compatibility',
+      'Participated in daily syncs with French stakeholders to align on UX goals',
     ],
   },
 ]
