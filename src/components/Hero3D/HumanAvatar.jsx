@@ -1,8 +1,17 @@
 /* eslint-disable react/no-unknown-property */
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
 import { Box3, Vector3 } from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+
+const useGLTF = (url) => {
+  const [gltf, setGltf] = useState(null)
+  useEffect(() => {
+    const loader = new GLTFLoader()
+    loader.load(url, setGltf)
+  }, [url])
+  return gltf || { scene: null }
+}
 
 /*
  * Loads any humanoid .glb and AUTO-FRAMES it:
@@ -22,6 +31,7 @@ const HumanAvatar = ({ url }) => {
   const { scene } = useGLTF(url)
 
   useEffect(() => {
+    if (!scene) return
     headRef.current =
       scene.getObjectByName('Head') ||
       scene.getObjectByName('head') ||
@@ -60,6 +70,7 @@ const HumanAvatar = ({ url }) => {
     }
   })
 
+  if (!scene) return null
   return <primitive ref={group} object={scene} />
 }
 

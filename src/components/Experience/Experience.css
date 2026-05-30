@@ -190,8 +190,19 @@
   top: 0.2em;
 }
 
-/* Mobile: single column */
+/* Mobile: tighten header gap */
 @media (max-width: 768px) {
+  .experience .section__inner {
+    padding-top: 0.4rem;
+  }
+}
+
+/* Mobile: scrollable single column */
+@media (max-width: 768px) {
+  .experience__cards {
+    grid-template-columns: 1fr;
+  }
+
   .experience__line {
     left: 12px;
   }

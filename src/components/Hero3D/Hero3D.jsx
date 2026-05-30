@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { useRef, useMemo, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Stars } from '@react-three/drei'
 import { Color, AdditiveBlending } from 'three'
 import './Hero3D.css'
 
@@ -86,7 +85,6 @@ const Scene = () => (
   <>
     <ambientLight intensity={0.5} />
     <pointLight position={[0, 0, 0]} intensity={2} color='#c084fc' distance={8} />
-    <Stars radius={140} depth={90} count={4500} factor={4.5} saturation={0} fade speed={0.5} />
     <ParallaxGroup position={[1.7, 0, 0]}>
       <Galaxy />
     </ParallaxGroup>

@@ -159,7 +159,8 @@ const About = () => {
   const statsRef = useRef(null)
   const [statsStarted, setStatsStarted] = useState(false)
 
-  /* Scroll parallax — hero dissolves into next section */
+  /* Scroll parallax — hero dissolves into next section (desktop only) */
+  const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
   const { scrollY } = useScroll()
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0])
   const heroY = useTransform(scrollY, [0, 600], [0, -120])
@@ -237,7 +238,7 @@ const About = () => {
         {/* LEFT — text content with scroll parallax */}
         <motion.div
           className='about__left'
-          style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
+          style={isMobile ? {} : { opacity: heroOpacity, y: heroY, scale: heroScale }}
         >
           <div className='about__intro'>
             <motion.div

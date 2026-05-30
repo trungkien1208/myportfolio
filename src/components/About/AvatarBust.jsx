@@ -1,8 +1,17 @@
 /* eslint-disable react/no-unknown-property */
-import { useRef, useEffect, Suspense } from 'react'
+import { useRef, useEffect, useState, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
 import { Box3, Vector3 } from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+
+const useGLTF = (url) => {
+  const [gltf, setGltf] = useState(null)
+  useEffect(() => {
+    const loader = new GLTFLoader()
+    loader.load(url, setGltf)
+  }, [url])
+  return gltf || { scene: null }
+}
 
 /*
  * Renders a .glb avatar in a small canvas.
@@ -38,6 +47,7 @@ const Model = ({ url, mode }) => {
   }, [])
 
   useEffect(() => {
+    if (!scene) return
     const cfg = FRAMING[mode]
     const box = new Box3().setFromObject(scene)
     const size = new Vector3()
@@ -123,6 +133,7 @@ const Model = ({ url, mode }) => {
     }
   })
 
+  if (!scene) return null
   return <primitive ref={ref} object={scene} />
 }
 

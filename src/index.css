@@ -25,6 +25,12 @@ html {
   height: 100%;
 }
 
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: none;
+  }
+}
+
 body {
   height: 100%;
 }

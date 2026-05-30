@@ -14,7 +14,7 @@ Currently leading front-end teams at Taggle (Singapore), where I independently b
 I care deeply about **performance**, **clean architecture**, and interfaces that genuinely delight users. My goal: grow into a **Principal Engineer** role — shaping technical direction and building products that matter.`,
   resume: './resume.pdf',
   // 3D avatar model — served from /public so the URL is stable.
-  avatarModel: `${process.env.PUBLIC_URL}/avatar.glb`,
+  avatarModel: '/avatar.glb',
   // Optional: a portrait image for the small hero circle. Leave '' to keep the LTK monogram.
   avatarImage: '',
   social: {
