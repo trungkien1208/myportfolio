@@ -1,0 +1,63 @@
+.section-dots {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.section-dots__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: row-reverse;
+  text-decoration: none;
+  position: relative;
+}
+
+.section-dots__dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--clr-primary);
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+/* Label shows on hover */
+.section-dots__label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--clr-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(4px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  pointer-events: none;
+}
+
+.section-dots__item:hover .section-dots__label,
+.section-dots__item--active .section-dots__label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.section-dots__item--active .section-dots__dot {
+  background: var(--clr-primary);
+  box-shadow: 0 0 0 3px rgba(var(--clr-primary-rgb), 0.25);
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .section-dots {
+    display: none;
+  }
+}

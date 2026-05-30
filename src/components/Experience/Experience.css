@@ -1,3 +1,9 @@
+/* Section inner override for experience */
+.experience .section__inner {
+  justify-content: flex-start;
+  padding-top: 1.5rem;
+}
+
 /* Timeline layout */
 .experience__timeline {
   position: relative;

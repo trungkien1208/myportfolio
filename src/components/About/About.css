@@ -1,12 +1,14 @@
 /* ── Two-column layout shell ─────────────────────── */
 .about {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  padding: 88px 0 0;
+  padding: 70px 0 0;
   overflow: hidden;
   background: linear-gradient(160deg, #f0f4ff 0%, #fafbff 40%, #fdf4ff 100%);
 }

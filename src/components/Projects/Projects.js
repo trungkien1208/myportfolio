@@ -24,64 +24,64 @@ const Projects = () => {
 
   return (
     <section id='projects' className='section projects'>
-      <span className='section__deco' aria-hidden='true'>02</span>
-      <span className='section__label'>Work</span>
+      <div className='section__inner'>
+        <span className='section__deco' aria-hidden='true'>02</span>
+        <span className='section__label'>Work</span>
 
-      <motion.h2
-        className='section__title'
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      >
-        Projects
-      </motion.h2>
-      <div className='section__underline' />
+        <motion.h2
+          className='section__title'
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, margin: '-80px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          Projects
+        </motion.h2>
+        <div className='section__underline' />
 
-      {/* Filter tabs */}
-      <motion.div
-        className='projects__filters'
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        role='group'
-        aria-label='Filter projects'
-      >
-        {FILTERS.map((f) => (
-          <button
-            key={f}
-            type='button'
-            onClick={() => setActiveFilter(f)}
-            className={`projects__filter-btn ${activeFilter === f ? 'projects__filter-btn--active' : ''}`}
-            aria-pressed={activeFilter === f}
-          >
-            {f}
-          </button>
-        ))}
-      </motion.div>
-
-      {/* Bento grid with stagger */}
-      <div className='projects__grid' style={{ perspective: 1200 }}>
-        <AnimatePresence mode='popLayout'>
-          {filtered.map((project, i) => (
-            <motion.div
-              key={project.name}
-              layout
-              initial={{ opacity: 0, y: 40, rotateX: 15, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.9 }}
-              transition={{
-                duration: 0.55,
-                delay: i * 0.07,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              style={{ transformOrigin: 'top center' }}
+        <motion.div
+          className='projects__filters'
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          role='group'
+          aria-label='Filter projects'
+        >
+          {FILTERS.map((f) => (
+            <button
+              key={f}
+              type='button'
+              onClick={() => setActiveFilter(f)}
+              className={`projects__filter-btn ${activeFilter === f ? 'projects__filter-btn--active' : ''}`}
+              aria-pressed={activeFilter === f}
             >
-              <ProjectContainer project={project} index={i} />
-            </motion.div>
+              {f}
+            </button>
           ))}
-        </AnimatePresence>
+        </motion.div>
+
+        <div className='projects__grid' style={{ perspective: 1200 }}>
+          <AnimatePresence mode='popLayout'>
+            {filtered.map((project, i) => (
+              <motion.div
+                key={project.name}
+                layout
+                initial={{ opacity: 0, y: 40, rotateX: 15, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                transition={{
+                  duration: 0.55,
+                  delay: i * 0.07,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                style={{ transformOrigin: 'top center' }}
+              >
+                <ProjectContainer project={project} index={i} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   )

@@ -9,28 +9,26 @@ import Header from './components/Header/Header'
 import Projects from './components/Projects/Projects'
 import ScrollProgress from './components/ScrollProgress/ScrollProgress'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop'
+import SectionDots from './components/SectionDots/SectionDots'
 import Skills from './components/Skills/Skills'
 import { ThemeContext } from './contexts/theme'
-import useLenis from './hooks/useLenis'
 
 const App = () => {
   const [{ themeName }] = useContext(ThemeContext)
-  useLenis()
 
   return (
-    <div id='top' className={`${themeName} app`}>
+    <div className={`${themeName} app`}>
       <Cursor />
       <ScrollProgress />
+      <SectionDots />
       <Header />
       <About />
-      <main>
-        <Experience />
-        <Projects />
-        <Skills />
-        <Contact />
-      </main>
-      <ScrollToTop />
+      <Experience />
+      <Projects />
+      <Skills />
+      <Contact />
       <Footer />
+      <ScrollToTop />
     </div>
   )
 }

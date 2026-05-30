@@ -20,7 +20,13 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 70px;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 0;
+  height: 100%;
+}
+
+body {
+  height: 100%;
 }
 
 body {

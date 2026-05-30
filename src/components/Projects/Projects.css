@@ -1,3 +1,9 @@
+/* Section inner override for projects */
+.projects .section__inner {
+  justify-content: flex-start;
+  padding-top: 1.5rem;
+}
+
 .projects__filters {
   display: flex;
   gap: 0.5em;

@@ -1,3 +1,9 @@
+/* Section inner override for skills */
+.skills .section__inner {
+  justify-content: flex-start;
+  padding-top: 1.5rem;
+}
+
 /* Marquee */
 .skills__marquee {
   overflow: hidden;
