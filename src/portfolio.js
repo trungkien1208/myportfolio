@@ -5,13 +5,18 @@ const header = {
 const about = {
   name: 'Lưu Trung Kiên',
   role: 'Senior Software Engineer',
-  tagline: 'I build exceptional digital products — from iPad kiosks deployed in Singapore hospitals to scalable platforms serving thousands of users across Southeast Asia.',
+  tagline:
+    'I build exceptional digital products — from iPad kiosks deployed in Singapore hospitals to scalable platforms serving thousands of users across Southeast Asia.',
   description: `Senior Software Engineer with 8+ years crafting production-grade web and mobile applications. I own projects end-to-end — from architecture decisions to production deployment.
 
 Currently leading front-end teams at Taggle (Singapore), where I independently built a healthcare kiosk used daily in hospitals and architected admin portals powering real-time patient management across Singapore and the Philippines.
 
 I care deeply about **performance**, **clean architecture**, and interfaces that genuinely delight users. My goal: grow into a **Principal Engineer** role — shaping technical direction and building products that matter.`,
   resume: './resume.pdf',
+  // 3D avatar model — served from /public so the URL is stable.
+  avatarModel: `${process.env.PUBLIC_URL}/avatar.glb`,
+  // Optional: a portrait image for the small hero circle. Leave '' to keep the LTK monogram.
+  avatarImage: '',
   social: {
     linkedin: 'https://www.linkedin.com/in/ki%C3%AAn-l%C6%B0u-5293771a1/',
     github: 'https://github.com/trungkien1208',
@@ -153,10 +158,31 @@ const skills = [
 ]
 
 const ALL_TECH = [
-  'ReactJS', 'TypeScript', 'React Native', 'Redux Toolkit', 'MUI',
-  'Zustand', 'Axios', 'Webpack', 'Git', 'CI/CD', 'Docker', 'Jest',
-  'SCSS', 'JavaScript', 'HTML5', 'Expo', 'Formik', 'i18next', 'Yup',
-  'Node.js', 'REST APIs', 'GraphQL', 'Figma', 'SharePoint', 'Kendo UI',
+  'ReactJS',
+  'TypeScript',
+  'React Native',
+  'Redux Toolkit',
+  'MUI',
+  'Zustand',
+  'Axios',
+  'Webpack',
+  'Git',
+  'CI/CD',
+  'Docker',
+  'Jest',
+  'SCSS',
+  'JavaScript',
+  'HTML5',
+  'Expo',
+  'Formik',
+  'i18next',
+  'Yup',
+  'Node.js',
+  'REST APIs',
+  'GraphQL',
+  'Figma',
+  'SharePoint',
+  'Kendo UI',
 ]
 
 const experiences = [

@@ -1,69 +1,180 @@
-/* Section inner override for projects */
+/* ── Work: Tilt-card grid (all projects visible) ─────── */
+
 .projects .section__inner {
   justify-content: flex-start;
-  padding-top: 1.5rem;
+  padding-top: 1.2rem;
 }
 
-.projects__filters {
-  display: flex;
-  gap: 0.5em;
-  margin-bottom: 2em;
-  flex-wrap: wrap;
-}
-
-.projects__filter-btn {
-  padding: 0.45em 1.2em;
-  border-radius: 50px;
-  border: 1.5px solid var(--clr-border);
-  background: transparent;
-  color: var(--clr-fg);
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.01em;
-}
-
-.projects__filter-btn:hover {
-  border-color: var(--clr-primary);
-  color: var(--clr-primary);
-  background: rgba(var(--clr-primary-rgb), 0.06);
-}
-
-.projects__filter-btn--active {
-  background: var(--clr-primary);
-  border-color: var(--clr-primary);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(var(--clr-primary-rgb), 0.3);
-}
-
-/* Bento grid */
-.projects__grid {
+.work__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25em;
+  gap: 1.1rem;
+  flex: 1;
+  min-height: 0;
 }
 
-/* Featured card spans 2 columns */
-.projects__grid > div:first-child {
-  grid-column: span 2;
+.work__grid-item {
+  min-height: 0;
 }
 
+/* Card — glass + tilt, modern like experience cards */
+.work-card {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.25rem;
+  background: var(--clr-bg-alt);
+  border: 1px solid var(--clr-border);
+  border-top: 3px solid var(--accent, var(--clr-primary));
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  will-change: transform;
+  transition: box-shadow var(--transition-normal);
+}
+
+.work-card:hover {
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(var(--clr-primary-rgb), 0.1);
+}
+
+.dark .work-card {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(129, 140, 248, 0.12);
+  border-top-color: var(--accent, var(--clr-primary));
+}
+
+/* Holographic shine sweep */
+.work-card__shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+  background: transparent;
+}
+
+/* Faint big index number bottom-right */
+.work-card::after {
+  content: attr(data-index);
+  position: absolute;
+  bottom: -0.25em;
+  right: 0.05em;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 5.5rem;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(129, 140, 248, 0.07);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.work-card__top {
+  display: flex;
+  align-items: center;
+  min-height: 1.4em;
+  position: relative;
+  z-index: 1;
+}
+
+.work-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent, var(--clr-primary));
+  padding: 0.2em 0.6em;
+  border-radius: 50px;
+  border: 1px solid var(--accent, var(--clr-primary));
+  background: color-mix(in srgb, var(--accent, var(--clr-primary)) 8%, transparent);
+}
+
+.work-card__num {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--accent, var(--clr-primary));
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.work-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--clr-fg-alt);
+  margin: 0;
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+}
+
+.work-card__desc {
+  font-size: 0.82rem;
+  color: var(--clr-muted);
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.work-card__stack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  position: relative;
+  z-index: 1;
+}
+
+.work-card__tech {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.2em 0.6em;
+  border-radius: 50px;
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  color: var(--clr-fg);
+  font-family: 'Inter', sans-serif;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.work-card__tech:hover {
+  border-color: var(--accent, var(--clr-primary));
+  color: var(--accent, var(--clr-primary));
+}
+
+/* ── Responsive ── */
 @media (max-width: 900px) {
-  .projects__grid {
+  .work__grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .projects__grid > div:first-child {
-    grid-column: span 2;
+    overflow-y: auto;
   }
 }
 
-@media (max-width: 580px) {
-  .projects__grid {
+@media (max-width: 600px) {
+  .work__grid {
     grid-template-columns: 1fr;
   }
-  .projects__grid > div:first-child {
-    grid-column: span 1;
+
+  .work-card__desc {
+    -webkit-line-clamp: 3;
   }
 }

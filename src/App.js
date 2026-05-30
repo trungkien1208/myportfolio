@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, lazy, Suspense } from 'react'
 import './App.css'
 import About from './components/About/About'
 import Contact from './components/Contact/Contact'
@@ -13,11 +13,21 @@ import SectionDots from './components/SectionDots/SectionDots'
 import Skills from './components/Skills/Skills'
 import { ThemeContext } from './contexts/theme'
 
+const Hero3D = lazy(() => import('./components/Hero3D/Hero3D'))
+
 const App = () => {
   const [{ themeName }] = useContext(ThemeContext)
 
   return (
     <div className={`${themeName} app`}>
+      {/* Persistent universe behind every section (dark mode only) */}
+      {themeName === 'dark' && (
+        <div className='universe-bg' aria-hidden='true'>
+          <Suspense fallback={null}>
+            <Hero3D />
+          </Suspense>
+        </div>
+      )}
       <Cursor />
       <ScrollProgress />
       <SectionDots />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'motion/react'
+import { motion, LayoutGroup } from 'motion/react'
 import './SectionDots.css'
 
 const SECTIONS = [
@@ -33,25 +33,25 @@ const SectionDots = () => {
 
   return (
     <nav className='section-dots' aria-label='Page sections'>
-      {SECTIONS.map(({ id, label }) => (
-        <a
-          key={id}
-          href={`#${id}`}
-          className={`section-dots__item ${active === id ? 'section-dots__item--active' : ''}`}
-          aria-label={`Go to ${label}`}
-          title={label}
-        >
-          <motion.span
-            className='section-dots__dot'
-            animate={{
-              scale: active === id ? 1 : 0.6,
-              opacity: active === id ? 1 : 0.45,
-            }}
-            transition={{ duration: 0.25 }}
-          />
-          <span className='section-dots__label'>{label}</span>
-        </a>
-      ))}
+      <LayoutGroup>
+        {SECTIONS.map(({ id, label }) => (
+          <a
+            key={id}
+            href={`#${id}`}
+            className={`section-dots__item ${active === id ? 'section-dots__item--active' : ''}`}
+            aria-label={`Go to ${label}`}
+          >
+            {active === id && (
+              <motion.span
+                className='section-dots__active-bg'
+                layoutId='nav-pill'
+                transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+              />
+            )}
+            <span className='section-dots__label'>{label}</span>
+          </a>
+        ))}
+      </LayoutGroup>
     </nav>
   )
 }

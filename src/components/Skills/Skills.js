@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { skills, ALL_TECH } from '../../portfolio'
+import { skills } from '../../portfolio'
 import ScrollHint from '../ScrollHint/ScrollHint'
 import './Skills.css'
 
@@ -11,34 +11,31 @@ const LEVEL_CONFIG = {
   1: { label: 'Beginner',     color: '#94a3b8' },
 }
 
-const CATEGORY_COLORS = [
-  '#6366f1', '#10b981', '#f59e0b', '#ec4899',
-  '#06b6d4', '#f43f5e', '#8b5cf6', '#14b8a6',
+/* Consolidate the many raw categories into a few scannable groups */
+const GROUPS = [
+  { title: 'Languages & Core',    accent: '#6366f1', cats: ['Frontend Core'] },
+  { title: 'Frameworks & State',  accent: '#10b981', cats: ['Frameworks', 'State Management', 'UI Libraries'] },
+  { title: 'Data, Forms & i18n',  accent: '#f59e0b', cats: ['Forms', 'Networking', 'i18n'] },
+  { title: 'Testing, Tools & Ops', accent: '#ec4899', cats: ['Testing', 'Tools', 'DevOps', 'Build Tools'] },
+  { title: 'Platform & Enterprise', accent: '#06b6d4', cats: ['Backend', 'Enterprise', 'Legacy'] },
 ]
-
-const MARQUEE_ITEMS = [...ALL_TECH, ...ALL_TECH]
 
 const Skills = () => {
   if (!skills.length) return null
 
-  const byCategory = skills.reduce((acc, skill) => {
-    const cat = skill.category || 'Other'
-    if (!acc[cat]) acc[cat] = []
-    acc[cat].push(skill)
-    return acc
-  }, {})
-
-  const categories = Object.entries(byCategory).sort(([, a], [, b]) => {
-    const maxA = Math.max(...a.map((s) => s.level))
-    const maxB = Math.max(...b.map((s) => s.level))
-    return maxB - maxA
-  })
+  const groups = GROUPS.map((g) => ({
+    ...g,
+    items: skills
+      .filter((s) => g.cats.includes(s.category))
+      .sort((a, b) => b.level - a.level),
+  })).filter((g) => g.items.length)
 
   return (
     <section id='skills' className='section skills'>
       <div className='section__inner'>
         <span className='section__deco' aria-hidden='true'>03</span>
         <span className='section__label'>Expertise</span>
+
         <motion.h2
           className='section__title'
           initial={{ opacity: 0, x: -30 }}
@@ -50,15 +47,35 @@ const Skills = () => {
         </motion.h2>
         <div className='section__underline' />
 
-        <div className='skills__marquee' aria-hidden='true'>
-          <div className='skills__marquee-track'>
-            {MARQUEE_ITEMS.map((tech, i) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <span key={`${tech}-${i}`} className='skills__marquee-item'>
-                {tech}
-              </span>
-            ))}
-          </div>
+        <div className='skills__bento'>
+          {groups.map((g, i) => (
+            <motion.div
+              key={g.title}
+              className='skills__group'
+              style={{ '--accent': g.accent }}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className='skills__group-head'>
+                <span className='skills__group-bar' aria-hidden='true' />
+                <h3 className='skills__group-title'>{g.title}</h3>
+                <span className='skills__group-count'>{g.items.length}</span>
+              </div>
+              <ul className='skills__chips'>
+                {g.items.map((skill) => {
+                  const cfg = LEVEL_CONFIG[skill.level] || LEVEL_CONFIG[1]
+                  return (
+                    <li key={skill.name} className='skills__chip' title={cfg.label}>
+                      <span className='skills__chip-dot' style={{ background: cfg.color }} />
+                      {skill.name}
+                    </li>
+                  )
+                })}
+              </ul>
+            </motion.div>
+          ))}
         </div>
 
         <div className='skills__legend'>
@@ -69,39 +86,8 @@ const Skills = () => {
             </span>
           ))}
         </div>
-
-        <div className='skills__grid'>
-          {categories.map(([category, catSkills], i) => (
-            <motion.div
-              key={category}
-              className='skills__card'
-              style={{ '--cat-color': CATEGORY_COLORS[i % CATEGORY_COLORS.length] }}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className='skills__card-header'>
-                <span className='skills__card-accent' aria-hidden='true' />
-                <h3 className='skills__card-title'>{category}</h3>
-              </div>
-              <ul className='skills__list'>
-                {catSkills
-                  .sort((a, b) => b.level - a.level)
-                  .map((skill) => {
-                    const cfg = LEVEL_CONFIG[skill.level] || LEVEL_CONFIG[1]
-                    return (
-                      <li key={skill.name} className='skills__pill' title={cfg.label}>
-                        <span className='skills__pill-dot' style={{ background: cfg.color }} />
-                        {skill.name}
-                      </li>
-                    )
-                  })}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
       </div>
+
       <ScrollHint nextId='contact' />
     </section>
   )
