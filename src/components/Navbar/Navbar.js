@@ -2,110 +2,93 @@ import CloseIcon from '@mui/icons-material/Close'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import MenuIcon from '@mui/icons-material/Menu'
-import { yellow } from '@mui/material/colors'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../contexts/theme'
 import { contact, experiences, projects, skills } from '../../portfolio'
 import './Navbar.css'
 
+const NAV_LINKS = [
+  { label: 'Experience', href: '#experiences', show: experiences.length > 0 },
+  { label: 'Projects', href: '#projects', show: projects.length > 0 },
+  { label: 'Skills', href: '#skills', show: skills.length > 0 },
+  { label: 'Contact', href: '#contact', show: !!contact.email },
+]
+
 const Navbar = () => {
   const [{ themeName, toggleTheme }] = useContext(ThemeContext)
   const [showNavList, setShowNavList] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
-  const toggleNavList = () => setShowNavList(!showNavList)
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const closeMenu = () => setShowNavList(false)
 
   return (
-    <nav className='center nav'>
-      <ul
-        style={{ display: showNavList ? 'flex' : null }}
-        className='nav__list'
-      >
-        {experiences.length ? (
-          <li className='nav__list-item'>
-            <a
-              href='#experiences'
-              onClick={toggleNavList}
-              className='link link--nav'
-            >
-              Experience
-            </a>
-          </li>
-        ) : null}
+    <nav className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
+      <div className='nav__inner center'>
+        <a href='#top' className='nav__logo' onClick={closeMenu}>
+          LTK
+        </a>
 
-        {projects.length ? (
-          <li className='nav__list-item'>
-            <a
-              href='#projects'
-              onClick={toggleNavList}
-              className='link link--nav'
-            >
-              Projects
-            </a>
-          </li>
-        ) : null}
+        <ul className='nav__list'>
+          {NAV_LINKS.filter((l) => l.show).map(({ label, href }) => (
+            <li key={label} className='nav__list-item'>
+              <a href={href} className='nav__link link link--nav'>
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-        {skills.length ? (
-          <li className='nav__list-item'>
-            <a
-              href='#skills'
-              onClick={toggleNavList}
-              className='link link--nav'
-            >
-              Skills
-            </a>
-          </li>
-        ) : null}
+        <div className='nav__actions center'>
+          <button
+            type='button'
+            onClick={toggleTheme}
+            className={`theme-toggle ${themeName}`}
+            aria-label='Toggle theme'
+          >
+            <div className={`toggle-icon ${themeName === 'light' ? 'active' : ''}`}>
+              <LightModeIcon fontSize='small' />
+            </div>
+            <div className={`toggle-icon ${themeName === 'dark' ? 'active' : ''}`}>
+              <DarkModeIcon fontSize='small' />
+            </div>
+            <div className={`toggle-slider ${themeName}`} />
+          </button>
 
-        {contact.email ? (
-          <li className='nav__list-item'>
-            <a
-              href='#contact'
-              onClick={toggleNavList}
-              className='link link--nav'
-            >
-              Contact
-            </a>
-          </li>
-        ) : null}
-      </ul>
-
-      <button
-        type='button'
-        onClick={toggleTheme}
-        className={`theme-toggle ${themeName}`}
-        aria-label='Toggle theme'
-      >
-        <div
-          className={`toggle-icon light ${
-            themeName === 'light' ? 'active' : ''
-          }`}
-        >
-          <LightModeIcon
-            sx={{
-              color: themeName === 'light' ? '#fff' : '#fff',
-            }}
-          />
+          <button
+            type='button'
+            onClick={() => setShowNavList(!showNavList)}
+            className='btn btn--icon nav__hamburger'
+            aria-label='Toggle navigation'
+            aria-expanded={showNavList}
+          >
+            {showNavList ? <CloseIcon /> : <MenuIcon />}
+          </button>
         </div>
-        <div
-          className={`toggle-icon dark ${themeName === 'dark' ? 'active' : ''}`}
-        >
-          <DarkModeIcon
-            sx={{
-              color: themeName === 'dark' ? '#fff' : '#000',
-            }}
-          />
-        </div>
-        <div className={`toggle-slider ${themeName}`} />
-      </button>
+      </div>
 
-      <button
-        type='button'
-        onClick={toggleNavList}
-        className='btn btn--icon nav__hamburger'
-        aria-label='toggle navigation'
-      >
-        {showNavList ? <CloseIcon /> : <MenuIcon />}
-      </button>
+      {/* Mobile drawer */}
+      <div
+        className={`nav__mobile-overlay ${showNavList ? 'nav__mobile-overlay--open' : ''}`}
+        onClick={closeMenu}
+        aria-hidden='true'
+      />
+      <div className={`nav__mobile-drawer ${showNavList ? 'nav__mobile-drawer--open' : ''}`}>
+        <ul className='nav__mobile-list'>
+          {NAV_LINKS.filter((l) => l.show).map(({ label, href }) => (
+            <li key={label} className='nav__mobile-item'>
+              <a href={href} onClick={closeMenu} className='nav__mobile-link'>
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   )
 }

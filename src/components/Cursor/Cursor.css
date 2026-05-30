@@ -1,0 +1,38 @@
+.c-dot,
+.c-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+/* Small precise dot */
+.c-dot {
+  width: 6px;
+  height: 6px;
+  background: #6366f1;
+  margin-left: -3px;
+  margin-top: -3px;
+}
+
+/* Larger spring-physics ring */
+.c-ring {
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(99, 102, 241, 0.55);
+  margin-left: -20px;
+  margin-top: -20px;
+  background: transparent;
+  backdrop-filter: blur(0px);
+}
+
+/* Hide on touch/mobile */
+@media (hover: none), (max-width: 900px) {
+  .c-dot,
+  .c-ring {
+    display: none !important;
+  }
+}

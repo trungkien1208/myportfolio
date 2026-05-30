@@ -1,110 +1,108 @@
-import { GitHub, Instagram, LinkedIn, Mail } from '@mui/icons-material'
-import { Divider, Grid, Typography } from '@mui/material'
+import EmailIcon from '@mui/icons-material/Email'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import PersonIcon from '@mui/icons-material/Person'
+import PhoneIcon from '@mui/icons-material/Phone'
+import { motion } from 'motion/react'
 import { contact } from '../../portfolio'
 import './Contact.css'
+
+const INFO_ICONS = {
+  Email: EmailIcon,
+  Phone: PhoneIcon,
+  Address: LocationOnIcon,
+  Name: PersonIcon,
+}
 
 const Contact = () => {
   if (!contact.email) return null
 
   return (
-    <section className='section contact center' id='contact'>
-      <h2 className='section__title'>Contact Me</h2>
-      <Grid
-        container
-        columnSpacing={4}
-        rowSpacing={1}
-        sx={{
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Grid
-          item
-          xs={12}
-          lg={8}
-          container
-          rowSpacing={2}
-          textAlign={{ xs: 'center', md: 'left' }}
-          sx={{
-            maxWidth: '700px',
-          }}
-        >
-          {Object.keys(contact.contact).map((key) => (
-            <Grid key={key} item xs={12} md={6}>
-              <Typography component='span' variant='body2' fontWeight={600}>
-                {key}:{' '}
-              </Typography>
+    <section id='contact' className='section contact'>
+      <span className='section__deco' aria-hidden='true'>04</span>
+      <span className='section__label'>Get in touch</span>
+      <h2 className='section__title'>Contact</h2>
+      <div className='section__underline' />
 
-              <Typography component='span' variant='body2'>
-                {contact.contact[key]}
-              </Typography>
-            </Grid>
-          ))}
-        </Grid>
-        <Divider
-          orientation='vertical'
-          flexItem
-          sx={{
-            display: { xs: 'none', md: 'block' },
-          }}
-        />
-        <Grid item xs={12} lg={3.5}>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '20px',
-            }}
-          >
+      <motion.div
+        className='contact__card'
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className='contact__card-header' aria-hidden='true' />
+
+        <div className='contact__body'>
+          <div className='contact__info'>
+            <h3 className='contact__info-heading'>Contact Info</h3>
+            <ul className='contact__info-list'>
+              {Object.entries(contact.contact).map(([key, value]) => {
+                const Icon = INFO_ICONS[key] || PersonIcon
+                return (
+                  <li key={key} className='contact__info-item'>
+                    <span className='contact__info-icon' aria-hidden='true'>
+                      <Icon fontSize='small' />
+                    </span>
+                    <span>
+                      <span className='contact__info-label'>{key}</span>
+                      <span className='contact__info-value'>{value}</span>
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+
+            <div className='contact__socials'>
+              {contact.github && (
+                <a
+                  href={contact.github}
+                  aria-label='GitHub profile'
+                  className='contact__social-btn'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <GitHubIcon fontSize='small' />
+                  GitHub
+                </a>
+              )}
+              {contact.linkedin && (
+                <a
+                  href={contact.linkedin}
+                  aria-label='LinkedIn profile'
+                  className='contact__social-btn'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <LinkedInIcon fontSize='small' />
+                  LinkedIn
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div className='contact__cta'>
+            <div className='contact__cta-icon' aria-hidden='true'>✉</div>
+            <h3 className='contact__cta-heading'>Let&apos;s work together</h3>
+            <p className='contact__cta-text'>
+              I&apos;m currently open to new opportunities. Whether you have a project in mind,
+              want to collaborate, or just want to say hello — my inbox is always open.
+            </p>
             <a
               href={`mailto:${contact.email}`}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='link link--icon'
+              className='btn btn--primary contact__cta-btn'
             >
-              <Mail color='primary' fontSize='large' />
+              <EmailIcon fontSize='small' />
+              Send Email
             </a>
-
-            {contact.github && (
-              <a
-                href={contact.github}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label='github'
-                className='link link--icon'
-              >
-                <GitHub color='primary' fontSize='large' />
-              </a>
-            )}
-
-            {contact.linkedin && (
-              <a
-                href={contact.linkedin}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label='linkedin'
-                className='link link--icon'
-              >
-                <LinkedIn color='primary' fontSize='large' />
-              </a>
-            )}
-
-            {contact.instagram && (
-              <a
-                href={contact.instagram}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label='instagram'
-                className='link link--icon'
-              >
-                <Instagram color='primary' fontSize='large' />
-              </a>
-            )}
+            <p className='contact__cta-status'>
+              <span className='contact__status-dot' aria-hidden='true' />
+              Available for freelance &amp; full-time roles
+            </p>
           </div>
-        </Grid>
-      </Grid>
+        </div>
+      </motion.div>
     </section>
   )
 }

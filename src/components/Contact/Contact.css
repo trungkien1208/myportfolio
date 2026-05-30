@@ -1,3 +1,156 @@
-.contact {
+.contact__card {
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.contact__card-header {
+  height: 6px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #10b981);
+}
+
+.contact__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+/* Info column */
+.contact__info {
+  padding: 2rem;
+  border-right: 1px solid var(--clr-border);
+}
+
+.contact__info-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--clr-fg-alt);
+  margin-bottom: 1.25rem;
+}
+
+.contact__info-list {
+  display: flex;
   flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 1.75rem;
+}
+
+.contact__info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75em;
+}
+
+.contact__info-icon {
+  color: var(--clr-primary);
+  flex-shrink: 0;
+  margin-top: 0.1em;
+  display: flex;
+}
+
+.contact__info-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--clr-muted);
+  margin-bottom: 0.1em;
+}
+
+.contact__info-value {
+  display: block;
+  font-size: 0.87rem;
+  color: var(--clr-fg-alt);
+  font-weight: 500;
+}
+
+.contact__socials {
+  display: flex;
+  gap: 0.6em;
+  flex-wrap: wrap;
+}
+
+.contact__social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.45em 1em;
+  border-radius: 8px;
+  border: 1.5px solid var(--clr-border);
+  background: var(--clr-bg-alt);
+  color: var(--clr-fg);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.contact__social-btn:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  background: rgba(var(--clr-primary-rgb), 0.06);
+}
+
+/* CTA column */
+.contact__cta {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--clr-bg-alt);
+}
+
+.contact__cta-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.contact__cta-heading {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--clr-fg-alt);
+  margin: 0;
+}
+
+.contact__cta-text {
+  font-size: 0.88rem;
+  color: var(--clr-fg);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.contact__cta-btn {
+  font-size: 0.9rem;
+}
+
+.contact__cta-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.78rem;
+  color: var(--clr-muted);
+  margin: 0;
+}
+
+.contact__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  flex-shrink: 0;
+  animation: pulse-dot 2s infinite;
+}
+
+@media (max-width: 640px) {
+  .contact__body {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__info {
+    border-right: none;
+    border-bottom: 1px solid var(--clr-border);
+  }
 }

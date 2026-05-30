@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import './App.css'
 import About from './components/About/About'
 import Contact from './components/Contact/Contact'
+import Cursor from './components/Cursor/Cursor'
 import Experience from './components/Experience/Experience'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
@@ -15,16 +16,15 @@ const App = () => {
 
   return (
     <div id='top' className={`${themeName} app`}>
+      <Cursor />
       <Header />
-
+      <About />
       <main>
-        <About />
         <Experience />
         <Projects />
         <Skills />
         <Contact />
       </main>
-
       <ScrollToTop />
       <Footer />
     </div>
