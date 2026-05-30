@@ -58,15 +58,13 @@
   /* sections stack vertically — each is its own page */
 }
 
-/* Full-page snap section */
+/* Full-page snap section — NO overflow-y so snap owns the scroll */
 .section {
   height: 100vh;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   position: relative;
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   padding-top: 70px; /* fixed navbar */

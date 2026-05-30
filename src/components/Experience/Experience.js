@@ -1,30 +1,17 @@
 import { motion } from 'motion/react'
 import { experiences } from '../../portfolio'
 import ExperienceContainer from './ExperienceContainer'
+import ScrollHint from '../ScrollHint/ScrollHint'
 import './Experience.css'
 
-const sectionVariants = {
-  hidden: { opacity: 0 },
-  visible: {
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.93 },
+  visible: (i) => ({
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
-  },
-}
-
-const itemVariants = {
-  hidden: (i) => ({
-    opacity: 0,
-    x: i % 2 === 0 ? -60 : 60,
-    rotateY: i % 2 === 0 ? -15 : 15,
-    scale: 0.92,
-  }),
-  visible: {
-    opacity: 1,
-    x: 0,
-    rotateY: 0,
+    y: 0,
     scale: 1,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-  },
+    transition: { duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
+  }),
 }
 
 const Experience = () => {
@@ -47,28 +34,24 @@ const Experience = () => {
         </motion.h2>
         <div className='section__underline' />
 
-        <motion.div
-          className='experience__timeline'
-          variants={sectionVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: false, margin: '-60px' }}
-          style={{ perspective: 1200 }}
-        >
-          <div className='experience__line' aria-hidden='true' />
+        {/* 3-column horizontal layout — fits in 100vh */}
+        <div className='experience__cards' style={{ perspective: 1200 }}>
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.name}
               custom={i}
-              variants={itemVariants}
-              className={`experience__item experience__item--${i % 2 === 0 ? 'left' : 'right'}`}
+              variants={cardVariants}
+              initial='hidden'
+              whileInView='visible'
+              viewport={{ once: false, margin: '-40px' }}
             >
-              <div className='experience__dot' aria-hidden='true' />
               <ExperienceContainer experience={exp} index={i} />
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
+
+      <ScrollHint nextId='projects' />
     </section>
   )
 }

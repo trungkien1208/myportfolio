@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { projects } from '../../portfolio'
 import ProjectContainer from '../ProjectContainer/ProjectContainer'
+import ScrollHint from '../ScrollHint/ScrollHint'
 import './Projects.css'
 
 const FILTERS = ['All', 'Web', 'Mobile']
@@ -83,6 +84,7 @@ const Projects = () => {
           </AnimatePresence>
         </div>
       </div>
+      <ScrollHint nextId='skills' />
     </section>
   )
 }

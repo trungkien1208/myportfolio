@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { skills, ALL_TECH } from '../../portfolio'
+import ScrollHint from '../ScrollHint/ScrollHint'
 import './Skills.css'
 
 const LEVEL_CONFIG = {
@@ -101,6 +102,7 @@ const Skills = () => {
           ))}
         </div>
       </div>
+      <ScrollHint nextId='contact' />
     </section>
   )
 }
