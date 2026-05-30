@@ -1,13 +1,84 @@
+/* ── Two-column layout shell ─────────────────────── */
 .about {
   position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  padding: 100px 1.5rem 5rem;
+  padding: 88px 0 0;
   overflow: hidden;
   background: linear-gradient(160deg, #f0f4ff 0%, #fafbff 40%, #fdf4ff 100%);
+}
+
+.about__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 88px);
+  align-items: center;
+  max-width: 1200px;
+  width: 95%;
+  margin: 0 auto;
+  gap: 2rem;
+  padding: 2rem 0 5rem;
+}
+
+.about__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.1rem;
+  text-align: left;
+  z-index: 1;
+  position: relative;
+}
+
+.about__right {
+  position: relative;
+  z-index: 1;
+  height: 560px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.about__3d-loading {
+  width: 100%;
+  height: 100%;
+  background: rgba(99, 102, 241, 0.06);
+  border-radius: 24px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Mobile: single column, 3D as overlay */
+@media (max-width: 860px) {
+  .about__columns {
+    grid-template-columns: 1fr;
+    padding: 2rem 0 4rem;
+  }
+
+  .about__left {
+    align-items: center;
+    text-align: center;
+  }
+
+  .about__right {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    border-radius: 0;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .about__left {
+    z-index: 1;
+  }
 }
 
 .dark .about {
@@ -386,11 +457,11 @@
 /* Scroll indicator */
 .about__scroll {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   color: var(--clr-muted);
-  z-index: 1;
+  z-index: 2;
   display: flex;
   transition: color var(--transition-fast);
 }
@@ -401,6 +472,34 @@
 
 .about__scroll svg {
   background: transparent;
+}
+
+/* Stats alignment fix for left-aligned layout */
+@media (min-width: 861px) {
+  .about__stats {
+    align-self: flex-start;
+  }
+  .about__ctas {
+    justify-content: flex-start;
+  }
+  .about__socials {
+    justify-content: flex-start;
+  }
+  .about__badge {
+    align-self: flex-start;
+  }
+  .about__avatar {
+    align-self: flex-start;
+  }
+  .about__greeting {
+    text-align: left;
+  }
+  .about__name {
+    text-align: left;
+  }
+  .about__tagline {
+    text-align: left;
+  }
 }
 
 @media (max-width: 480px) {
