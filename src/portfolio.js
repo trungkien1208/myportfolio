@@ -5,98 +5,103 @@ const header = {
 const about = {
   name: 'Lưu Trung Kiên',
   role: 'Senior Software Engineer',
-  description: `I'm a **Senior Software Engineer** with over 8 years of experience developing scalable web and mobile applications using **JavaScript**, **TypeScript**, **ReactJS**, **React Native**, **HTML5**, and **CSS3**. I specialize in writing clean, maintainable code and building intuitive user interfaces for enterprise and healthcare platforms.\n
-I've independently built key systems such as an iPad-based healthcare kiosk app and architected multiple admin portals that streamline team onboarding and long-term maintainability.\n
-In my current role, I lead front-end teams across web and mobile projects, mentor junior developers, and collaborate closely with cross-functional teams to ensure high-quality, user-centric delivery. I'm passionate about **performance optimization**, **responsive design**, **CSS animations**, and enhancing development workflows.\n
-My career goal is to become a **Principal Software Engineer**, shaping technical direction and creating impactful digital experiences through thoughtful UI/UX design and modern technologies.`,
+  tagline:
+    'I build exceptional digital products — from iPad kiosks deployed in Singapore hospitals to scalable platforms serving thousands of users across Southeast Asia.',
+  description: `Senior Software Engineer with 8+ years crafting production-grade web and mobile applications. I own projects end-to-end — from architecture decisions to production deployment.
+
+Currently leading front-end teams at Taggle (Singapore), where I independently built a healthcare kiosk used daily in hospitals and architected admin portals powering real-time patient management across Singapore and the Philippines.
+
+I care deeply about **performance**, **clean architecture**, and interfaces that genuinely delight users. My goal: grow into a **Principal Engineer** role — shaping technical direction and building products that matter.`,
   resume: './resume.pdf',
+  // 3D avatar model — served from /public so the URL is stable.
+  avatarModel: '/avatar.glb',
+  // Optional: a portrait image for the small hero circle. Leave '' to keep the LTK monogram.
+  avatarImage: '',
   social: {
-    linkedin: 'https://linkedin.com/in/luutrungkien',
+    linkedin: 'https://www.linkedin.com/in/ki%C3%AAn-l%C6%B0u-5293771a1/',
     github: 'https://github.com/trungkien1208',
   },
 }
 
 const projects = [
   {
-    name: 'PSSB Kiosk App',
+    name: 'PSSB Hospital Kiosk',
     description:
-      'Developed an iPadOS-based kiosk application that streamlined patient check-in, appointment booking, and payment processing in hospitals. Fully responsible for tech stack selection, implementation, and printer/payment terminal integration.',
+      'Sole developer of a full-stack iPadOS kiosk deployed in Singapore hospitals — enabling touchless patient check-in, appointment booking, and integrated payment processing.',
     stack: ['React Native', 'Expo', 'Zustand', 'Redux Toolkit'],
     sourceCode: '',
     livePreview: '',
+    featured: true,
     achievements: [
-      'Independently selected and implemented the framework and libraries',
-      'Successfully integrated payment terminals and Epson printers for production use',
-      'Managed entire development and TestFlight deployment lifecycle',
-      'Led coordination with backend and hardware teams as the sole developer',
+      'Independently selected tech stack and delivered end-to-end in production',
+      'Integrated payment terminals and Epson receipt printers for live hospital use',
+      'Managed full TestFlight deployment lifecycle and hardware coordination',
+      'Led technical sync with backend and hardware teams as sole FE developer',
     ],
   },
   {
     name: 'NCA Admin Portal',
     description:
-      'Built a robust web portal for managing patient records, doctor scheduling, and rehab programs. Supported internal and external environments with secure data handling.',
+      'Architected a scalable React admin portal from scratch — sole developer for 2 years, then successfully onboarded a team to a codebase they could confidently own.',
     stack: ['ReactJS', 'MUI', 'ChartJS', 'Redux Toolkit'],
     sourceCode: '',
     livePreview: '',
     achievements: [
-      'Sole developer during initial phase; designed scalable structure for team adoption',
-      'Established reusable component architecture used across the entire portal',
+      'Designed reusable component architecture adopted across the entire platform',
       'Handled UAT and production deployments independently for the first 2 years',
-      'Reduced onboarding time for new team members through clear structure and patterns',
+      'Reduced new developer onboarding time through clear structure and patterns',
     ],
   },
   {
     name: 'Taggle Platform',
     description:
-      'Developed a multi-tenant platform serving healthcare clinics and public communities across Singapore and the Philippines, supporting patient monitoring and real-time data sync.',
+      'Built the front-end foundation of a multi-tenant healthcare platform serving clinics across Singapore and the Philippines, supporting real-time patient monitoring.',
     stack: ['ReactJS', 'MUI', 'Axios', 'Redux Toolkit'],
     sourceCode: '',
     livePreview: '',
     achievements: [
-      'Designed and implemented project structure as sole front-end developer in early phase',
-      'Built core features and component patterns used by all later contributors',
-      'Continuously improved UX based on real user and client feedback',
-      'Contributed to CI/CD and versioning processes across multiple releases',
+      'Designed core component patterns and project structure used by all contributors',
+      'Drove continuous UX improvements based on direct client and user feedback',
+      'Contributed to CI/CD and versioning across multiple production releases',
     ],
   },
   {
-    name: 'XSPERA Web Portal',
+    name: 'XSPERA Enterprise Portal',
     description:
-      'Developed internal web products for Saigon Commercial Bank and enterprise clients, delivering business tools integrated with Microsoft platforms.',
+      'Delivered enterprise web tools for Saigon Commercial Bank, integrating deeply with Microsoft Teams, Power Apps, and SharePoint ecosystems.',
     stack: ['ReactJS', 'AngularJS', 'Kendo UI', 'SharePoint'],
     sourceCode: '',
     livePreview: '',
     achievements: [
-      'Created custom Microsoft Teams and Power Apps components for enterprise clients',
-      'Mentored junior developer and intern as Front-End Team Lead',
-      'Built UI components and workflows for SharePoint-based applications',
-      'Collaborated with cross-functional teams to deliver scalable solutions',
+      'Built custom Microsoft Teams Apps and Power Apps for enterprise clients',
+      'Mentored a junior developer and intern as Front-End Team Lead',
+      'Delivered scalable SharePoint UI workflows for cross-functional teams',
     ],
   },
   {
-    name: 'Ramsoft',
+    name: 'Radiology Viewer (Canada)',
     description:
-      'Built web-based radiology viewing software as part of a healthcare imaging solution for a Canadian company, ensuring compliance with strict performance requirements.',
+      'Built a high-performance web-based radiology viewer for a Canadian healthcare company, meeting strict performance and cross-browser compliance standards.',
     stack: ['JavaScript', 'SCSS', 'HTML5', 'Sencha ExtJS'],
     sourceCode: '',
     livePreview: '',
     achievements: [
-      'Delivered pixel-perfect radiology UI with MVVM pattern using Sencha ExtJS',
-      'Worked closely with backend team to support real-time data loading and updates',
-      'Ensured compatibility across major browsers and legacy systems',
+      'Delivered pixel-perfect radiology UI using MVVM architecture',
+      'Supported real-time data loading tightly integrated with backend systems',
+      'Ensured compatibility across major browsers and legacy clinical environments',
     ],
   },
   {
-    name: 'France Project',
+    name: 'Radiology Platform (France)',
     description:
-      'Contributed to front-end development for a radiology software product targeting the French healthcare market, focused on client-side logic and responsive UI.',
+      'Contributed front-end development for a French healthcare radiology product, collaborating directly with French stakeholders to align on complex UX requirements.',
     stack: ['JavaScript', 'HTML5', 'SCSS', 'Sencha ExtJS'],
     sourceCode: '',
     livePreview: '',
     achievements: [
-      'Implemented dynamic UI components tailored for radiology workflows',
-      'Optimized rendering performance and ensured cross-browser compatibility',
-      'Participated in daily syncs with French stakeholders to align on UX goals',
+      'Implemented dynamic UI components tailored to radiology clinical workflows',
+      'Optimised rendering performance across browsers and screen configurations',
+      'Participated in daily syncs with French clients to align on UX delivery',
     ],
   },
 ]
@@ -116,7 +121,6 @@ const skills = [
   { name: 'Material-UI (MUI)', level: 5, category: 'UI Libraries' },
   { name: 'Kendo UI', level: 3, category: 'UI Libraries' },
   { name: 'Sencha ExtJS', level: 3, category: 'UI Libraries' },
-  { name: 'TamagoUI', level: 3, category: 'UI Libraries' }, // if used in kiosk project
 
   // Forms & Validation
   { name: 'React Hook Form', level: 4, category: 'Forms' },
@@ -127,7 +131,7 @@ const skills = [
   { name: 'Axios', level: 5, category: 'Networking' },
 
   // Internationalization
-  { name: 'i18next', level: 4, category: 'Internationalization' },
+  { name: 'i18next', level: 4, category: 'i18n' },
 
   // Testing & Quality
   { name: 'Jest', level: 3, category: 'Testing' },
@@ -139,18 +143,46 @@ const skills = [
   { name: 'Docker', level: 3, category: 'DevOps' },
   { name: 'Webpack', level: 4, category: 'Build Tools' },
 
-  // Backend/Platform Experience (Basic)
+  // Backend/Platform Experience
   { name: '.NET Core', level: 2, category: 'Backend' },
   { name: 'Python', level: 2, category: 'Backend' },
 
   // Microsoft Ecosystem
   { name: 'SharePoint', level: 3, category: 'Enterprise' },
   { name: 'Power Apps', level: 2, category: 'Enterprise' },
-  { name: 'Microsoft Teams App', level: 2, category: 'Enterprise' },
+  { name: 'MS Teams App', level: 2, category: 'Enterprise' },
 
   // Legacy
   { name: 'AngularJS', level: 3, category: 'Legacy' },
   { name: 'jQuery', level: 3, category: 'Legacy' },
+]
+
+const ALL_TECH = [
+  'ReactJS',
+  'TypeScript',
+  'React Native',
+  'Redux Toolkit',
+  'MUI',
+  'Zustand',
+  'Axios',
+  'Webpack',
+  'Git',
+  'CI/CD',
+  'Docker',
+  'Jest',
+  'SCSS',
+  'JavaScript',
+  'HTML5',
+  'Expo',
+  'Formik',
+  'i18next',
+  'Yup',
+  'Node.js',
+  'REST APIs',
+  'GraphQL',
+  'Figma',
+  'SharePoint',
+  'Kendo UI',
 ]
 
 const experiences = [
@@ -160,46 +192,45 @@ const experiences = [
     time: 'Dec 2020 – Present',
     current: true,
     role: 'Senior Front-End Engineer',
-    description: `Led both Web and Mobile front-end teams (5 developers total)\n
-Independently built iPad Kiosk app using React Native and Expo\n
-Architected and maintained the admin portal using ReactJS and MUI\n
-Collaborated with BAs and BE teams to define requirements and delivery scope\n
-Acted as Scrum Master: managed sprints, tasks, and TestFlight releases\n
-Conducted code reviews, managed Git workflows, and ensured consistent deployments`,
+    description: `Led front-end web and mobile teams (5 developers) across multiple simultaneous products\n
+Independently built and shipped the PSSB iPad kiosk to hospitals using React Native + Expo\n
+Architected and maintained admin portals using ReactJS and MUI — designed for long-term team scalability\n
+Acted as Scrum Master: ran sprint planning, task management, and TestFlight release cycles\n
+Conducted rigorous code reviews and established Git workflows and deployment standards\n
+Collaborated daily with BAs and BE teams to define scope and drive high-quality delivery`,
   },
   {
     name: 'Xspera Vietnam',
     location: 'Ho Chi Minh City, Vietnam',
     time: 'Dec 2019 – Oct 2020',
-    role: 'Front-End Developer / Team Lead',
-    description: `Developed enterprise solutions using AngularJS, ReactJS, SharePoint, and Kendo UI\n
-Built Microsoft Teams Apps and Power Apps components for internal tools\n
-Mentored a junior developer and an intern in front-end development practices\n
-Designed reusable UI components and contributed to team development standards`,
+    role: 'Front-End Developer & Team Lead',
+    description: `Developed enterprise-grade solutions using AngularJS, ReactJS, SharePoint, and Kendo UI\n
+Built Microsoft Teams Apps and Power Apps components integrated with enterprise workflows\n
+Mentored a junior developer and intern — introduced code standards and development best practices\n
+Designed and documented reusable UI components that improved team velocity`,
   },
   {
     name: 'Global Cybersoft',
     location: 'Ho Chi Minh City, Vietnam',
     time: 'Mar 2018 – Dec 2019',
     role: 'Front-End Consultant',
-    description: `Delivered front-end solutions for international healthcare clients (Canada, France)\n
-Developed radiology web apps using Sencha ExtJS and Kendo UI\n
-Applied MVVM architecture patterns to ensure scalable, maintainable UIs\n
-Supported requirement analysis, estimation, and client demo delivery`,
+    description: `Delivered front-end for international healthcare clients in Canada and France\n
+Built production radiology web apps using Sencha ExtJS with MVVM architecture\n
+Ensured strict cross-browser compatibility for clinical environments with legacy systems\n
+Led requirement analysis, time estimation, and client demo delivery for two major products`,
   },
 ]
 
 const contact = {
   email: 'luutrungkien120894@gmail.com',
-  github: 'https://github.com/trungkien1208', // Replace
-  linkedin: 'https://www.linkedin.com/in/kiên-lưu-5293771a1', // Replace
+  github: 'https://github.com/trungkien1208',
+  linkedin: 'https://www.linkedin.com/in/ki%C3%AAn-l%C6%B0u-5293771a1/',
   contact: {
     Name: 'Lưu Trung Kiên',
-    Birthday: '12 August',
+    Location: 'Ho Chi Minh City, Vietnam',
     Phone: '(+84) 919 62 55 66',
-    Address: 'Ho Chi Minh City, Vietnam',
     Email: 'luutrungkien120894@gmail.com',
   },
 }
 
-export { header, about, projects, skills, contact, experiences }
+export { header, about, projects, skills, ALL_TECH, contact, experiences }
