@@ -1,0 +1,344 @@
+.hero {
+  position: relative;
+  padding-top: calc(var(--nav-h) + clamp(28px, 5vw, 56px));
+  padding-bottom: clamp(48px, 6vw, 80px);
+  /* Leave room for the ticker to peek above the fold */
+  min-height: min(calc(100dvh - 72px), 820px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+}
+
+/* ---------- copy ---------- */
+.hero__hello {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 6px 16px 6px 8px;
+  font-weight: 600;
+  background: var(--surface);
+  border: var(--border);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-sm);
+}
+
+.hero__wave {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  color: var(--on-pastel);
+  background: var(--mint);
+  border-radius: 50%;
+  transform-origin: 70% 80%;
+  animation: wave 2.6s ease-in-out 1.2s infinite;
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0);
+  }
+  10%,
+  30% {
+    transform: rotate(16deg);
+  }
+  20%,
+  40% {
+    transform: rotate(-10deg);
+  }
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 5.2vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.hero__line {
+  display: block;
+}
+
+/* Hand-drawn marker swipe behind one word */
+/* Highlighted word: brand pink with a mint squiggle that draws in after load */
+.hero__marker {
+  color: var(--accent);
+  white-space: nowrap;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-thickness: 0.055em;
+  text-underline-offset: 0.16em;
+  text-decoration-skip-ink: none;
+  text-decoration-color: transparent;
+  animation: squiggle 0.5s 0.9s ease-out forwards;
+}
+
+@keyframes squiggle {
+  to {
+    text-decoration-color: var(--mint-deep);
+  }
+}
+
+.hero__sub {
+  margin-top: 22px;
+  max-width: 34rem;
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  color: var(--muted);
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+/* ---------- sticker collage ---------- */
+.hero__art {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 1 / 1.02;
+  justify-self: end;
+}
+
+.sticker {
+  position: absolute;
+  margin: 0;
+}
+
+.sticker__body {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (pointer: fine) {
+  .sticker__body {
+    touch-action: none;
+    cursor: grab;
+  }
+}
+
+.sticker img {
+  pointer-events: none;
+}
+
+/* Tabi no Chan screen in a browser frame */
+.sticker--browser {
+  top: 16%;
+  right: 0;
+  width: 70%;
+  rotate: 4deg;
+  z-index: 1;
+}
+
+/* COGINGON phone */
+.sticker--phone {
+  top: 2%;
+  left: 4%;
+  width: 44%;
+  rotate: -6deg;
+  z-index: 2;
+}
+.sticker--phone img {
+  border: var(--border);
+  border-radius: 22px;
+  box-shadow: var(--shadow-lg);
+  background: var(--butter);
+}
+
+/* Monogram / portrait sticker */
+.sticker--avatar {
+  left: -6%;
+  bottom: -6%;
+  width: 36%;
+  rotate: -7deg;
+  /* The face is the most personal thing here: keep it on top */
+  z-index: 5;
+}
+.sticker--avatar img {
+  width: 100%;
+  height: auto;
+  /* Postage-stamp border is baked into the image; this adds the sticker lift */
+  filter: drop-shadow(4px 5px 0 rgba(54, 32, 47, 0.28));
+}
+:root.dark .sticker--avatar img {
+  filter: drop-shadow(4px 5px 0 rgba(255, 158, 196, 0.25));
+}
+
+.monogram {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  object-fit: cover;
+}
+.monogram {
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  letter-spacing: -0.04em;
+  color: var(--on-pastel);
+  background: var(--primary-soft);
+  /* Dashed inner ring, like a die-cut sticker */
+  outline: 2px dashed rgba(54, 32, 47, 0.35);
+  outline-offset: -10px;
+}
+
+/* "8+ years" burst */
+/* Ink postmark in the top-right corner, cancellation waves trailing left */
+.sticker--postmark {
+  top: -3%;
+  right: -2%;
+  width: 40%;
+  rotate: 10deg;
+  z-index: 3;
+}
+.postmark {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  fill: none;
+  stroke: var(--plum);
+  stroke-width: 3;
+  opacity: 0.88;
+}
+:root.dark .postmark {
+  stroke: var(--text);
+}
+.postmark__paper {
+  fill: var(--bg);
+  stroke: none;
+}
+.postmark text {
+  stroke: none;
+  fill: var(--plum);
+  text-anchor: middle;
+  font-family: var(--font-display);
+}
+:root.dark .postmark__paper {
+  fill: var(--bg);
+  stroke: none;
+}
+.postmark text {
+  fill: var(--text);
+}
+.postmark__ring {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.postmark__num {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.postmark__unit {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+.postmark__waves {
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+/* Cogi mascot */
+.sticker--cogi {
+  right: 4%;
+  bottom: 0;
+  width: 30%;
+  z-index: 4;
+}
+.sticker--cogi img {
+  filter: drop-shadow(4px 5px 0 rgba(54, 32, 47, 0.25));
+  animation: bob 3.6s ease-in-out 1.6s infinite;
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-3deg);
+  }
+}
+
+.cogi-bubble {
+  position: absolute;
+  top: -14%;
+  left: -58%;
+  padding: 6px 14px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--on-pastel);
+  background: var(--surface);
+  border: var(--border);
+  border-radius: 16px 16px 4px 16px;
+  box-shadow: var(--shadow-sm);
+}
+:root.dark .cogi-bubble {
+  background: var(--primary);
+  border-color: var(--on-pastel);
+}
+
+.hero__hint {
+  position: absolute;
+  left: 44%;
+  bottom: -9%;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  rotate: -2deg;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px) {
+  .hero {
+    min-height: auto;
+  }
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero__art {
+    justify-self: center;
+    max-width: 480px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sticker--avatar {
+    left: 0;
+    bottom: -4%;
+  }
+  .hero__ctas .btn {
+    flex: 1 1 auto;
+  }
+  .hero__hint {
+    display: none;
+  }
+  .cogi-bubble {
+    font-size: 0.75rem;
+    left: -50%;
+  }
+}
+
+@media (pointer: coarse) {
+  .hero__hint {
+    display: none;
+  }
+}

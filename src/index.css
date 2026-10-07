@@ -1,97 +1,456 @@
-@import '@fontsource/space-grotesk/400.css';
-@import '@fontsource/space-grotesk/600.css';
-@import '@fontsource/space-grotesk/700.css';
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
+/* ------------------------------------------------------------------
+   Candy pastel tokens
+   Shape rule: cards 22px, images 14px, every interactive control is a pill.
+   Pastel surfaces always carry --on-pastel text, in both themes.
+   ------------------------------------------------------------------ */
+:root {
+  --bg: #fff6f8;
+  --bg-dot: rgba(59, 36, 51, 0.07);
+  --surface: #ffffff;
+  --text: #3b2433;
+  --muted: #6e5464;
+  --line: #3b2433;
+  --shadow-c: #3b2433;
+  --accent: #c42d6b;
+  --on-pastel: #36202f;
+  /* Text on any pastel fill, never flips with the theme */
+  --plum: #36202f;
 
-* {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  outline: 0;
-  background-color: inherit;
-  color: inherit;
-  font-family: inherit;
-  font-size: inherit;
-  box-shadow: none;
+  /* Brand: pastel pink leads, the rest are supporting tints */
+  --primary: #ffb3cf;
+  --primary-soft: #ffdce8;
+  --butter: #ffe8a3;
+  --lilac: #e5d8ff;
+  --mint: #b8ecd6;
+  --mint-deep: #2f8f6b;
+  --peach: #ffd2bf;
+  --sky: #cfe4ff;
+  --pink: #ffc4da;
+
+  --font-display: 'Bricolage Grotesque Variable', 'Be Vietnam Pro', system-ui,
+    sans-serif;
+  --font-body: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI',
+    sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --r-card: 22px;
+  --r-img: 14px;
+  --r-pill: 999px;
+  --border: 2px solid var(--line);
+  --shadow-sm: 3px 3px 0 var(--shadow-c);
+  --shadow: 5px 5px 0 var(--shadow-c);
+  --shadow-lg: 8px 8px 0 var(--shadow-c);
+
+  --nav-h: 72px;
+  --container: 1200px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: light;
+}
+
+/* "Night snack" mode: same candy, lights dimmed */
+:root.dark {
+  /* Cool plum night, pink stays the hero colour */
+  --bg: #17121c;
+  --bg-dot: rgba(255, 200, 225, 0.05);
+  --surface: #221a28;
+  --text: #f8eef5;
+  --muted: #bfaebd;
+  --line: #4b3a52;
+  /* Offset shadows glow faintly pink instead of vanishing into the dark */
+  --shadow-c: rgba(255, 158, 196, 0.2);
+  --accent: #ff9ec4;
+
+  --primary: #ff9ec4;
+  --primary-soft: #f5bfd5;
+  --butter: #f0d48a;
+  --lilac: #c9b6f5;
+  --mint: #8fdcbc;
+  --mint-deep: #8fdcbc;
+  --peach: #f5b39a;
+  --sky: #9fc8f2;
+  --pink: #ff9ec4;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-  scroll-padding-top: 0;
-  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+  background: var(--bg);
 }
 
-@media (max-width: 768px) {
-  html {
-    scroll-snap-type: none;
-  }
+/* Lenis owns smooth scrolling */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
-  height: 100%;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
   line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--bg-dot) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  line-height: 1.2;
-  color: var(--clr-fg-alt);
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
-h1 {
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
+p {
+  text-wrap: pretty;
 }
 
-h2 {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-}
-
-h3 {
-  font-size: 1.4rem;
-}
-
-h4 {
-  font-size: 1.1rem;
-}
-
-ul {
-  list-style-type: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
+::selection {
+  background: var(--primary);
+  color: var(--on-pastel);
 }
 
 :focus-visible {
-  outline: 2px solid var(--clr-primary);
+  outline: 3px solid var(--accent);
   outline-offset: 3px;
+  border-radius: 6px;
 }
 
-/* Hide native cursor on desktop — custom cursor takes over */
-@media (hover: hover) and (min-width: 901px) {
-  *, *::before, *::after {
-    cursor: none !important;
-  }
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  padding: 10px 18px;
+  background: var(--primary);
+  color: var(--on-pastel);
+  border: var(--border);
+  border-radius: var(--r-pill);
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ---------- layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(56px, 7vw, 96px);
+  /* Lands the heading just under the fixed nav, trimming some top padding */
+  scroll-margin-top: calc(var(--nav-h) - clamp(24px, 4vw, 48px));
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.section-title {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.section-sub {
+  margin-top: 14px;
+  max-width: 60ch;
+  font-size: 1.125rem;
+  color: var(--muted);
+}
+
+/* ---------- tone helpers ---------- */
+.tone-primary {
+  --tone: var(--primary);
+}
+.tone-butter {
+  --tone: var(--butter);
+}
+.tone-lilac {
+  --tone: var(--lilac);
+}
+.tone-mint {
+  --tone: var(--mint);
+}
+.tone-peach {
+  --tone: var(--peach);
+}
+.tone-sky {
+  --tone: var(--sky);
+}
+.tone-pink {
+  --tone: var(--pink);
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  --btn-bg: var(--surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 12px 24px;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--btn-bg);
+  border: var(--border);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out),
+    background-color 0.2s;
+}
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+}
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--shadow-c);
+}
+.btn-primary {
+  --btn-bg: var(--primary);
+  color: var(--on-pastel);
+}
+.btn svg {
+  flex-shrink: 0;
+}
+
+/* Text link with a marker underline */
+.link {
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* ---------- chips ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--on-pastel);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1.5px solid var(--on-pastel);
+  border-radius: var(--r-pill);
+}
+.chip-plain {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+/* ---------- sticker card ---------- */
+.card {
+  background: var(--tone, var(--surface));
+  color: var(--on-pastel);
+  border: var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow);
+}
+:root.dark .card {
+  border-color: var(--line);
+}
+
+/* ---------- dark theme: tinted cards instead of bright pastel blocks ---------- */
+:root.dark .quest,
+:root.dark .job--featured,
+:root.dark .tool,
+:root.dark .hello {
+  --on-pastel: var(--text);
+  background: color-mix(in srgb, var(--tone) 13%, var(--surface));
+  border-color: color-mix(in srgb, var(--tone) 55%, transparent);
+  box-shadow: 6px 6px 0 color-mix(in srgb, var(--tone) 26%, transparent);
+}
+
+:root.dark .quest .chip,
+:root.dark .job--featured .chip,
+:root.dark .tool .chip {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: color-mix(in srgb, var(--tone) 55%, transparent);
+}
+
+/* Pastel-filled bits inside tinted cards keep dark plum text */
+:root.dark .btn-ink {
+  --btn-bg: var(--primary);
+  color: var(--plum);
+  border-color: var(--primary);
+}
+
+/* ---------- browser frame around real screenshots ---------- */
+.browser {
+  overflow: hidden;
+  background: var(--surface);
+  border: var(--border);
+  border-radius: var(--r-img);
+  box-shadow: var(--shadow);
+}
+
+.browser__bar {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--primary-soft);
+  border-bottom: var(--border);
+}
+.browser__bar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid var(--on-pastel);
+}
+
+.browser__url {
+  margin-left: 8px;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--plum);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  opacity: 0.75;
+}
+.browser img {
+  width: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Core tech: filled plum chip with a star, always listed first */
+.chips .chip.chip--core {
+  gap: 6px;
+  padding: 6px 14px 6px 11px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--plum);
+  border-color: var(--plum);
+  box-shadow: 2px 2px 0 color-mix(in srgb, var(--plum) 30%, transparent);
+}
+
+.chips .chip.chip--core svg {
+  color: var(--tone, var(--primary));
+}
+
+.chips .chip.chip--core:hover {
+  background: var(--plum);
+}
+
+:root.dark .chips .chip.chip--core {
+  color: var(--plum);
+  background: var(--tone, var(--primary));
+  border-color: var(--tone, var(--primary));
+  box-shadow: none;
+}
+
+:root.dark .chips .chip.chip--core svg {
+  color: var(--plum);
+}
+
+/* List tick: a mini sticker, filled with the colour that contrasts its card */
+.tick {
+  --tick-bg: var(--primary);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 0;
+  color: var(--plum);
+  background: var(--tick-bg);
+  border: 2px solid var(--plum);
+  border-radius: 7px;
+  box-shadow: 2px 2px 0 var(--plum);
+  rotate: -6deg;
+}
+.tone-pink .tick,
+.tone-primary .tick {
+  --tick-bg: var(--mint);
+}
+:root.dark .tick {
+  border-color: var(--plum);
+  box-shadow: none;
 }

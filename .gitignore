@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Codex image-gen masters and prompts (large, not served)
+output/
+
+# Formal CV build output (kept on Desktop, not served)
+cv/*.pdf

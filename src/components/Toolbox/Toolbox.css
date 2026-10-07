@@ -1,0 +1,56 @@
+.bento {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 28px);
+}
+
+.tool {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 3vw, 34px);
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+
+.tool:hover {
+  transform: translate(-3px, -3px) rotate(-0.4deg);
+  box-shadow: var(--shadow-lg);
+}
+
+.tool--wide {
+  grid-column: span 2;
+}
+
+.tool__title {
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.02em;
+}
+
+.tool__note {
+  margin-top: 6px;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.tool__chips {
+  margin-top: 22px;
+}
+
+.tool .chip {
+  padding: 6px 14px;
+  font-size: 0.875rem;
+  transition: transform 0.2s var(--ease-out), background-color 0.2s;
+}
+
+.tool .chip:hover {
+  transform: translateY(-2px) rotate(-2deg);
+  background: #fff;
+}
+
+@media (max-width: 860px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+  .tool--wide {
+    grid-column: auto;
+  }
+}
