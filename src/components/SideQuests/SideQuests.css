@@ -1,0 +1,274 @@
+.quests {
+  display: grid;
+  gap: clamp(32px, 5vw, 56px);
+}
+
+.quest {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  padding: clamp(24px, 4vw, 52px);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.quest--flip .quest__copy {
+  order: 2;
+}
+
+/* ---------- copy ---------- */
+.quest__brand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  margin-bottom: 20px;
+}
+
+.quest__logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 2px solid var(--on-pastel);
+  background: #fff;
+  object-fit: cover;
+}
+
+.quest__name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+:root.dark .quest__badge {
+  color: var(--plum);
+  background: var(--tone);
+}
+
+.quest__badge {
+  padding: 3px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--on-pastel);
+  border-radius: var(--r-pill);
+}
+
+.quest__title {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  line-height: 1.04;
+}
+
+.quest__desc {
+  margin-top: 16px;
+  font-size: 1.0625rem;
+  max-width: 52ch;
+}
+
+.quest__list {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.quest__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.975rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.quest__rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 20px;
+  font-size: 0.9375rem;
+  font-style: italic;
+}
+
+.quest__stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--accent);
+  /* Thin plum edge keeps pink stars crisp on pastel cards */
+  filter: drop-shadow(0 0 0.6px var(--plum));
+}
+:root.dark .quest__stars {
+  filter: none;
+}
+
+/* Stack lives in its own labelled tray, same dashed style as the day-job wins */
+.quest__stack {
+  margin-top: 24px;
+  padding: 14px 16px 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px dashed rgba(54, 32, 47, 0.35);
+  border-radius: 16px;
+}
+
+.quest__stack-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--on-pastel) 70%, transparent);
+}
+
+:root.dark .quest__stack {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: color-mix(in srgb, var(--tone) 45%, transparent);
+}
+
+.quest__cta {
+  margin-top: 24px;
+}
+
+/* Dark ink button: reads on any pastel card */
+.btn-ink {
+  --btn-bg: var(--on-pastel);
+  color: #fff;
+  border-color: var(--on-pastel);
+  box-shadow: 3px 3px 0 rgba(54, 32, 47, 0.35);
+}
+.btn-ink:hover {
+  box-shadow: 5px 5px 0 rgba(54, 32, 47, 0.35);
+}
+
+/* ---------- COGINGON: fanned phones ---------- */
+.quest__media {
+  position: relative;
+  min-width: 0;
+}
+
+.phones {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  gap: 0;
+  padding: 14% 4% 4%;
+}
+
+.phones__shot {
+  width: 100%;
+  border: 2px solid var(--on-pastel);
+  border-radius: clamp(14px, 2vw, 22px);
+  box-shadow: 4px 4px 0 rgba(54, 32, 47, 0.3);
+  transition: translate 0.4s var(--ease-out);
+}
+
+.phones__shot--0 {
+  translate: 12% 6%;
+  z-index: 1;
+}
+.phones__shot--1 {
+  z-index: 2;
+  scale: 1.06;
+}
+.phones__shot--2 {
+  translate: -12% 6%;
+  z-index: 1;
+}
+
+.quest:hover .phones__shot--0 {
+  translate: 4% 2%;
+}
+.quest:hover .phones__shot--2 {
+  translate: -4% 2%;
+}
+
+.phones__cogi {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  width: 26%;
+}
+
+.phones__cogi img {
+  filter: drop-shadow(3px 4px 0 rgba(54, 32, 47, 0.25));
+}
+
+.phones__bubble {
+  position: absolute;
+  right: 92%;
+  top: 6%;
+  padding: 6px 12px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--plum);
+  background: #fff;
+  border: 2px solid var(--plum);
+  border-radius: 14px 14px 4px 14px;
+}
+
+/* ---------- Tabi no Chan: browser + crop ---------- */
+.screens {
+  position: relative;
+  padding-bottom: 14%;
+}
+
+.screens__main {
+  border-color: var(--on-pastel);
+  box-shadow: 5px 5px 0 rgba(54, 32, 47, 0.3);
+}
+
+.screens .browser__bar {
+  align-items: center;
+  background: var(--primary-soft);
+  border-color: var(--on-pastel);
+}
+.screens .browser__bar i {
+  flex-shrink: 0;
+}
+
+.screens__crop {
+  position: absolute;
+  right: -3%;
+  bottom: 0;
+  width: 70%;
+  border: 2px solid var(--on-pastel);
+  border-radius: var(--r-img);
+  box-shadow: 5px 5px 0 rgba(54, 32, 47, 0.3);
+  background: #fff;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px) {
+  .quest {
+    grid-template-columns: 1fr;
+  }
+  .quest--flip .quest__copy {
+    order: 0;
+  }
+  .quest__media {
+    max-width: 560px;
+    width: 100%;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .quest {
+    box-shadow: var(--shadow);
+  }
+  .quest__cta {
+    width: 100%;
+  }
+  .phones__bubble {
+    font-size: 0.6875rem;
+    padding: 4px 9px;
+  }
+  .screens__crop {
+    right: 0;
+    width: 80%;
+  }
+}

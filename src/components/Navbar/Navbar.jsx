@@ -1,147 +1,194 @@
-import CloseIcon from '@mui/icons-material/Close'
-import DarkModeIcon from '@mui/icons-material/DarkMode'
-import LightModeIcon from '@mui/icons-material/LightMode'
-import MenuIcon from '@mui/icons-material/Menu'
-import { motion } from 'motion/react'
 import { useContext, useEffect, useState } from 'react'
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from 'motion/react'
+import { List, Moon, Sun, X } from '@phosphor-icons/react'
 import { ThemeContext } from '../../contexts/theme'
-import { about, contact, experiences, projects, skills } from '../../portfolio'
+import { about } from '../../portfolio'
 import './Navbar.css'
 
-const NAV_LINKS = [
-  { label: 'Experience', href: '#experiences', show: experiences.length > 0 },
-  { label: 'Projects',   href: '#projects',    show: projects.length > 0 },
-  { label: 'Skills',     href: '#skills',      show: skills.length > 0 },
-  { label: 'Contact',    href: '#contact',     show: !!contact.email },
+const LINKS = [
+  { id: 'side-quests', label: 'Side quests' },
+  { id: 'projects', label: 'Day job' },
+  { id: 'experiences', label: 'Journey' },
+  { id: 'skills', label: 'Toolbox' },
 ]
 
-const Navbar = () => {
-  const [{ themeName, toggleTheme }] = useContext(ThemeContext)
-  const [showNavList, setShowNavList] = useState(false)
-  const [isHero, setIsHero] = useState(true)
-
-  /* Track whether the hero section is in view */
+const useActiveSection = (ids) => {
+  const [active, setActive] = useState('')
   useEffect(() => {
-    const hero = document.getElementById('top')
-    if (!hero) return undefined
-
     const observer = new IntersectionObserver(
-      ([entry]) => setIsHero(entry.isIntersecting),
-      { threshold: 0.35 }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id)
+        })
+      },
+      // A section is "current" while it crosses the band just under the nav
+      { rootMargin: '-35% 0px -60% 0px' }
     )
-    observer.observe(hero)
+    ids.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
     return () => observer.disconnect()
-  }, [])
+  }, [ids])
+  return active
+}
 
-  const closeMenu = () => setShowNavList(false)
+const SECTION_IDS = [...LINKS.map((l) => l.id), 'contact', 'top']
+
+const ThemeToggle = () => {
+  const [{ themeName, toggleTheme }] = useContext(ThemeContext)
+  const isDark = themeName === 'dark'
+  const label = isDark ? 'Lights on' : 'Night snack mode'
+  return (
+    <button
+      type='button'
+      className='theme-toggle'
+      onClick={toggleTheme}
+      aria-label={label}
+      title={label}
+    >
+      {/* Both icons stay mounted and crossfade in place, so there is no empty frame */}
+      <span
+        className={`theme-toggle__icon ${isDark ? '' : 'is-on'}`}
+        aria-hidden='true'
+      >
+        <Moon size={20} weight='bold' />
+      </span>
+      <span
+        className={`theme-toggle__icon ${isDark ? 'is-on' : ''}`}
+        aria-hidden='true'
+      >
+        <Sun size={20} weight='bold' />
+      </span>
+    </button>
+  )
+}
+
+const Navbar = () => {
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const active = useActiveSection(SECTION_IDS)
+  const { scrollY } = useScroll()
+
+  useMotionValueEvent(scrollY, 'change', (y) => {
+    const next = y > 12
+    if (next !== scrolled) setScrolled(next)
+  })
+
+  useEffect(() => {
+    if (!open) return undefined
+    const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    const onResize = () => window.innerWidth > 900 && setOpen(false)
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('resize', onResize)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('resize', onResize)
+    }
+  }, [open])
+
+  const close = () => setOpen(false)
 
   return (
-    <motion.nav
-      className={`nav ${isHero ? 'nav--hero' : 'nav--compact'}`}
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <div className='nav__inner center'>
-        {/* Logo — larger on hero */}
-        <a href='#top' className='nav__logo' onClick={closeMenu}>
-          <motion.span
-            animate={{ fontSize: isHero ? '1.6rem' : '1.25rem' }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          >
-            LTK
-          </motion.span>
-          {isHero && (
-            <motion.span
-              className='nav__logo-sub'
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-            >
-              {about.role}
-            </motion.span>
-          )}
+    <header className={`nav ${scrolled || open ? 'nav--raised' : ''}`}>
+      <div className='container nav__inner'>
+        <a
+          href='#top'
+          className='nav__logo'
+          aria-label={`${about.name}, back to top`}
+          onClick={close}
+        >
+          <span className='nav__logo-mark'>k</span>
+          <span className='nav__logo-word'>
+            kiên<span className='nav__logo-dot'>.</span>
+          </span>
         </a>
 
-        {/* Nav links — hidden on hero, visible on scroll */}
-        <motion.ul
-          className='nav__list'
-          animate={{
-            opacity: isHero ? 0 : 1,
-            y: isHero ? -8 : 0,
-            pointerEvents: isHero ? 'none' : 'auto',
-          }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {NAV_LINKS.filter((l) => l.show).map(({ label, href }) => (
-            <li key={label} className='nav__list-item'>
-              <a href={href} className='nav__link link link--nav'>
-                {label}
-              </a>
-            </li>
-          ))}
-        </motion.ul>
-
-        <div className='nav__actions center'>
-          {/* Hire me CTA — only on hero */}
-          {isHero && (
-            <motion.a
-              href='#contact'
-              className='nav__hire-btn'
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.15 }}
+        <nav className='nav__links' aria-label='Main'>
+          {LINKS.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              className={`nav__link ${active === link.id ? 'is-active' : ''}`}
+              aria-current={active === link.id ? 'true' : undefined}
             >
-              Hire me
-            </motion.a>
-          )}
+              {active === link.id && (
+                <motion.span
+                  layoutId='nav-pill'
+                  className='nav__link-pill'
+                  transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+                />
+              )}
+              <span className='nav__link-text'>{link.label}</span>
+            </a>
+          ))}
+        </nav>
 
+        <div className='nav__actions'>
+          <ThemeToggle />
+          <a href='#contact' className='btn btn-primary nav__cta'>
+            Say hi
+          </a>
           <button
             type='button'
-            onClick={toggleTheme}
-            className={`theme-toggle ${themeName}`}
-            aria-label='Toggle theme'
+            className='nav__burger'
+            aria-expanded={open}
+            aria-controls='mobile-menu'
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            onClick={() => setOpen((v) => !v)}
           >
-            <div className={`toggle-icon ${themeName === 'light' ? 'active' : ''}`}>
-              <LightModeIcon fontSize='small' />
-            </div>
-            <div className={`toggle-icon ${themeName === 'dark' ? 'active' : ''}`}>
-              <DarkModeIcon fontSize='small' />
-            </div>
-            <div className={`toggle-slider ${themeName}`} />
-          </button>
-
-          <button
-            type='button'
-            onClick={() => setShowNavList(!showNavList)}
-            className='btn btn--icon nav__hamburger'
-            aria-label='Toggle navigation'
-            aria-expanded={showNavList}
-          >
-            {showNavList ? <CloseIcon /> : <MenuIcon />}
+            {open ? (
+              <X size={22} weight='bold' />
+            ) : (
+              <List size={22} weight='bold' />
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile drawer */}
-      <div
-        className={`nav__mobile-overlay ${showNavList ? 'nav__mobile-overlay--open' : ''}`}
-        onClick={closeMenu}
-        aria-hidden='true'
-      />
-      <div className={`nav__mobile-drawer ${showNavList ? 'nav__mobile-drawer--open' : ''}`}>
-        <ul className='nav__mobile-list'>
-          {NAV_LINKS.filter((l) => l.show).map(({ label, href }) => (
-            <li key={label} className='nav__mobile-item'>
-              <a href={href} onClick={closeMenu} className='nav__mobile-link'>
-                {label}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id='mobile-menu'
+            className='nav__sheet'
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <nav className='container nav__sheet-inner' aria-label='Mobile'>
+              {LINKS.map((link, i) => (
+                <motion.a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  className={`nav__sheet-link ${
+                    active === link.id ? 'is-active' : ''
+                  }`}
+                  onClick={close}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.04 * i + 0.05 }}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+              <a
+                href='#contact'
+                className='btn btn-primary nav__sheet-cta'
+                onClick={close}
+              >
+                Say hi
               </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </motion.nav>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   )
 }
 

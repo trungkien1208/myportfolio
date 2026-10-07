@@ -2,20 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Lưu Trung Kiên · Senior Front-End Engineer</title>
     <meta
       name="description"
-      content="Portfolio"
+      content="Kiên builds hospital kiosks by day and food and visa apps by night. Senior front-end engineer with 8+ years of React, React Native and SwiftUI."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#fff6f8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#22161e" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Lưu Trung Kiên · Senior Front-End Engineer" />
+    <meta
+      property="og:description"
+      content="Hospital kiosks by day, food and visa apps by night. Sleep is a side quest."
+    />
+    <meta property="og:url" content="https://trungkien1208.github.io/myportfolio/" />
+    <meta property="og:image" content="https://trungkien1208.github.io/myportfolio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Lưu Trung Kiên, Senior Front-End Engineer" />
+    <link rel="canonical" href="https://trungkien1208.github.io/myportfolio/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://trungkien1208.github.io/myportfolio/og-image.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Lưu Trung Kiên",
+        "alternateName": "Luu Trung Kien",
+        "jobTitle": "Senior Front-End Engineer",
+        "url": "https://trungkien1208.github.io/myportfolio/",
+        "image": "https://trungkien1208.github.io/myportfolio/me/kien-stamp.webp",
+        "email": "mailto:luutrungkien120894@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Ho Chi Minh City", "addressCountry": "VN" },
+        "sameAs": [
+          "https://www.linkedin.com/in/kienluudev/",
+          "https://github.com/trungkien1208"
+        ],
+        "knowsAbout": ["React", "TypeScript", "React Native", "Expo", "SwiftUI", "Next.js"]
+      }
+    </script>
     <link rel="icon" href="/favicon.ico" />
-    <title>Lưu Trung Kiên</title>
-    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" as="image" href="/quests/cogingon/shot-01.webp" type="image/webp" />
+    <script>
+      // Pick the theme before first paint so dark-mode visitors never see a flash
+      try {
+        var t = localStorage.getItem('themeName')
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        document.documentElement.classList.add(t)
+      } catch (e) {}
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>This site needs JavaScript. The developer apologises.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/index.jsx"></script>
   </body>

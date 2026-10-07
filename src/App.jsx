@@ -1,45 +1,36 @@
-import { useContext, lazy, Suspense } from 'react'
-import './App.css'
-import About from './components/About/About'
+import { MotionConfig } from 'motion/react'
 import Contact from './components/Contact/Contact'
-import Cursor from './components/Cursor/Cursor'
-import Experience from './components/Experience/Experience'
+import DayJob from './components/DayJob/DayJob'
 import Footer from './components/Footer/Footer'
-import Header from './components/Header/Header'
-import Projects from './components/Projects/Projects'
-import ScrollProgress from './components/ScrollProgress/ScrollProgress'
-import ScrollToTop from './components/ScrollToTop/ScrollToTop'
-import SectionDots from './components/SectionDots/SectionDots'
-import Skills from './components/Skills/Skills'
-import { ThemeContext } from './contexts/theme'
-
-const Hero3D = lazy(() => import('./components/Hero3D/Hero3D'))
+import Hero from './components/Hero/Hero'
+import Journey from './components/Journey/Journey'
+import Navbar from './components/Navbar/Navbar'
+import SideQuests from './components/SideQuests/SideQuests'
+import Ticker from './components/Ticker/Ticker'
+import Toolbox from './components/Toolbox/Toolbox'
+import useLenis from './hooks/useLenis'
 
 const App = () => {
-  const [{ themeName }] = useContext(ThemeContext)
+  useLenis()
 
   return (
-    <div className={`${themeName} app`}>
-      {/* Persistent universe behind every section (dark mode only) */}
-      {themeName === 'dark' && (
-        <div className='universe-bg' aria-hidden='true'>
-          <Suspense fallback={null}>
-            <Hero3D />
-          </Suspense>
-        </div>
-      )}
-      <Cursor />
-      <ScrollProgress />
-      <SectionDots />
-      <Header />
-      <About />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Contact />
+    // reducedMotion='user' turns every motion animation static for visitors who ask for it
+    <MotionConfig reducedMotion='user'>
+      <a className='skip-link' href='#side-quests'>
+        Skip to content
+      </a>
+      <Navbar />
+      <main>
+        <Hero />
+        <Ticker />
+        <SideQuests />
+        <DayJob />
+        <Journey />
+        <Toolbox />
+        <Contact />
+      </main>
       <Footer />
-      <ScrollToTop />
-    </div>
+    </MotionConfig>
   )
 }
 

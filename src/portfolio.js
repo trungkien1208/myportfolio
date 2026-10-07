@@ -1,236 +1,332 @@
-const header = {
-  logo: './logo.png',
-}
+// All site copy lives here. Components only lay it out.
+// House rule for copy: no em-dashes, keep jokes short, keep facts true.
+
+// Public files live under the deploy base (/myportfolio/ on GitHub Pages)
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`
+
+// First front-end job: Mar 2018. Counted at runtime so "8+" never goes stale.
+const CAREER_START = new Date(2018, 2, 1)
+const yearsShipping = Math.floor(
+  (Date.now() - CAREER_START) / (365.25 * 24 * 3600 * 1000)
+)
 
 const about = {
   name: 'Lưu Trung Kiên',
-  role: 'Senior Software Engineer',
-  tagline:
-    'I build exceptional digital products — from iPad kiosks deployed in Singapore hospitals to scalable platforms serving thousands of users across Southeast Asia.',
-  description: `Senior Software Engineer with 8+ years crafting production-grade web and mobile applications. I own projects end-to-end — from architecture decisions to production deployment.
-
-Currently leading front-end teams at Taggle (Singapore), where I independently built a healthcare kiosk used daily in hospitals and architected admin portals powering real-time patient management across Singapore and the Philippines.
-
-I care deeply about **performance**, **clean architecture**, and interfaces that genuinely delight users. My goal: grow into a **Principal Engineer** role — shaping technical direction and building products that matter.`,
-  resume: './resume.pdf',
-  // 3D avatar model — served from /public so the URL is stable.
-  avatarModel: '/avatar.glb',
-  // Optional: a portrait image for the small hero circle. Leave '' to keep the LTK monogram.
-  avatarImage: '',
+  shortName: 'Kiên',
+  role: 'Senior Front-End Engineer',
+  greeting: 'Xin chào, I’m Kiên',
+  headline: ['I ship apps that', 'survive real users.'],
+  // Word in the headline that gets the marker highlight
+  highlight: 'survive',
+  subtext: `Senior front-end engineer, ${yearsShipping}+ years. Hospital kiosks by day, food and visa apps by night. Sleep is a side quest.`,
+  yearsShipping,
+  careerStart: CAREER_START.getFullYear(),
+  resume: asset('resume.pdf'),
+  resumeFileName: 'Luu-Trung-Kien-CV.pdf',
+  // Photo-style cutout from Kiên's IMG_5058 photo (see IMAGE_PROMPTS.md).
+  avatarImage: asset('me/kien-stamp.webp'),
+  monogram: 'LTK',
   social: {
-    linkedin: 'https://www.linkedin.com/in/ki%C3%AAn-l%C6%B0u-5293771a1/',
+    linkedin: 'https://www.linkedin.com/in/kienluudev/',
     github: 'https://github.com/trungkien1208',
   },
 }
 
+// Ticker under the hero. True facts, light seasoning.
+const facts = [
+  'Kiosks on ~200 iPads in Singapore hospitals',
+  '2,000+ patients a day tap my buttons',
+  'A food app on the App Store',
+  '~900 visa cases a month through my platform',
+  'Leading a front-end team of 5',
+  `${yearsShipping}+ years of shipping`,
+  'Fluent in React, Swift and sarcasm',
+  'Reviews PRs with kindness and a magnifying glass',
+]
+
+const sideQuests = [
+  {
+    id: 'cogingon',
+    name: 'COGINGON',
+    tone: 'mint',
+    logo: asset('quests/cogingon/icon.webp'),
+    badge: 'Live on the App Store',
+    title: 'Know what to eat, anywhere.',
+    description:
+      'A native iOS food guide for Vietnamese cities. Sixty-second city tours, honest dish scores, and Cogi, a dumpling who picks dinner so your group chat doesn’t have to.',
+    highlights: [
+      'Designed, built and shipped end to end, solo',
+      'SwiftUI app, Go API, Firebase and an editor portal',
+      'Vietnamese and English, iPhone and iPad',
+    ],
+    rating: '5.0 on the App Store. Small sample size, big energy.',
+    stack: ['SwiftUI', 'Go', 'Firebase', 'MapKit'],
+    core: ['SwiftUI'],
+    link: {
+      label: 'Get it on the App Store',
+      href: 'https://apps.apple.com/vn/app/cogingon-local-food-guide/id6818789886',
+      icon: 'appstore',
+    },
+    shots: [
+      {
+        src: asset('quests/cogingon/shot-01.webp'),
+        alt: 'COGINGON home screen with Ca Mau city card and the Spin button',
+      },
+      {
+        src: asset('quests/cogingon/shot-03.webp'),
+        alt: 'COGINGON place details with dish photo and Cogi score',
+      },
+      {
+        src: asset('quests/cogingon/shot-04.webp'),
+        alt: 'COGINGON map with scored restaurant pins',
+      },
+    ],
+    mascot: {
+      src: asset('quests/cogingon/cogi-delicious.webp'),
+      heroSrc: asset('quests/cogingon/cogi-cheerful.webp'),
+      alt: 'Cogi, the COGINGON dumpling mascot',
+      says: 'Hungry? I know a place.',
+    },
+  },
+  {
+    id: 'tabi',
+    name: 'Tabi no Chan',
+    tone: 'pink',
+    logo: asset('quests/tabi/logo.webp'),
+    badge: 'Solo, full stack',
+    title: 'Visa paperwork, minus the paper chase.',
+    description:
+      'A live visa document platform for a Vietnamese consultancy. Around 900 applications a month, 5 staff in it daily and 30+ partner agents. Designed, built and run by me.',
+    highlights: [
+      'Next.js portal for staff and agents, with QR-verifiable receipts',
+      'Claude-powered document AI plus OCR, so nobody retypes a passport',
+      'Expo staff app, Lark and Zalo bots, and a consulate mailbox watcher',
+    ],
+    stack: [
+      'Next.js',
+      'TypeScript',
+      'FastAPI',
+      'Firebase',
+      'Cloud Run',
+      'Expo',
+    ],
+    core: ['Next.js', 'FastAPI'],
+    link: {
+      label: 'Visit the site',
+      href: 'https://tabinochan.hientrangvisa.vn',
+      icon: 'globe',
+    },
+    shots: [
+      {
+        src: asset('quests/tabi/dashboard.webp'),
+        alt: 'Tabi no Chan dashboard with case counts and the attention queue',
+      },
+    ],
+    crop: {
+      src: asset('quests/tabi/crop-ai.webp'),
+      alt: 'AI document extraction panel from Tabi no Chan',
+    },
+  },
+]
+
 const projects = [
   {
     name: 'PSSB Hospital Kiosk',
-    description:
-      'Sole developer of a full-stack iPadOS kiosk deployed in Singapore hospitals — enabling touchless patient check-in, appointment booking, and integrated payment processing.',
-    stack: ['React Native', 'Expo', 'Zustand', 'Redux Toolkit'],
-    sourceCode: '',
-    livePreview: '',
+    client: 'Taggle, for National Healthcare Group',
+    icon: 'kiosk',
+    tone: 'sky',
     featured: true,
+    description:
+      'A self-service iPad kiosk running on about 200 devices in Singapore hospitals and serving 2,000+ patients a day. Check in, book and pay without queuing at a counter.',
+    stack: ['React Native', 'TypeScript', 'Expo', 'Zustand', 'Redux Toolkit'],
+    core: ['React Native', 'TypeScript', 'Expo'],
     achievements: [
-      'Independently selected tech stack and delivered end-to-end in production',
-      'Integrated payment terminals and Epson receipt printers for live hospital use',
-      'Managed full TestFlight deployment lifecycle and hardware coordination',
-      'Led technical sync with backend and hardware teams as sole FE developer',
+      'Wired in payment terminals and Epson printers with the hardware vendors',
+      'Wrote the expo-redpark-serial and expo-pssb-keypair native modules',
+      'Adapted react-native-esc-pos-printer for the Epson ePOS SDK',
+      'Monthly TestFlight releases, with Scrum Master duties on the side',
     ],
   },
   {
     name: 'NCA Admin Portal',
+    client: 'Taggle',
+    icon: 'admin',
+    tone: 'mint',
     description:
-      'Architected a scalable React admin portal from scratch — sole developer for 2 years, then successfully onboarded a team to a codebase they could confidently own.',
+      'Built a React admin portal from zero, ran it solo for two years, then handed a team a codebase they could own without calling me.',
     stack: ['ReactJS', 'MUI', 'ChartJS', 'Redux Toolkit'],
-    sourceCode: '',
-    livePreview: '',
-    achievements: [
-      'Designed reusable component architecture adopted across the entire platform',
-      'Handled UAT and production deployments independently for the first 2 years',
-      'Reduced new developer onboarding time through clear structure and patterns',
-    ],
+    core: ['ReactJS', 'MUI'],
   },
   {
     name: 'Taggle Platform',
+    client: 'Taggle, SG and PH',
+    icon: 'platform',
+    tone: 'primary',
     description:
-      'Built the front-end foundation of a multi-tenant healthcare platform serving clinics across Singapore and the Philippines, supporting real-time patient monitoring.',
-    stack: ['ReactJS', 'MUI', 'Axios', 'Redux Toolkit'],
-    sourceCode: '',
-    livePreview: '',
-    achievements: [
-      'Designed core component patterns and project structure used by all contributors',
-      'Drove continuous UX improvements based on direct client and user feedback',
-      'Contributed to CI/CD and versioning across multiple production releases',
-    ],
+      'Front-end foundation for a multi-tenant healthcare platform with real-time patient monitoring across Singapore and the Philippines.',
+    stack: ['ReactJS', 'TypeScript', 'MUI', 'Axios', 'Redux Toolkit'],
+    core: ['ReactJS', 'TypeScript', 'Redux Toolkit'],
   },
   {
     name: 'XSPERA Enterprise Portal',
+    client: 'Saigon Commercial Bank',
+    icon: 'bank',
+    tone: 'pink',
     description:
-      'Delivered enterprise web tools for Saigon Commercial Bank, integrating deeply with Microsoft Teams, Power Apps, and SharePoint ecosystems.',
+      'Enterprise tools woven into Microsoft Teams, Power Apps and SharePoint for one of Vietnam’s commercial banks.',
     stack: ['ReactJS', 'AngularJS', 'Kendo UI', 'SharePoint'],
-    sourceCode: '',
-    livePreview: '',
-    achievements: [
-      'Built custom Microsoft Teams Apps and Power Apps for enterprise clients',
-      'Mentored a junior developer and intern as Front-End Team Lead',
-      'Delivered scalable SharePoint UI workflows for cross-functional teams',
-    ],
+    core: ['AngularJS', 'SharePoint'],
   },
   {
-    name: 'Radiology Viewer (Canada)',
+    name: 'Radiology Viewer',
+    client: 'Ramsoft, Canada',
+    icon: 'scan',
+    tone: 'peach',
     description:
-      'Built a high-performance web-based radiology viewer for a Canadian healthcare company, meeting strict performance and cross-browser compliance standards.',
-    stack: ['JavaScript', 'SCSS', 'HTML5', 'Sencha ExtJS'],
-    sourceCode: '',
-    livePreview: '',
-    achievements: [
-      'Delivered pixel-perfect radiology UI using MVVM architecture',
-      'Supported real-time data loading tightly integrated with backend systems',
-      'Ensured compatibility across major browsers and legacy clinical environments',
-    ],
+      'A fast web radiology viewer that had to behave in every browser a hospital still runs. Including the old ones.',
+    stack: ['JavaScript', 'SCSS', 'Sencha ExtJS'],
+    core: ['JavaScript', 'Sencha ExtJS'],
   },
   {
-    name: 'Radiology Platform (France)',
+    name: 'Radiology Platform',
+    client: 'Healthcare client, France',
+    icon: 'heart',
+    tone: 'lilac',
     description:
-      'Contributed front-end development for a French healthcare radiology product, collaborating directly with French stakeholders to align on complex UX requirements.',
+      'Clinical workflow UI for a French radiology product, built in daily syncs with the client team.',
     stack: ['JavaScript', 'HTML5', 'SCSS', 'Sencha ExtJS'],
-    sourceCode: '',
-    livePreview: '',
-    achievements: [
-      'Implemented dynamic UI components tailored to radiology clinical workflows',
-      'Optimised rendering performance across browsers and screen configurations',
-      'Participated in daily syncs with French clients to align on UX delivery',
-    ],
+    core: ['JavaScript', 'Sencha ExtJS'],
   },
-]
-
-const skills = [
-  // Frontend Core
-  { name: 'HTML5', level: 5, category: 'Frontend Core' },
-  { name: 'CSS3 / SCSS', level: 5, category: 'Frontend Core' },
-  { name: 'JavaScript (ES6+)', level: 5, category: 'Frontend Core' },
-  { name: 'TypeScript', level: 5, category: 'Frontend Core' },
-
-  // Frameworks & Libraries
-  { name: 'ReactJS', level: 5, category: 'Frameworks' },
-  { name: 'React Native', level: 4, category: 'Frameworks' },
-  { name: 'Redux Toolkit', level: 4, category: 'State Management' },
-  { name: 'Zustand', level: 3, category: 'State Management' },
-  { name: 'Material-UI (MUI)', level: 5, category: 'UI Libraries' },
-  { name: 'Kendo UI', level: 3, category: 'UI Libraries' },
-  { name: 'Sencha ExtJS', level: 3, category: 'UI Libraries' },
-
-  // Forms & Validation
-  { name: 'React Hook Form', level: 4, category: 'Forms' },
-  { name: 'Formik', level: 4, category: 'Forms' },
-  { name: 'Yup', level: 4, category: 'Forms' },
-
-  // Networking
-  { name: 'Axios', level: 5, category: 'Networking' },
-
-  // Internationalization
-  { name: 'i18next', level: 4, category: 'i18n' },
-
-  // Testing & Quality
-  { name: 'Jest', level: 3, category: 'Testing' },
-  { name: 'React Testing Library', level: 4, category: 'Testing' },
-
-  // Tools & DevOps
-  { name: 'Git', level: 4, category: 'Tools' },
-  { name: 'CI/CD', level: 3, category: 'DevOps' },
-  { name: 'Docker', level: 3, category: 'DevOps' },
-  { name: 'Webpack', level: 4, category: 'Build Tools' },
-
-  // Backend/Platform Experience
-  { name: '.NET Core', level: 2, category: 'Backend' },
-  { name: 'Python', level: 2, category: 'Backend' },
-
-  // Microsoft Ecosystem
-  { name: 'SharePoint', level: 3, category: 'Enterprise' },
-  { name: 'Power Apps', level: 2, category: 'Enterprise' },
-  { name: 'MS Teams App', level: 2, category: 'Enterprise' },
-
-  // Legacy
-  { name: 'AngularJS', level: 3, category: 'Legacy' },
-  { name: 'jQuery', level: 3, category: 'Legacy' },
-]
-
-const ALL_TECH = [
-  'ReactJS',
-  'TypeScript',
-  'React Native',
-  'Redux Toolkit',
-  'MUI',
-  'Zustand',
-  'Axios',
-  'Webpack',
-  'Git',
-  'CI/CD',
-  'Docker',
-  'Jest',
-  'SCSS',
-  'JavaScript',
-  'HTML5',
-  'Expo',
-  'Formik',
-  'i18next',
-  'Yup',
-  'Node.js',
-  'REST APIs',
-  'GraphQL',
-  'Figma',
-  'SharePoint',
-  'Kendo UI',
 ]
 
 const experiences = [
   {
-    name: 'Taggle',
-    location: 'Singapore (Remote)',
-    time: 'Dec 2020 – Present',
+    company: 'Taggle',
+    location: 'Singapore, remote',
+    time: 'Dec 2020 - Now',
     current: true,
-    role: 'Senior Front-End Engineer',
-    description: `Led front-end web and mobile teams (5 developers) across multiple simultaneous products\n
-Independently built and shipped the PSSB iPad kiosk to hospitals using React Native + Expo\n
-Architected and maintained admin portals using ReactJS and MUI — designed for long-term team scalability\n
-Acted as Scrum Master: ran sprint planning, task management, and TestFlight release cycles\n
-Conducted rigorous code reviews and established Git workflows and deployment standards\n
-Collaborated daily with BAs and BE teams to define scope and drive high-quality delivery`,
+    role: 'Senior Software Development Engineer',
+    quip: 'Where I learned hospitals care a lot about receipt printers.',
+    points: [
+      'Lead the front-end team: 2 web and 3 mobile developers',
+      'Shipped a self-service iPad kiosk to ~200 devices serving 2,000+ patients a day',
+      'Designed the front-end architecture for several admin portals so new people onboard fast',
+      'Own code review, merges, CI/CD, UAT and production releases',
+    ],
   },
   {
-    name: 'Xspera Vietnam',
-    location: 'Ho Chi Minh City, Vietnam',
-    time: 'Dec 2019 – Oct 2020',
-    role: 'Front-End Developer & Team Lead',
-    description: `Developed enterprise-grade solutions using AngularJS, ReactJS, SharePoint, and Kendo UI\n
-Built Microsoft Teams Apps and Power Apps components integrated with enterprise workflows\n
-Mentored a junior developer and intern — introduced code standards and development best practices\n
-Designed and documented reusable UI components that improved team velocity`,
+    company: 'Xspera Apac',
+    location: 'Ho Chi Minh City',
+    time: 'Dec 2019 - Oct 2020',
+    role: 'Front-End Developer, then Team Lead',
+    quip: 'Taught SharePoint some manners. It mostly listened.',
+    points: [
+      'Enterprise solutions in AngularJS, React, SharePoint and Kendo UI',
+      'Microsoft Teams Apps and Power Apps wired into enterprise workflows',
+      'Promoted to team lead, mentored a fresher and an intern to independent delivery',
+    ],
   },
   {
-    name: 'Global Cybersoft',
-    location: 'Ho Chi Minh City, Vietnam',
-    time: 'Mar 2018 – Dec 2019',
-    role: 'Front-End Consultant',
-    description: `Delivered front-end for international healthcare clients in Canada and France\n
-Built production radiology web apps using Sencha ExtJS with MVVM architecture\n
-Ensured strict cross-browser compatibility for clinical environments with legacy systems\n
-Led requirement analysis, time estimation, and client demo delivery for two major products`,
+    company: 'Global Cybersoft',
+    location: 'Ho Chi Minh City',
+    time: 'Mar 2018 - Dec 2019',
+    role: 'Front-End Developer and Consultant',
+    quip: 'Made radiology apps work in legacy browsers. Still recovering.',
+    points: [
+      'Radiology web apps for Ramsoft (Canada) and a French customer',
+      'Production radiology apps in Sencha ExtJS with MVVM',
+      'Requirement analysis, estimates and client demos for two products',
+    ],
+  },
+]
+
+// `core` items render first and highlighted: the ones I'd bet a release on
+const toolbox = [
+  {
+    title: 'Daily drivers',
+    note: 'What my hands type before my brain wakes up.',
+    core: ['React', 'TypeScript', 'JavaScript', 'React Native', 'Expo'],
+    tone: 'sky',
+    size: 'wide',
+    items: [
+      'React',
+      'TypeScript',
+      'JavaScript',
+      'React Native',
+      'Expo',
+      'Redux Toolkit',
+      'Zustand',
+      'MUI',
+      'React Hook Form',
+      'Formik + Yup',
+      'Axios',
+      'i18next',
+      'Tamagui',
+      'HTML / CSS / SCSS',
+    ],
+  },
+  {
+    title: 'Side-quest gear',
+    note: 'Learned at night, shipped anyway.',
+    core: ['SwiftUI', 'Next.js', 'Firebase'],
+    tone: 'primary',
+    items: [
+      'SwiftUI',
+      'Go',
+      'Next.js',
+      'FastAPI',
+      'Firebase',
+      'Cloud Run',
+      'Claude + LiteLLM',
+      'BigQuery',
+    ],
+  },
+  {
+    title: 'Keeping it honest',
+    note: 'Tests, pipelines and the occasional container.',
+    core: ['Git', 'CI/CD'],
+    tone: 'mint',
+    items: [
+      'Jest',
+      'React Testing Library',
+      'Git',
+      'CI/CD',
+      'Azure DevOps',
+      'TestFlight',
+      'Docker',
+    ],
+  },
+  {
+    title: 'Vintage collection',
+    note: 'I have seen things. jQuery things.',
+    core: ['AngularJS', 'Sencha ExtJS'],
+    tone: 'lilac',
+    size: 'wide',
+    items: [
+      'AngularJS',
+      'jQuery',
+      'Sencha ExtJS',
+      'Kendo UI',
+      'SharePoint',
+      'Power Apps',
+      'MS Teams Apps',
+      '.NET Core',
+    ],
   },
 ]
 
 const contact = {
   email: 'luutrungkien120894@gmail.com',
-  github: 'https://github.com/trungkien1208',
-  linkedin: 'https://www.linkedin.com/in/ki%C3%AAn-l%C6%B0u-5293771a1/',
-  contact: {
-    Name: 'Lưu Trung Kiên',
-    Location: 'Ho Chi Minh City, Vietnam',
-    Phone: '(+84) 919 62 55 66',
-    Email: 'luutrungkien120894@gmail.com',
+  phone: {
+    display: '+84 919 625 566',
+    tel: '+84919625566',
+    zalo: 'https://zalo.me/0919625566',
+    whatsapp: 'https://wa.me/84919625566',
   },
+  title: 'Say hi.',
+  body: 'Got a product idea, a gnarly front-end problem or a role that isn’t boring? My inbox is open, and I reply faster than my CI pipeline.',
+  linkedin: about.social.linkedin,
+  github: about.social.github,
 }
 
-export { header, about, projects, skills, ALL_TECH, contact, experiences }
+export { about, facts, sideQuests, projects, experiences, toolbox, contact }

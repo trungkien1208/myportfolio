@@ -1,26 +1,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig({
+// GitHub Pages serves this repo at /myportfolio/; dev stays at the root
+export default defineConfig(({ command, isPreview }) => ({
   plugins: [react()],
-  base: '/',
-  optimizeDeps: {
-    include: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
+  base: command === 'build' || isPreview ? '/myportfolio/' : '/',
   build: {
     outDir: 'build',
     sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
-          mui: ['@mui/material', '@mui/icons-material'],
-        },
-      },
-    },
   },
   server: {
     port: 3000,
-    open: true,
+    open: false,
   },
-})
+}))
