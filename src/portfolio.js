@@ -155,7 +155,7 @@ const projects = [
     icon: 'admin',
     tone: 'mint',
     description:
-      'A multi-tenant healthcare web platform I have built since its start in 2021. It now has 60+ modules: role-based access for every admin level and doctors, programme setup, appointments, video consults, real-time vitals charts and reports.',
+      'A multi-tenant healthcare web platform I built from zero in 2021 and ran solo for two years before the team joined. It now has 60+ modules: role-based access for every admin level and doctors, appointments, video consults, real-time vitals charts and reports.',
     stack: ['React', 'MUI', 'Redux Toolkit', 'Zustand', 'Vitest'],
     core: ['React', 'MUI', 'Redux Toolkit'],
   },
@@ -165,7 +165,7 @@ const projects = [
     icon: 'heart',
     tone: 'peach',
     description:
-      'Intranet portal for National Healthcare Group, delivered with the Taggle onshore team in Singapore. I own source control and support UAT and production releases.',
+      'Intranet portal for National Healthcare Group, with the Taggle onshore team in Singapore. Built it from zero, ran it solo for two years, then handed a team a codebase they could own without calling me.',
     stack: ['ReactJS', 'MUI', 'Redux Toolkit', 'Zustand'],
     core: ['ReactJS', 'MUI'],
   },
