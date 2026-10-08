@@ -101,6 +101,7 @@ const sideQuests = [
       'Next.js portal for staff and agents, with QR-verifiable receipts',
       'Claude-powered document AI plus OCR, so nobody retypes a passport',
       'Expo staff app, Lark and Zalo bots, and a consulate mailbox watcher',
+      'Built with Claude Code across 1,000+ commits, with versioned releases and rollbacks',
     ],
     stack: [
       'Next.js',
@@ -137,14 +138,15 @@ const projects = [
     tone: 'sky',
     featured: true,
     description:
-      'A self-service iPad kiosk running on about 200 devices in Singapore hospitals and serving 2,000+ patients a day. Check in, book and pay without queuing at a counter.',
+      'A self-service iPad kiosk running 24/7 on about 200 devices across NHG hospitals and polyclinics in Singapore, serving 2,000+ patients a day. Check in, book and pay without queuing at a counter.',
     stack: ['React Native', 'TypeScript', 'Expo', 'Zustand', 'Redux Toolkit'],
     core: ['React Native', 'TypeScript', 'Expo'],
     achievements: [
       'Wired in payment terminals and Epson printers with the hardware vendors',
       'Wrote the expo-redpark-serial and expo-pssb-keypair native modules',
       'Adapted react-native-esc-pos-printer for the Epson ePOS SDK',
-      'Monthly TestFlight releases, with Scrum Master duties on the side',
+      '12+ monthly releases since the Sep 2025 go-live, from build to App Store review',
+      'Scrum Master duties on the side, React Testing Library coverage underneath',
     ],
   },
   {
@@ -163,7 +165,7 @@ const projects = [
     icon: 'platform',
     tone: 'primary',
     description:
-      'Front-end foundation for a multi-tenant healthcare platform with real-time patient monitoring across Singapore and the Philippines.',
+      'Front-end foundation for a multi-tenant healthcare platform with real-time patient monitoring across Singapore and the Philippines. Now piloting with its first 4 to 5 clinic tenants.',
     stack: ['ReactJS', 'TypeScript', 'MUI', 'Axios', 'Redux Toolkit'],
     core: ['ReactJS', 'TypeScript', 'Redux Toolkit'],
   },
@@ -202,22 +204,24 @@ const projects = [
 const experiences = [
   {
     company: 'Taggle',
-    location: 'Singapore, remote',
+    location: 'Singapore HQ, Ho Chi Minh City',
     time: 'Dec 2020 - Now',
     current: true,
     role: 'Senior Software Development Engineer',
     quip: 'Where I learned hospitals care a lot about receipt printers.',
     points: [
       'Lead the front-end team: 2 web and 3 mobile developers',
-      'Shipped a self-service iPad kiosk to ~200 devices serving 2,000+ patients a day',
-      'Designed the front-end architecture for several admin portals so new people onboard fast',
+      'Built the PSSB iPad kiosk solo from prototype to production: 24/7 on ~200 devices, 2,000+ patients a day',
+      'Shipped 12+ monthly releases plus hotfixes since the Sep 2025 go-live',
+      'Designed the front-end foundation for the admin portals so new people onboard fast',
+      'Building the multi-tenant Taggle Platform for clinics in Singapore and the Philippines',
       'Own code review, merges, CI/CD, UAT and production releases',
     ],
   },
   {
     company: 'Xspera Apac',
     location: 'Ho Chi Minh City',
-    time: 'Dec 2019 - Oct 2020',
+    time: 'Dec 2019 - Dec 2020',
     role: 'Front-End Developer, then Team Lead',
     quip: 'Taught SharePoint some manners. It mostly listened.',
     points: [
@@ -278,6 +282,7 @@ const toolbox = [
       'Firebase',
       'Cloud Run',
       'Claude + LiteLLM',
+      'Claude Code',
       'BigQuery',
     ],
   },
@@ -289,6 +294,9 @@ const toolbox = [
     items: [
       'Jest',
       'React Testing Library',
+      'Maestro',
+      'Vite',
+      'Webpack',
       'Git',
       'CI/CD',
       'Azure DevOps',
