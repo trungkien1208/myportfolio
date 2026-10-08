@@ -295,6 +295,7 @@ const toolbox = [
       'Jest',
       'React Testing Library',
       'Maestro',
+      'Storybook',
       'Vite',
       'Webpack',
       'Git',
