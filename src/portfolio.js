@@ -150,14 +150,14 @@ const projects = [
     ],
   },
   {
-    name: 'NCA Admin Portal',
+    name: 'Taggle Portal',
     client: 'Taggle',
     icon: 'admin',
     tone: 'mint',
     description:
-      'Built a React admin portal from zero, ran it solo for two years, then handed a team a codebase they could own without calling me.',
-    stack: ['ReactJS', 'MUI', 'ChartJS', 'Redux Toolkit'],
-    core: ['ReactJS', 'MUI'],
+      'A multi-tenant healthcare web platform I have built since its start in 2021. It now has 60+ modules: role-based access for every admin level and doctors, programme setup, appointments, video consults, real-time vitals charts and reports.',
+    stack: ['React', 'MUI', 'Redux Toolkit', 'Zustand', 'Vitest'],
+    core: ['React', 'MUI', 'Redux Toolkit'],
   },
   {
     name: 'Taggle Platform',
@@ -165,7 +165,7 @@ const projects = [
     icon: 'platform',
     tone: 'primary',
     description:
-      'Front-end foundation for a multi-tenant healthcare platform with real-time patient monitoring across Singapore and the Philippines. Now piloting with its first 4 to 5 clinic tenants.',
+      'Front-end foundation for a multi-tenant healthcare platform for clinics in Singapore and the Philippines. Now piloting with its first 4 to 5 clinic tenants.',
     stack: ['ReactJS', 'TypeScript', 'MUI', 'Axios', 'Redux Toolkit'],
     core: ['ReactJS', 'TypeScript', 'Redux Toolkit'],
   },
@@ -211,8 +211,10 @@ const experiences = [
     quip: 'Where I learned hospitals care a lot about receipt printers.',
     points: [
       'Lead the front-end team: 2 web and 3 mobile developers',
+      'Mentored a fresher who reached junior level within a year',
       'Built the PSSB iPad kiosk solo from prototype to production: 24/7 on ~200 devices, 2,000+ patients a day',
       'Shipped 12+ monthly releases plus hotfixes since the Sep 2025 go-live',
+      'Built Taggle Portal, a multi-tenant React platform with 60+ modules, from the start in 2021',
       'Designed the front-end foundation for the admin portals so new people onboard fast',
       'Building the multi-tenant Taggle Platform for clinics in Singapore and the Philippines',
       'Own code review, merges, CI/CD, UAT and production releases',
@@ -222,12 +224,12 @@ const experiences = [
     company: 'Xspera Apac',
     location: 'Ho Chi Minh City',
     time: 'Dec 2019 - Dec 2020',
-    role: 'Front-End Developer, then Team Lead',
+    role: 'Front-End Developer',
     quip: 'Taught SharePoint some manners. It mostly listened.',
     points: [
       'Enterprise solutions in AngularJS, React, SharePoint and Kendo UI',
       'Microsoft Teams Apps and Power Apps wired into enterprise workflows',
-      'Promoted to team lead, mentored a fresher and an intern to independent delivery',
+      'Mentored a fresher and an intern until they could deliver on their own',
     ],
   },
   {
@@ -283,6 +285,8 @@ const toolbox = [
       'Cloud Run',
       'Claude + LiteLLM',
       'Claude Code',
+      'Cursor',
+      'OpenAI Codex',
       'BigQuery',
     ],
   },
@@ -293,6 +297,7 @@ const toolbox = [
     tone: 'mint',
     items: [
       'Jest',
+      'Vitest',
       'React Testing Library',
       'Maestro',
       'Storybook',
