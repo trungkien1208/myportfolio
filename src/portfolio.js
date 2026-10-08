@@ -160,6 +160,16 @@ const projects = [
     core: ['React', 'MUI', 'Redux Toolkit'],
   },
   {
+    name: 'NCA Portal',
+    client: 'National Healthcare Group, with Taggle Singapore',
+    icon: 'heart',
+    tone: 'peach',
+    description:
+      'Intranet portal for National Healthcare Group, delivered with the Taggle onshore team in Singapore. I own source control and support UAT and production releases.',
+    stack: ['ReactJS', 'MUI', 'Redux Toolkit', 'Zustand'],
+    core: ['ReactJS', 'MUI'],
+  },
+  {
     name: 'Taggle Platform',
     client: 'Taggle, SG and PH',
     icon: 'platform',
@@ -180,23 +190,13 @@ const projects = [
     core: ['AngularJS', 'SharePoint'],
   },
   {
-    name: 'Radiology Viewer',
-    client: 'Ramsoft, Canada',
+    name: 'Radiology Viewers',
+    client: 'Ramsoft (Canada) and France',
     icon: 'scan',
-    tone: 'peach',
-    description:
-      'A fast web radiology viewer that had to behave in every browser a hospital still runs. Including the old ones.',
-    stack: ['JavaScript', 'SCSS', 'Sencha ExtJS'],
-    core: ['JavaScript', 'Sencha ExtJS'],
-  },
-  {
-    name: 'Radiology Platform',
-    client: 'Healthcare client, France',
-    icon: 'heart',
     tone: 'lilac',
     description:
-      'Clinical workflow UI for a French radiology product, built in daily syncs with the client team.',
-    stack: ['JavaScript', 'HTML5', 'SCSS', 'Sencha ExtJS'],
+      'Web radiology viewers and clinical workflow UI for Ramsoft and a French radiology product. They had to behave in every browser a hospital still runs. Including the old ones.',
+    stack: ['JavaScript', 'SCSS', 'HTML5', 'Sencha ExtJS'],
     core: ['JavaScript', 'Sencha ExtJS'],
   },
 ]
@@ -215,6 +215,7 @@ const experiences = [
       'Built the PSSB iPad kiosk solo from prototype to production: 24/7 on ~200 devices, 2,000+ patients a day',
       'Shipped 12+ monthly releases plus hotfixes since the Sep 2025 go-live',
       'Built Taggle Portal, a multi-tenant React platform with 60+ modules, from the start in 2021',
+      'Deliver National Healthcare Group projects (PSSB kiosk, NCA portal) with the Singapore onshore team',
       'Designed the front-end foundation for the admin portals so new people onboard fast',
       'Building the multi-tenant Taggle Platform for clinics in Singapore and the Philippines',
       'Own code review, merges, CI/CD, UAT and production releases',
