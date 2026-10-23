@@ -169,6 +169,11 @@ const sideQuests = [
       },
     ],
     url: 'orcha, in your terminal',
+    mascot: {
+      src: asset('quests/orcha/whale.svg'),
+      alt: 'The orcha whale, sitting in a bowl of matcha',
+      says: 'Me too, in Rust!',
+    },
     crop: {
       src: asset('quests/orcha/continue-on.webp'),
       alt: 'The orcha CONTINUE ON popup listing accounts with their remaining plan limits',
