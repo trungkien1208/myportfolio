@@ -4,6 +4,7 @@ import {
   AppStoreLogo,
   ArrowUpRight,
   Check,
+  GithubLogo,
   Globe,
   Star,
 } from '@phosphor-icons/react'
@@ -12,7 +13,7 @@ import Reveal from '../Reveal/Reveal'
 import TechChips from '../TechChips/TechChips'
 import './SideQuests.css'
 
-const LINK_ICONS = { appstore: AppStoreLogo, globe: Globe }
+const LINK_ICONS = { appstore: AppStoreLogo, github: GithubLogo, globe: Globe }
 
 const PhoneFan = ({ quest }) => (
   <div className='phones'>
@@ -68,13 +69,13 @@ const BrowserStack = ({ quest }) => (
         <i />
         <i />
         <i />
-        <span className='browser__url'>tabinochan.hientrangvisa.vn</span>
+        <span className='browser__url'>{quest.url}</span>
       </div>
       <img
         src={quest.shots[0].src}
         alt={quest.shots[0].alt}
-        width='1200'
-        height='613'
+        width={quest.shots[0].width}
+        height={quest.shots[0].height}
         loading='lazy'
       />
     </motion.div>
@@ -82,8 +83,8 @@ const BrowserStack = ({ quest }) => (
       className='screens__crop'
       src={quest.crop.src}
       alt={quest.crop.alt}
-      width='1200'
-      height='357'
+      width={quest.crop.width}
+      height={quest.crop.height}
       loading='lazy'
       initial={{ opacity: 0, y: 30, rotate: 0 }}
       whileInView={{ opacity: 1, y: 0, rotate: -3 }}
@@ -95,6 +96,7 @@ const BrowserStack = ({ quest }) => (
 
 const Quest = ({ quest, flip = false }) => {
   const LinkIcon = LINK_ICONS[quest.link.icon] || ArrowUpRight
+  const SecondaryIcon = LINK_ICONS[quest.secondaryLink?.icon] || ArrowUpRight
   return (
     <Reveal
       as='article'
@@ -144,16 +146,30 @@ const Quest = ({ quest, flip = false }) => {
           <TechChips items={quest.stack} core={quest.core} label='Built with' />
         </div>
 
-        <a
-          className='btn btn-ink quest__cta'
-          href={quest.link.href}
-          target='_blank'
-          rel='noreferrer'
-        >
-          <LinkIcon size={20} weight='fill' />
-          {quest.link.label}
-          <ArrowUpRight size={16} weight='bold' />
-        </a>
+        <div className='quest__ctas'>
+          <a
+            className='btn btn-ink quest__cta'
+            href={quest.link.href}
+            target='_blank'
+            rel='noreferrer'
+          >
+            <LinkIcon size={20} weight='fill' />
+            {quest.link.label}
+            <ArrowUpRight size={16} weight='bold' />
+          </a>
+          {quest.secondaryLink && (
+            <a
+              className='btn quest__cta'
+              href={quest.secondaryLink.href}
+              target='_blank'
+              rel='noreferrer'
+            >
+              <SecondaryIcon size={20} weight='fill' />
+              {quest.secondaryLink.label}
+              <ArrowUpRight size={16} weight='bold' />
+            </a>
+          )}
+        </div>
       </div>
 
       <div className='quest__media'>
@@ -174,7 +190,7 @@ const SideQuests = () => (
         <h2 className='section-title'>Side quests</h2>
         <p className='section-sub'>
           What I build after work, because apparently I don’t know how to relax.
-          Both are live, with real users.
+          Two have real users. The third has me and two GitHub stars.
         </p>
       </Reveal>
 

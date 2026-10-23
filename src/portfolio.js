@@ -121,11 +121,59 @@ const sideQuests = [
       {
         src: asset('quests/tabi/dashboard.webp'),
         alt: 'Tabi no Chan dashboard with case counts and the attention queue',
+        width: 1200,
+        height: 613,
       },
     ],
+    url: 'tabinochan.hientrangvisa.vn',
     crop: {
       src: asset('quests/tabi/crop-ai.webp'),
       alt: 'AI document extraction panel from Tabi no Chan',
+      width: 1200,
+      height: 357,
+    },
+  },
+  {
+    id: 'orcha',
+    name: 'orcha',
+    tone: 'sky',
+    logo: asset('quests/orcha/logo.webp'),
+    badge: 'Open source, fresh out the pot',
+    title: 'Every agent, every project, one calm terminal.',
+    description:
+      'A terminal workspace for running Claude Code, Codex and Cursor side by side. I forked herdr, a Rust TUI, and made it mine: see who’s working, who needs you, and how much plan limit is left before anyone stalls.',
+    highlights: [
+      'Projects and agents in one sidebar, with live “running” and “needs you” status',
+      'Fuel gauges per account, and CONTINUE ON moves a chat to another account or agent',
+      'Git, changes and clickable paths beside the work; agents keep running after you quit',
+      'One-line installer for macOS and Windows, plus themes, a Claude Code plugin and account scripts',
+    ],
+    stack: ['Rust', 'ratatui', 'Tokio', 'Python', 'Shell'],
+    core: ['Rust'],
+    link: {
+      label: 'Visit the site',
+      href: 'https://trungkien1208.github.io/orcha/',
+      icon: 'globe',
+    },
+    secondaryLink: {
+      label: 'GitHub',
+      href: 'https://github.com/trungkien1208/orcha',
+      icon: 'github',
+    },
+    shots: [
+      {
+        src: asset('quests/orcha/workspace.webp'),
+        alt: 'orcha workspace: projects on the left, two agents side by side, fuel and git on the right',
+        width: 1600,
+        height: 948,
+      },
+    ],
+    url: 'orcha, in your terminal',
+    crop: {
+      src: asset('quests/orcha/continue-on.webp'),
+      alt: 'The orcha CONTINUE ON popup listing accounts with their remaining plan limits',
+      width: 1200,
+      height: 461,
     },
   },
 ]
