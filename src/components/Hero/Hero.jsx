@@ -4,7 +4,7 @@ import { ArrowDown, FileArrowDown, HandWaving } from '@phosphor-icons/react'
 import { about, sideQuests } from '../../portfolio'
 import './Hero.css'
 
-const [cogingon, tabi] = sideQuests
+const [cogingon, tabi, orcha] = sideQuests
 
 const pop = (delay) => ({
   initial: { opacity: 0, scale: 0.6, y: 30 },
@@ -176,12 +176,27 @@ const Hero = () => (
 
         <motion.div className='sticker sticker--cogi' {...pop(0.95)}>
           <motion.div className='sticker__body' {...drag}>
-            <span className='cogi-bubble'>He made me!</span>
+            <span className='mascot-bubble cogi-bubble'>He made me!</span>
             <img
               src={cogingon.mascot.heroSrc}
               alt={cogingon.mascot.alt}
               width='360'
               height='401'
+              draggable='false'
+            />
+          </motion.div>
+        </motion.div>
+
+        <motion.div className='sticker sticker--orcha' {...pop(1.05)}>
+          <motion.div className='sticker__body' {...drag}>
+            <span className='mascot-bubble orcha-bubble'>
+              {orcha.mascot.says}
+            </span>
+            <img
+              src={orcha.mascot.src}
+              alt={orcha.mascot.alt}
+              width='100'
+              height='102'
               draggable='false'
             />
           </motion.div>

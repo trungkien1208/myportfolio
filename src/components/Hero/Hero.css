@@ -276,10 +276,8 @@
   }
 }
 
-.cogi-bubble {
+.mascot-bubble {
   position: absolute;
-  top: -14%;
-  left: -58%;
   padding: 6px 14px;
   font-size: 0.875rem;
   font-weight: 700;
@@ -290,9 +288,34 @@
   border-radius: 16px 16px 4px 16px;
   box-shadow: var(--shadow-sm);
 }
-:root.dark .cogi-bubble {
+.cogi-bubble {
+  top: -22%;
+  left: 4%;
+  border-radius: 16px 16px 16px 4px;
+}
+:root.dark .mascot-bubble {
   background: var(--primary);
   border-color: var(--on-pastel);
+}
+
+/* orcha whale: a second mascot, lower middle, bobbing out of sync with Cogi */
+.sticker--orcha {
+  left: 34%;
+  bottom: 1%;
+  width: 25%;
+  rotate: -4deg;
+  z-index: 4;
+}
+.sticker--orcha img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(4px 5px 0 rgba(54, 32, 47, 0.25));
+  animation: bob 4.2s ease-in-out 2.1s infinite;
+}
+.orcha-bubble {
+  bottom: 100%;
+  left: -18%;
+  border-radius: 16px 16px 16px 4px;
 }
 
 .hero__hint {
@@ -331,9 +354,14 @@
   .hero__hint {
     display: none;
   }
-  .cogi-bubble {
+  .mascot-bubble {
     font-size: 0.75rem;
-    left: -50%;
+  }
+  .cogi-bubble {
+    left: 0;
+  }
+  .orcha-bubble {
+    left: 14%;
   }
 }
 

@@ -173,10 +173,10 @@ const Quest = ({ quest, flip = false }) => {
       </div>
 
       <div className='quest__media'>
-        {quest.mascot ? (
-          <PhoneFan quest={quest} />
-        ) : (
+        {quest.crop ? (
           <BrowserStack quest={quest} />
+        ) : (
+          <PhoneFan quest={quest} />
         )}
       </div>
     </Reveal>
