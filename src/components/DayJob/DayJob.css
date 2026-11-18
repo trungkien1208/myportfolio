@@ -150,7 +150,7 @@
   .job--third {
     grid-column: span 3;
   }
-  /* 5 small cards on a 2-col grid: let the last one stretch */
+  /* 3 small cards on a 2-col grid: let the last one stretch */
   .job--third:last-child {
     grid-column: span 6;
   }

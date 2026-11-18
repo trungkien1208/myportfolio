@@ -318,6 +318,26 @@
   border-radius: 16px 16px 16px 4px;
 }
 
+/* Mo, the Memodory fish: third mascot, swims at the top edge */
+.sticker--mo {
+  left: -8%;
+  top: 47%;
+  width: 20%;
+  rotate: -6deg;
+  z-index: 4;
+}
+.sticker--mo img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(4px 5px 0 rgba(54, 32, 47, 0.25));
+  animation: bob 3.9s ease-in-out 1.2s infinite;
+}
+.mo-bubble {
+  bottom: 88%;
+  left: -6%;
+  border-radius: 16px 16px 16px 4px;
+}
+
 .hero__hint {
   position: absolute;
   left: 44%;
@@ -362,6 +382,13 @@
   }
   .orcha-bubble {
     left: 14%;
+  }
+  .sticker--mo {
+    left: 0;
+    top: 50%;
+  }
+  .mo-bubble {
+    left: 0;
   }
 }
 

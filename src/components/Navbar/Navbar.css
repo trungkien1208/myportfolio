@@ -21,6 +21,7 @@
 }
 
 .nav__inner {
+  position: relative;
   height: var(--nav-h);
   display: flex;
   align-items: center;
@@ -28,8 +29,167 @@
   gap: 24px;
 }
 
+/* ---------- island: the bar folds into a floating pill past the hero ---------- */
+.nav--island {
+  display: flex;
+  justify-content: center;
+  padding-top: 12px;
+  pointer-events: none;
+}
+
+.nav--island .nav__inner {
+  width: auto;
+  max-width: calc(100% - 2 * var(--gutter));
+  height: 64px;
+  margin-inline: 0;
+  padding-inline: 10px 8px;
+  gap: 14px;
+  pointer-events: auto;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* Spotlight: a soft glow that follows the pointer */
+.nav__inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    140px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.75),
+    transparent 70%
+  );
+  transition: opacity 0.3s;
+}
+:root.dark .nav__inner::before {
+  background: radial-gradient(
+    140px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 158, 196, 0.18),
+    transparent 70%
+  );
+}
+.nav--island .nav__inner:hover::before {
+  opacity: 1;
+}
+.nav__inner > * {
+  position: relative;
+}
+
+/* Island takes the tint of the section you are reading */
+.nav--island .nav__inner {
+  transition: background-color 0.5s var(--ease-out);
+}
+.nav--island[data-section='side-quests'] .nav__inner {
+  background-color: color-mix(in srgb, var(--mint) 55%, var(--surface));
+}
+.nav--island[data-section='projects'] .nav__inner {
+  background-color: color-mix(in srgb, var(--sky) 55%, var(--surface));
+}
+.nav--island[data-section='experiences'] .nav__inner {
+  background-color: color-mix(in srgb, var(--butter) 55%, var(--surface));
+}
+.nav--island[data-section='skills'] .nav__inner {
+  background-color: color-mix(in srgb, var(--lilac) 55%, var(--surface));
+}
+.nav--island[data-section='contact'] .nav__inner {
+  background-color: color-mix(in srgb, var(--primary) 50%, var(--surface));
+}
+:root.dark .nav--island[data-section] .nav__inner {
+  background-color: color-mix(
+    in srgb,
+    var(--tint, var(--primary)) 14%,
+    var(--surface)
+  );
+}
+:root.dark .nav--island[data-section='side-quests'] {
+  --tint: var(--mint);
+}
+:root.dark .nav--island[data-section='projects'] {
+  --tint: var(--sky);
+}
+:root.dark .nav--island[data-section='experiences'] {
+  --tint: var(--butter);
+}
+:root.dark .nav--island[data-section='skills'] {
+  --tint: var(--lilac);
+}
+
+/* Keychain charm: hangs from the island's bottom edge and swings */
+.nav__charm {
+  position: absolute !important;
+  /* Ring overlaps the island's bottom border, like it is clipped on */
+  top: calc(100% - 7px);
+  right: 78px;
+  width: 40px;
+  pointer-events: none;
+}
+.nav__charm-swing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: 50% 0;
+  /* CSS rotate composes with motion's transform, so the swing never fights the pop */
+  animation: charm-swing 2.8s ease-in-out infinite;
+}
+.nav__charm-ring {
+  position: relative;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 50%;
+}
+.nav__charm-img {
+  width: 40px;
+  height: auto;
+  max-height: 44px;
+  object-fit: contain;
+  /* Tuck the top of the mascot under the ring */
+  margin-top: -5px;
+  filter: drop-shadow(2px 3px 0 rgba(54, 32, 47, 0.25));
+}
+@keyframes charm-swing {
+  0%,
+  100% {
+    rotate: -7deg;
+  }
+  50% {
+    rotate: 7deg;
+  }
+}
+
+/* The links already sit in their own pill: drop it inside the island */
+.nav--island .nav__logo {
+  gap: 0;
+}
+
+.nav--island .nav__links {
+  padding: 0;
+  background: transparent;
+  border-color: transparent;
+}
+
+.nav--island .theme-toggle,
+.nav--island .nav__burger,
+.nav--island .nav__cta {
+  min-height: 40px;
+  height: 40px;
+}
+.nav--island .theme-toggle,
+.nav--island .nav__burger {
+  width: 40px;
+}
+
 /* ---------- logo ---------- */
 .nav__logo {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -53,6 +213,58 @@
   box-shadow: 2px 2px 0 var(--shadow-c);
   transform: rotate(-6deg);
   transition: transform 0.35s var(--ease-out);
+}
+
+.nav__logo-spin {
+  display: inline-grid;
+}
+
+.nav__logo-word {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Progress fill inside the mark, only while floating */
+.nav__logo-mark {
+  position: relative;
+  overflow: hidden;
+}
+.nav__logo-k {
+  position: relative;
+}
+.nav__logo-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--primary);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+/* Wavy water line on top of the fill */
+.nav__logo-fill::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  width: 200%;
+  height: 5px;
+  background: var(--primary);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 5'%3E%3Cpath d='M0 5V2.5Q5 0 10 2.5T20 2.5V5Z'/%3E%3C/svg%3E")
+    0 0 / 19px 5px repeat-x;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 5'%3E%3Cpath d='M0 5V2.5Q5 0 10 2.5T20 2.5V5Z'/%3E%3C/svg%3E")
+    0 0 / 19px 5px repeat-x;
+  animation: nav-wave 1.6s linear infinite;
+}
+@keyframes nav-wave {
+  to {
+    translate: -19px 0;
+  }
+}
+.nav--island .nav__logo-mark {
+  background: var(--surface);
+}
+.nav--island .nav__logo-fill {
+  opacity: 1;
 }
 
 .nav__logo:hover .nav__logo-mark {
@@ -208,5 +420,12 @@
 @media (max-width: 380px) {
   .nav__logo-word {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__charm-swing,
+  .nav__logo-fill::before {
+    animation: none;
   }
 }

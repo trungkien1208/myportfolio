@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types'
 import {
-  Bank,
-  Bone,
   ChartBar,
   Check,
   DeviceTablet,
@@ -17,16 +15,11 @@ const ICONS = {
   kiosk: DeviceTablet,
   admin: ChartBar,
   platform: Heartbeat,
-  bank: Bank,
-  scan: Bone,
   heart: FirstAidKit,
 }
 
-// Grid spans: featured fills the row, then 2 halves, then 3 thirds
-const spanFor = (i) => {
-  if (i === 0) return 'job--full'
-  return i <= 2 ? 'job--half' : 'job--third'
-}
+// Grid spans: featured fills the row, the rest sit in thirds
+const spanFor = (i) => (i === 0 ? 'job--full' : 'job--third')
 
 const Job = ({ project, index }) => {
   const Icon = ICONS[project.icon] || ChartBar
@@ -79,8 +72,8 @@ const DayJob = () => (
       <Reveal className='section-head'>
         <h2 className='section-title'>Day job</h2>
         <p className='section-sub'>
-          Hospitals, banks and radiology. Places where “works on my machine” is
-          not an acceptable answer.
+          Hospitals and clinics. Places where “works on my machine” is not an
+          acceptable answer.
         </p>
       </Reveal>
 

@@ -1,10 +1,12 @@
 import { Fragment } from 'react'
 import { motion } from 'motion/react'
 import { ArrowDown, FileArrowDown, HandWaving } from '@phosphor-icons/react'
-import { about, sideQuests } from '../../portfolio'
+import { about, miniQuests, sideQuests } from '../../portfolio'
 import './Hero.css'
 
-const [cogingon, tabi, orcha] = sideQuests
+const [cogingon, tabi] = sideQuests
+const orcha = miniQuests.find((q) => q.id === 'orcha')
+const memodory = miniQuests.find((q) => q.id === 'memodory')
 
 const pop = (delay) => ({
   initial: { opacity: 0, scale: 0.6, y: 30 },
@@ -197,6 +199,21 @@ const Hero = () => (
               alt={orcha.mascot.alt}
               width='100'
               height='102'
+              draggable='false'
+            />
+          </motion.div>
+        </motion.div>
+
+        <motion.div className='sticker sticker--mo' {...pop(1.15)}>
+          <motion.div className='sticker__body' {...drag}>
+            <span className='mascot-bubble mo-bubble'>
+              {memodory.mascot.says}
+            </span>
+            <img
+              src={memodory.mascot.src}
+              alt={memodory.mascot.alt}
+              width='360'
+              height='259'
               draggable='false'
             />
           </motion.div>

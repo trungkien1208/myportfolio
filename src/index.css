@@ -153,6 +153,43 @@ p {
   text-wrap: pretty;
 }
 
+/* ---------- scrollbar: a pink sticker pill on the page background ---------- */
+:root {
+  --scroll-thumb: var(--primary);
+  --scroll-thumb-hover: var(--accent);
+}
+
+/* Chrome, Safari, Edge: full control (border + pill) */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  min-height: 48px;
+  background: var(--scroll-thumb);
+  /* The transparent ring keeps the pill off the window edge */
+  border: 3px solid var(--bg);
+  border-radius: var(--r-pill);
+  box-shadow: inset 0 0 0 2px var(--line);
+}
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  background: var(--scroll-thumb-hover);
+}
+::-webkit-scrollbar-corner {
+  background: var(--bg);
+}
+
+/* Firefox: colors only */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: var(--scroll-thumb) var(--bg);
+  }
+}
+
 ::selection {
   background: var(--primary);
   color: var(--on-pastel);

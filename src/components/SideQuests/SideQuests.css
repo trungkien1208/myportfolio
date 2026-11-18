@@ -244,6 +244,131 @@
   background: #fff;
 }
 
+/* ---------- smaller side quests ---------- */
+.minis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 28px);
+  margin-top: clamp(32px, 5vw, 56px);
+}
+
+.mini {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--text);
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+:root.dark .mini {
+  border-color: var(--line);
+}
+
+.mini:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.mini__thumb {
+  height: clamp(180px, 20vw, 230px);
+  overflow: hidden;
+  background: var(--tone);
+  border-bottom: var(--border);
+}
+
+.mini__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: scale 0.5s var(--ease-out);
+}
+
+.mini:hover .mini__thumb img {
+  scale: 1.03;
+}
+
+/* Phone shots peek up from the bottom edge instead of being cropped flat */
+.mini__thumb--phone {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 22px;
+}
+.mini__thumb--phone img {
+  width: auto;
+  height: auto;
+  max-width: 46%;
+  border: 2px solid var(--on-pastel);
+  border-bottom: 0;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 4px 4px 0 rgba(54, 32, 47, 0.3);
+}
+.mini:hover .mini__thumb--phone img {
+  scale: none;
+  translate: 0 -6px;
+}
+
+.mini__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(20px, 2.4vw, 28px);
+}
+
+.mini__brand {
+  margin-bottom: 14px;
+}
+
+.mini__logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.mini .quest__name {
+  font-size: 1.125rem;
+}
+
+.mini__title {
+  font-size: clamp(1.3rem, 2vw, 1.55rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.mini__desc {
+  margin-top: 10px;
+  font-size: 0.975rem;
+  color: var(--muted);
+}
+
+.mini__chips {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.mini__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 16px;
+}
+
+.mini__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+}
+.mini__link:hover {
+  color: var(--accent);
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 960px) {
   .quest {
@@ -251,6 +376,9 @@
   }
   .quest--flip .quest__copy {
     order: 0;
+  }
+  .minis {
+    grid-template-columns: 1fr;
   }
   .quest__media {
     max-width: 560px;
