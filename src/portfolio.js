@@ -94,11 +94,11 @@ const sideQuests = [
     badge: 'Solo, full stack',
     title: 'Visa paperwork, minus the paper chase.',
     description:
-      'A live visa document platform for a Vietnamese consultancy. Around 900 applications a month, 5 staff in it daily and 30+ partner agents. Designed, built and run by me.',
+      'A live visa document platform for a Vietnamese consultancy. Around 900 applications a month, 5 staff using it daily and 30+ partner agents. Designed, built and run by me.',
     highlights: [
       'Next.js portal for staff and agents, with QR-verifiable receipts',
       'Claude-powered document AI plus OCR, so nobody retypes a passport',
-      'Expo staff app, Lark and Zalo bots, 1,000+ commits with Claude Code',
+      'Expo staff app, plus Lark and Zalo bots. 1,000+ commits, paired with Claude Code',
     ],
     stack: [
       'Next.js',
@@ -142,7 +142,7 @@ const miniQuests = [
     badge: 'New on the App Store',
     title: 'One line, nothing forgotten.',
     description:
-      'An iOS notebook for forgetful people, kept by Mo the fish. Type “dentist tomorrow 3pm” or “coffee $4” and it lands on your day as a reminder or a spend.',
+      'An iOS notebook for forgetful people, with Mo the fish keeping watch. Type “dentist tomorrow 3pm” or “coffee $4” and it lands in your day as a reminder or an expense.',
     stack: ['SwiftUI', 'WidgetKit', 'ActivityKit', 'iCloud'],
     core: ['SwiftUI'],
     links: [
@@ -179,7 +179,7 @@ const miniQuests = [
     core: ['Rust'],
     links: [
       {
-        label: 'orcha',
+        label: 'orcha site',
         href: 'https://trungkien1208.github.io/orcha/',
         icon: 'globe',
       },
@@ -189,7 +189,7 @@ const miniQuests = [
         icon: 'github',
       },
       {
-        label: 'Orcherd',
+        label: 'Orcherd on GitHub',
         href: 'https://github.com/trungkien1208/orcherd',
         icon: 'github',
       },
@@ -214,7 +214,7 @@ const miniQuests = [
     logo: asset('quests/envelo/logo.webp'),
     title: 'Wedding invites guests actually open.',
     description:
-      'Interactive invitations for Vietnamese weddings. Each guest gets an envelope with their own name to open, then RSVPs and leaves a wish. A couple makes one in about 15 minutes.',
+      'Interactive invitations for Vietnamese weddings. Each guest opens an envelope with their own name on it, then RSVPs and leaves a wish. A couple can make one in about 15 minutes.',
     stack: ['Next.js', 'GSAP', 'Firebase', 'Claude API'],
     core: ['Next.js'],
     thumb: {
@@ -232,7 +232,7 @@ const miniQuests = [
     badge: 'Personal tool',
     title: 'My Claude accounts, charging all my machines.',
     description:
-      'A small hub on my Mac that keeps Claude setup-tokens encrypted and relays Claude Code for my other Macs and PCs over the LAN. Machines never see a token.',
+      'A small hub on my Mac that keeps Claude setup-tokens encrypted and relays Claude Code traffic for my other Macs and PCs over the LAN. The other machines never see a token.',
     stack: ['Python', 'TLS', 'Vanilla JS'],
     core: ['Python'],
     thumb: {
@@ -252,7 +252,7 @@ const projects = [
     tone: 'sky',
     featured: true,
     description:
-      'A self-service iPad kiosk running 24/7 on about 200 devices across NHG hospitals and polyclinics in Singapore, serving 2,000+ patients a day. Check in, book and pay without queuing at a counter.',
+      'A self-service iPad kiosk running 24/7 on about 200 devices across NHG hospitals and polyclinics in Singapore, serving 2,000+ patients a day. They check in, book and pay without queuing at a counter.',
     stack: ['React Native', 'TypeScript', 'Expo', 'Zustand', 'Redux Toolkit'],
     core: ['React Native', 'TypeScript', 'Expo'],
     achievements: [
@@ -277,9 +277,9 @@ const projects = [
     icon: 'heart',
     tone: 'peach',
     description:
-      'Intranet portal for National Healthcare Group. Built it from zero, ran it solo for two years, then handed over a codebase the team could own without calling me.',
-    stack: ['ReactJS', 'MUI', 'Redux Toolkit', 'Zustand'],
-    core: ['ReactJS', 'MUI'],
+      'Intranet portal for National Healthcare Group. I started it from an empty repo, carried it alone for two years, then handed over a codebase the team could own without calling me.',
+    stack: ['React', 'MUI', 'Redux Toolkit', 'Zustand'],
+    core: ['React', 'MUI'],
   },
   {
     name: 'Taggle Platform',
@@ -287,9 +287,9 @@ const projects = [
     icon: 'platform',
     tone: 'primary',
     description:
-      'Front-end foundation for a multi-tenant platform for clinics in Singapore and the Philippines. Piloting with its first 4 to 5 clinic tenants.',
-    stack: ['ReactJS', 'TypeScript', 'MUI', 'Redux Toolkit'],
-    core: ['ReactJS', 'TypeScript'],
+      'Front-end foundation of a multi-tenant clinic platform for Singapore and the Philippines. Now piloting with its first 4 to 5 clinics.',
+    stack: ['React', 'TypeScript', 'MUI', 'Redux Toolkit'],
+    core: ['React', 'TypeScript'],
   },
 ]
 
@@ -302,7 +302,7 @@ const experiences = [
     role: 'Senior Software Development Engineer',
     quip: 'Where I learned hospitals care a lot about receipt printers.',
     points: [
-      'Lead the front-end team (2 web, 3 mobile); mentored a fresher to junior within a year',
+      'Lead the front-end team (2 web, 3 mobile); took a fresher to junior level within a year',
       'Built the PSSB kiosk and NCA portal for National Healthcare Group with the Singapore onshore team',
       'Built Taggle Portal from zero in 2021; now building the multi-tenant Taggle Platform',
       'Own code review, merges, CI/CD, UAT and production releases',
@@ -327,7 +327,7 @@ const experiences = [
     quip: 'Made radiology apps work in legacy browsers. Still recovering.',
     points: [
       'Radiology viewers for Ramsoft (Canada) and a French customer, in Sencha ExtJS',
-      'Requirement analysis, estimates and client demos for two products',
+      'Requirements analysis, estimates and client demos for two products',
     ],
   },
 ]
