@@ -20,6 +20,10 @@
   grid-column: span 2;
 }
 
+.tool--full {
+  grid-column: 1 / -1;
+}
+
 .tool__title {
   font-size: clamp(1.5rem, 2.4vw, 1.9rem);
   letter-spacing: -0.02em;
@@ -50,7 +54,8 @@
   .bento {
     grid-template-columns: 1fr;
   }
-  .tool--wide {
+  .tool--wide,
+  .tool--full {
     grid-column: auto;
   }
 }

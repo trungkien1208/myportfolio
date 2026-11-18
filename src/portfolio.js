@@ -18,7 +18,7 @@ const about = {
   headline: ['I ship apps that', 'survive real users.'],
   // Word in the headline that gets the marker highlight
   highlight: 'survive',
-  subtext: `Senior front-end engineer, ${yearsShipping}+ years. Hospital kiosks by day, food and visa apps by night. Sleep is a side quest.`,
+  subtext: `Senior front-end engineer, ${yearsShipping}+ years. Hospital kiosks by day, my own apps by night. Sleep is a side quest.`,
   yearsShipping,
   careerStart: CAREER_START.getFullYear(),
   resume: asset('resume.pdf'),
@@ -36,12 +36,10 @@ const about = {
 const facts = [
   'Kiosks on ~200 iPads in Singapore hospitals',
   '2,000+ patients a day tap my buttons',
-  'A food app on the App Store',
+  'Two iOS apps on the App Store',
   '~900 visa cases a month through my platform',
-  'Leading a front-end team of 5',
   `${yearsShipping}+ years of shipping`,
   'Fluent in React, Swift and sarcasm',
-  'Reviews PRs with kindness and a magnifying glass',
 ]
 
 const sideQuests = [
@@ -100,8 +98,7 @@ const sideQuests = [
     highlights: [
       'Next.js portal for staff and agents, with QR-verifiable receipts',
       'Claude-powered document AI plus OCR, so nobody retypes a passport',
-      'Expo staff app, Lark and Zalo bots, and a consulate mailbox watcher',
-      'Built with Claude Code across 1,000+ commits, with versioned releases and rollbacks',
+      'Expo staff app, Lark and Zalo bots, 1,000+ commits with Claude Code',
     ],
     stack: [
       'Next.js',
@@ -133,52 +130,116 @@ const sideQuests = [
       height: 357,
     },
   },
+]
+
+// Smaller side quests: one card each, one screenshot, one line of why
+const miniQuests = [
   {
-    id: 'orcha',
-    name: 'orcha',
+    id: 'memodory',
+    name: 'Memodory',
     tone: 'sky',
-    logo: asset('quests/orcha/logo.webp'),
-    badge: 'Open source, fresh out the pot',
-    title: 'Every agent, every project, one calm terminal.',
+    logo: asset('quests/memodory/logo.webp'),
+    badge: 'New on the App Store',
+    title: 'One line, nothing forgotten.',
     description:
-      'A terminal workspace for running Claude Code, Codex and Cursor side by side. I forked herdr, a Rust TUI, and made it mine: see who’s working, who needs you, and how much plan limit is left before anyone stalls.',
-    highlights: [
-      'Projects and agents in one sidebar, with live “running” and “needs you” status',
-      'Fuel gauges per account, and CONTINUE ON moves a chat to another account or agent',
-      'Git, changes and clickable paths beside the work; agents keep running after you quit',
-      'One-line installer for macOS and Windows, plus themes, a Claude Code plugin and account scripts',
-    ],
-    stack: ['Rust', 'ratatui', 'Tokio', 'Python', 'Shell'],
-    core: ['Rust'],
-    link: {
-      label: 'Visit the site',
-      href: 'https://trungkien1208.github.io/orcha/',
-      icon: 'globe',
-    },
-    secondaryLink: {
-      label: 'GitHub',
-      href: 'https://github.com/trungkien1208/orcha',
-      icon: 'github',
-    },
-    shots: [
+      'An iOS notebook for forgetful people, kept by Mo the fish. Type “dentist tomorrow 3pm” or “coffee $4” and it lands on your day as a reminder or a spend.',
+    stack: ['SwiftUI', 'WidgetKit', 'ActivityKit', 'iCloud'],
+    core: ['SwiftUI'],
+    links: [
       {
-        src: asset('quests/orcha/workspace.webp'),
-        alt: 'orcha workspace: projects on the left, two agents side by side, fuel and git on the right',
-        width: 1600,
-        height: 948,
+        label: 'App Store',
+        href: 'https://apps.apple.com/app/id6834480345',
+        icon: 'appstore',
       },
     ],
-    url: 'orcha, in your terminal',
+    thumb: {
+      src: asset('quests/memodory/home.webp'),
+      alt: 'Memodory home: Mo the fish, the day’s spending and a timeline of reminders',
+      width: 660,
+      height: 1434,
+      phone: true,
+    },
+    // Hero sticker
+    mascot: {
+      src: asset('quests/memodory/mo-writing.webp'),
+      alt: 'Mo, the Memodory fish, writing on a notepad',
+      says: 'Noted!',
+    },
+  },
+  {
+    id: 'orcha',
+    name: 'orcha + Orcherd',
+    tone: 'mint',
+    logo: asset('quests/orcha/logo.webp'),
+    badge: 'Open source',
+    title: 'Every agent, one calm cockpit.',
+    description:
+      'orcha is a Rust TUI for running Claude Code, Codex and Cursor side by side, with live status and plan-limit gauges per account. Orcherd brings the same cockpit to the Herdr desktop app as a plugin.',
+    stack: ['Rust', 'ratatui', 'JavaScript', 'Python'],
+    core: ['Rust'],
+    links: [
+      {
+        label: 'orcha',
+        href: 'https://trungkien1208.github.io/orcha/',
+        icon: 'globe',
+      },
+      {
+        label: 'orcha on GitHub',
+        href: 'https://github.com/trungkien1208/orcha',
+        icon: 'github',
+      },
+      {
+        label: 'Orcherd',
+        href: 'https://github.com/trungkien1208/orcherd',
+        icon: 'github',
+      },
+    ],
+    thumb: {
+      src: asset('quests/orcha/orcherd-cockpit.webp'),
+      alt: 'Orcherd in the Herdr app: projects and agents on the left, two agents side by side, fuel and git on the right',
+      width: 1200,
+      height: 753,
+    },
+    // The hero sticker still uses the whale
     mascot: {
       src: asset('quests/orcha/whale.svg'),
       alt: 'The orcha whale, sitting in a bowl of matcha',
       says: 'Me too, in Rust!',
     },
-    crop: {
-      src: asset('quests/orcha/continue-on.webp'),
-      alt: 'The orcha CONTINUE ON popup listing accounts with their remaining plan limits',
+  },
+  {
+    id: 'envelo',
+    name: 'Envelo',
+    tone: 'peach',
+    logo: asset('quests/envelo/logo.webp'),
+    title: 'Wedding invites guests actually open.',
+    description:
+      'Interactive invitations for Vietnamese weddings. Each guest gets an envelope with their own name to open, then RSVPs and leaves a wish. A couple makes one in about 15 minutes.',
+    stack: ['Next.js', 'GSAP', 'Firebase', 'Claude API'],
+    core: ['Next.js'],
+    thumb: {
+      src: asset('quests/envelo/landing.webp'),
+      alt: 'Envelo landing page with a sealed envelope addressed to a guest on a phone',
       width: 1200,
-      height: 461,
+      height: 750,
+    },
+  },
+  {
+    id: 'token-station',
+    name: 'Token Station',
+    tone: 'lilac',
+    logo: asset('quests/token-station/logo.webp'),
+    badge: 'Personal tool',
+    title: 'My Claude accounts, charging all my machines.',
+    description:
+      'A small hub on my Mac that keeps Claude setup-tokens encrypted and relays Claude Code for my other Macs and PCs over the LAN. Machines never see a token.',
+    stack: ['Python', 'TLS', 'Vanilla JS'],
+    core: ['Python'],
+    thumb: {
+      src: asset('quests/token-station/station.webp'),
+      alt: 'Token Station: each Claude account is a charger kiosk, with a Mac mini and a PC plugged in',
+      width: 1200,
+      height: 848,
     },
   },
 ]
@@ -197,9 +258,7 @@ const projects = [
     achievements: [
       'Wired in payment terminals and Epson printers with the hardware vendors',
       'Wrote the expo-redpark-serial and expo-pssb-keypair native modules',
-      'Adapted react-native-esc-pos-printer for the Epson ePOS SDK',
       '12+ monthly releases since the Sep 2025 go-live, from build to App Store review',
-      'Scrum Master duties on the side, React Testing Library coverage underneath',
     ],
   },
   {
@@ -208,7 +267,7 @@ const projects = [
     icon: 'admin',
     tone: 'mint',
     description:
-      'A multi-tenant healthcare web platform I built from zero in 2021 and ran solo for two years before the team joined. It now has 60+ modules: role-based access for every admin level and doctors, appointments, video consults, real-time vitals charts and reports.',
+      'Multi-tenant healthcare web platform I built from zero in 2021 and ran solo for two years. Now 60+ modules: roles, appointments, video consults and real-time vitals.',
     stack: ['React', 'MUI', 'Redux Toolkit', 'Zustand', 'Vitest'],
     core: ['React', 'MUI', 'Redux Toolkit'],
   },
@@ -218,7 +277,7 @@ const projects = [
     icon: 'heart',
     tone: 'peach',
     description:
-      'Intranet portal for National Healthcare Group, with the Taggle onshore team in Singapore. Built it from zero, ran it solo for two years, then handed a team a codebase they could own without calling me.',
+      'Intranet portal for National Healthcare Group. Built it from zero, ran it solo for two years, then handed over a codebase the team could own without calling me.',
     stack: ['ReactJS', 'MUI', 'Redux Toolkit', 'Zustand'],
     core: ['ReactJS', 'MUI'],
   },
@@ -228,29 +287,9 @@ const projects = [
     icon: 'platform',
     tone: 'primary',
     description:
-      'Front-end foundation for a multi-tenant healthcare platform for clinics in Singapore and the Philippines. Now piloting with its first 4 to 5 clinic tenants.',
-    stack: ['ReactJS', 'TypeScript', 'MUI', 'Axios', 'Redux Toolkit'],
-    core: ['ReactJS', 'TypeScript', 'Redux Toolkit'],
-  },
-  {
-    name: 'XSPERA Enterprise Portal',
-    client: 'Saigon Commercial Bank',
-    icon: 'bank',
-    tone: 'pink',
-    description:
-      'Enterprise tools woven into Microsoft Teams, Power Apps and SharePoint for one of Vietnam’s commercial banks.',
-    stack: ['ReactJS', 'AngularJS', 'Kendo UI', 'SharePoint'],
-    core: ['AngularJS', 'SharePoint'],
-  },
-  {
-    name: 'Radiology Viewers',
-    client: 'Ramsoft (Canada) and France',
-    icon: 'scan',
-    tone: 'lilac',
-    description:
-      'Web radiology viewers and clinical workflow UI for Ramsoft and a French radiology product. They had to behave in every browser a hospital still runs. Including the old ones.',
-    stack: ['JavaScript', 'SCSS', 'HTML5', 'Sencha ExtJS'],
-    core: ['JavaScript', 'Sencha ExtJS'],
+      'Front-end foundation for a multi-tenant platform for clinics in Singapore and the Philippines. Piloting with its first 4 to 5 clinic tenants.',
+    stack: ['ReactJS', 'TypeScript', 'MUI', 'Redux Toolkit'],
+    core: ['ReactJS', 'TypeScript'],
   },
 ]
 
@@ -263,14 +302,9 @@ const experiences = [
     role: 'Senior Software Development Engineer',
     quip: 'Where I learned hospitals care a lot about receipt printers.',
     points: [
-      'Lead the front-end team: 2 web and 3 mobile developers',
-      'Mentored a fresher who reached junior level within a year',
-      'Built the PSSB iPad kiosk solo from prototype to production: 24/7 on ~200 devices, 2,000+ patients a day',
-      'Shipped 12+ monthly releases plus hotfixes since the Sep 2025 go-live',
-      'Built Taggle Portal, a multi-tenant React platform with 60+ modules, from the start in 2021',
-      'Deliver National Healthcare Group projects (PSSB kiosk, NCA portal) with the Singapore onshore team',
-      'Designed the front-end foundation for the admin portals so new people onboard fast',
-      'Building the multi-tenant Taggle Platform for clinics in Singapore and the Philippines',
+      'Lead the front-end team (2 web, 3 mobile); mentored a fresher to junior within a year',
+      'Built the PSSB kiosk and NCA portal for National Healthcare Group with the Singapore onshore team',
+      'Built Taggle Portal from zero in 2021; now building the multi-tenant Taggle Platform',
       'Own code review, merges, CI/CD, UAT and production releases',
     ],
   },
@@ -281,9 +315,8 @@ const experiences = [
     role: 'Front-End Developer',
     quip: 'Taught SharePoint some manners. It mostly listened.',
     points: [
-      'Enterprise solutions in AngularJS, React, SharePoint and Kendo UI',
+      'XSPERA enterprise portal for Saigon Commercial Bank: AngularJS, React, SharePoint, Kendo UI',
       'Microsoft Teams Apps and Power Apps wired into enterprise workflows',
-      'Mentored a fresher and an intern until they could deliver on their own',
     ],
   },
   {
@@ -293,8 +326,7 @@ const experiences = [
     role: 'Front-End Developer and Consultant',
     quip: 'Made radiology apps work in legacy browsers. Still recovering.',
     points: [
-      'Radiology web apps for Ramsoft (Canada) and a French customer',
-      'Production radiology apps in Sencha ExtJS with MVVM',
+      'Radiology viewers for Ramsoft (Canada) and a French customer, in Sencha ExtJS',
       'Requirement analysis, estimates and client demos for two products',
     ],
   },
@@ -318,10 +350,7 @@ const toolbox = [
       'Zustand',
       'MUI',
       'React Hook Form',
-      'Formik + Yup',
-      'Axios',
       'i18next',
-      'Tamagui',
       'HTML / CSS / SCSS',
     ],
   },
@@ -332,53 +361,38 @@ const toolbox = [
     tone: 'primary',
     items: [
       'SwiftUI',
-      'Go',
       'Next.js',
-      'FastAPI',
       'Firebase',
+      'Go',
+      'FastAPI',
+      'Rust',
+      'Python',
+      'GSAP',
       'Cloud Run',
-      'Claude + LiteLLM',
+      'Claude API',
       'Claude Code',
-      'Cursor',
-      'OpenAI Codex',
-      'BigQuery',
     ],
   },
   {
     title: 'Keeping it honest',
-    note: 'Tests, pipelines and the occasional container.',
+    note: 'Tests, pipelines and the old stuff I still remember.',
     core: ['Git', 'CI/CD'],
     tone: 'mint',
+    size: 'full',
     items: [
       'Jest',
       'Vitest',
       'React Testing Library',
       'Maestro',
-      'Storybook',
       'Vite',
-      'Webpack',
       'Git',
       'CI/CD',
       'Azure DevOps',
       'TestFlight',
       'Docker',
-    ],
-  },
-  {
-    title: 'Vintage collection',
-    note: 'I have seen things. jQuery things.',
-    core: ['AngularJS', 'Sencha ExtJS'],
-    tone: 'lilac',
-    size: 'wide',
-    items: [
       'AngularJS',
-      'jQuery',
       'Sencha ExtJS',
-      'Kendo UI',
       'SharePoint',
-      'Power Apps',
-      'MS Teams Apps',
-      '.NET Core',
     ],
   },
 ]
@@ -397,4 +411,13 @@ const contact = {
   github: about.social.github,
 }
 
-export { about, facts, sideQuests, projects, experiences, toolbox, contact }
+export {
+  about,
+  facts,
+  sideQuests,
+  miniQuests,
+  projects,
+  experiences,
+  toolbox,
+  contact,
+}

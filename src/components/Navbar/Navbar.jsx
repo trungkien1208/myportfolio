@@ -4,6 +4,7 @@ import {
   motion,
   useMotionValueEvent,
   useScroll,
+  useTransform,
 } from 'motion/react'
 import { List, Moon, Sun, X } from '@phosphor-icons/react'
 import { ThemeContext } from '../../contexts/theme'
@@ -69,16 +70,45 @@ const ThemeToggle = () => {
   )
 }
 
+const ISLAND_SPRING = { type: 'spring', stiffness: 380, damping: 32 }
+
+// Who peeks over the island in each section
+const mascot = (path) => `${import.meta.env.BASE_URL}${path}`
+const PEEKS = {
+  'side-quests': mascot('nav/charm-cogi.webp'),
+  projects: mascot('nav/charm-whale.webp'),
+  experiences: mascot('nav/charm-mo.webp'),
+  skills: mascot('nav/charm-cogi-search.webp'),
+  contact: mascot('nav/charm-cogi-party.webp'),
+}
+
+// Soft light that follows the pointer across the island
+const trackSpotlight = (e) => {
+  const box = e.currentTarget.getBoundingClientRect()
+  e.currentTarget.style.setProperty('--mx', `${e.clientX - box.left}px`)
+  e.currentTarget.style.setProperty('--my', `${e.clientY - box.top}px`)
+}
+
 const Navbar = () => {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [pastHero, setPastHero] = useState(false)
   const active = useActiveSection(SECTION_IDS)
-  const { scrollY } = useScroll()
+  const { scrollY, scrollYProgress } = useScroll()
+  const fillY = useTransform(scrollYProgress, [0, 1], ['100%', '0%'])
 
   useMotionValueEvent(scrollY, 'change', (y) => {
     const next = y > 12
     if (next !== scrolled) setScrolled(next)
+    // Past the hero, the bar folds into a floating island
+    const hero = document.getElementById('top')
+    const past = y > (hero ? hero.offsetHeight - 120 : 600)
+    if (past !== pastHero) setPastHero(past)
   })
+
+  // The open mobile sheet needs the full bar
+  const island = pastHero && !open
+  const peek = island ? PEEKS[active] : undefined
 
   useEffect(() => {
     if (!open) return undefined
@@ -95,21 +125,105 @@ const Navbar = () => {
   const close = () => setOpen(false)
 
   return (
-    <header className={`nav ${scrolled || open ? 'nav--raised' : ''}`}>
-      <div className='container nav__inner'>
-        <a
+    <header
+      className={`nav ${(scrolled || open) && !island ? 'nav--raised' : ''} ${
+        island ? 'nav--island' : ''
+      }`}
+      data-section={island ? active : undefined}
+    >
+      <motion.div
+        layout
+        className='container nav__inner'
+        initial={false}
+        onPointerMove={island ? trackSpotlight : undefined}
+        animate={
+          island
+            ? {
+                borderRadius: 40,
+                // Slapped on like a sticker: squash, overshoot, settle
+                scaleX: [1, 1.07, 0.97, 1.01, 1],
+                scaleY: [1, 0.86, 1.06, 0.99, 1],
+                rotate: [0, -2.5, 1.2, 0],
+              }
+            : { borderRadius: 0, scaleX: 1, scaleY: 1, rotate: 0 }
+        }
+        transition={{
+          ...ISLAND_SPRING,
+          scaleX: { duration: 0.6, ease: 'easeOut', delay: 0.18 },
+          scaleY: { duration: 0.6, ease: 'easeOut', delay: 0.18 },
+          rotate: { duration: 0.6, ease: 'easeOut', delay: 0.18 },
+        }}
+      >
+        {/* Keychain charm: a mascot hangs under the island, one per section */}
+        <span className='nav__charm' aria-hidden='true'>
+          <AnimatePresence mode='popLayout'>
+            {peek && (
+              <motion.span
+                key={peek}
+                className='nav__charm-swing'
+                initial={{ y: -14, scale: 0.3, opacity: 0 }}
+                animate={{ y: 0, scale: 1, opacity: 1 }}
+                exit={{ y: -10, scale: 0.3, opacity: 0 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 380,
+                  damping: 14,
+                  delay: 0.2,
+                }}
+              >
+                <span className='nav__charm-ring' />
+                <img src={peek} alt='' className='nav__charm-img' />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </span>
+
+        <motion.a
+          layout='position'
+          transition={ISLAND_SPRING}
           href='#top'
           className='nav__logo'
           aria-label={`${about.name}, back to top`}
           onClick={close}
         >
-          <span className='nav__logo-mark'>k</span>
-          <span className='nav__logo-word'>
-            kiên<span className='nav__logo-dot'>.</span>
-          </span>
-        </a>
+          <motion.span
+            className='nav__logo-spin'
+            initial={false}
+            animate={{ rotate: island ? 360 : 0 }}
+            transition={{ type: 'spring', stiffness: 160, damping: 16 }}
+          >
+            <span className='nav__logo-mark'>
+              {/* Reading progress: pink water rises in the mark as you scroll */}
+              <motion.span
+                className='nav__logo-fill'
+                aria-hidden='true'
+                style={{ y: fillY }}
+              />
+              <span className='nav__logo-k'>k</span>
+            </span>
+          </motion.span>
+          <AnimatePresence initial={false}>
+            {!island && (
+              <motion.span
+                key='word'
+                className='nav__logo-word'
+                initial={{ opacity: 0, width: 0, filter: 'blur(4px)' }}
+                animate={{ opacity: 1, width: 'auto', filter: 'blur(0px)' }}
+                exit={{ opacity: 0, width: 0, filter: 'blur(4px)' }}
+                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              >
+                kiên<span className='nav__logo-dot'>.</span>
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </motion.a>
 
-        <nav className='nav__links' aria-label='Main'>
+        <motion.nav
+          layout='position'
+          transition={ISLAND_SPRING}
+          className='nav__links'
+          aria-label='Main'
+        >
           {LINKS.map((link) => (
             <a
               key={link.id}
@@ -127,9 +241,13 @@ const Navbar = () => {
               <span className='nav__link-text'>{link.label}</span>
             </a>
           ))}
-        </nav>
+        </motion.nav>
 
-        <div className='nav__actions'>
+        <motion.div
+          layout='position'
+          transition={ISLAND_SPRING}
+          className='nav__actions'
+        >
           <ThemeToggle />
           <a href='#contact' className='btn btn-primary nav__cta'>
             Say hi
@@ -148,8 +266,8 @@ const Navbar = () => {
               <List size={22} weight='bold' />
             )}
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <AnimatePresence>
         {open && (

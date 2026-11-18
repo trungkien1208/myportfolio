@@ -21,7 +21,7 @@ const Toolbox = () => (
             key={group.title}
             delay={i * 0.06}
             className={`tool card tone-${group.tone} ${
-              group.size === 'wide' ? 'tool--wide' : ''
+              group.size ? `tool--${group.size}` : ''
             }`}
           >
             <h3 className='tool__title'>{group.title}</h3>

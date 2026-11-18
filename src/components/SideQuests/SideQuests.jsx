@@ -8,7 +8,7 @@ import {
   Globe,
   Star,
 } from '@phosphor-icons/react'
-import { sideQuests } from '../../portfolio'
+import { miniQuests, sideQuests } from '../../portfolio'
 import Reveal from '../Reveal/Reveal'
 import TechChips from '../TechChips/TechChips'
 import './SideQuests.css'
@@ -183,6 +183,75 @@ const Quest = ({ quest, flip = false }) => {
   )
 }
 
+const MiniQuest = ({ quest, index }) => {
+  const links = quest.links || []
+  return (
+    <Reveal
+      as='article'
+      delay={(index % 2) * 0.08}
+      className={`mini card tone-${quest.tone}`}
+    >
+      <div
+        className={`mini__thumb ${
+          quest.thumb.phone ? 'mini__thumb--phone' : ''
+        }`}
+      >
+        <img
+          src={quest.thumb.src}
+          alt={quest.thumb.alt}
+          width={quest.thumb.width}
+          height={quest.thumb.height}
+          loading='lazy'
+        />
+      </div>
+
+      <div className='mini__body'>
+        <div className='quest__brand mini__brand'>
+          <img
+            className='quest__logo mini__logo'
+            src={quest.logo}
+            alt=''
+            width='36'
+            height='36'
+            loading='lazy'
+          />
+          <span className='quest__name'>{quest.name}</span>
+          {quest.badge && <span className='quest__badge'>{quest.badge}</span>}
+        </div>
+        <h3 className='mini__title'>{quest.title}</h3>
+        <p className='mini__desc'>{quest.description}</p>
+        <TechChips
+          className='mini__chips'
+          items={quest.stack}
+          core={quest.core}
+          label='Built with'
+          chipClassName='chip-plain'
+        />
+        {links.length > 0 && (
+          <div className='mini__links'>
+            {links.map((link) => {
+              const Icon = LINK_ICONS[link.icon] || ArrowUpRight
+              return (
+                <a
+                  key={link.href}
+                  className='mini__link'
+                  href={link.href}
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  <Icon size={18} weight='fill' />
+                  {link.label}
+                  <ArrowUpRight size={14} weight='bold' />
+                </a>
+              )
+            })}
+          </div>
+        )}
+      </div>
+    </Reveal>
+  )
+}
+
 const SideQuests = () => (
   <section id='side-quests' className='section'>
     <div className='container'>
@@ -190,13 +259,19 @@ const SideQuests = () => (
         <h2 className='section-title'>Side quests</h2>
         <p className='section-sub'>
           What I build after work, because apparently I don’t know how to relax.
-          Two have real users. The third has me and two GitHub stars.
+          Some have real users. Some have only me, which also counts.
         </p>
       </Reveal>
 
       <div className='quests'>
         {sideQuests.map((quest, i) => (
           <Quest key={quest.id} quest={quest} flip={i % 2 === 1} />
+        ))}
+      </div>
+
+      <div className='minis'>
+        {miniQuests.map((quest, i) => (
+          <MiniQuest key={quest.id} quest={quest} index={i} />
         ))}
       </div>
     </div>
@@ -213,5 +288,9 @@ const questShape = PropTypes.shape({
 PhoneFan.propTypes = { quest: questShape.isRequired }
 BrowserStack.propTypes = { quest: questShape.isRequired }
 Quest.propTypes = { quest: questShape.isRequired, flip: PropTypes.bool }
+MiniQuest.propTypes = {
+  quest: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+}
 
 export default SideQuests
